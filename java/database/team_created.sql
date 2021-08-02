@@ -7,12 +7,10 @@ DROP TABLE IF EXISTS tag CASCADE;
 DROP TABLE IF EXISTS flashcard_tag CASCADE;
 
 
-
-
 CREATE TABLE flashcard (
 	flashcard_id SERIAL NOT NULL PRIMARY KEY,
-	question_text text NOT NULL,
-	answer_text text NOT NULL,
+	question_text VARCHAR(200) NOT NULL,
+	answer_text VARCHAR(200) NOT NULL,
 
         creator_id int REFERENCES users (user_id)
 );
@@ -26,8 +24,8 @@ CREATE TABLE flashcard_search_text (
 CREATE TABLE deck (
 	deck_id SERIAL PRIMARY KEY NOT NULL, 
 	creator_id int REFERENCES users (user_id),
-    deck_name varchar(200) NOT NULL,
-    deck_description varchar(200)
+	deck_name varchar(200) NOT NULL,
+	deck_description varchar(200)
 );
 
 
@@ -49,8 +47,14 @@ CREATE TABLE flashcard_tag (
         PRIMARY KEY (flashcard_id, tag_id)
 );
 
-INSERT INTO users (user_id, username, password_hash, role) VALUES (100, 'user1','$2a$10$RJJxim1wZ65TzWYZMGiWcO.4lGSWYg9eKJ7wcli5IKcPLic66TMKG','ROLE_ADMIN');
-
+/* and they all use 'mypassword' */
+INSERT INTO users (user_id, username, password_hash, role) VALUES
+(100, 'user100','$2a$10$RJJxim1wZ65TzWYZMGiWcO.4lGSWYg9eKJ7wcli5IKcPLic66TMKG','ROLE_USER'),
+(200, 'user200','$2a$10$RJJxim1wZ65TzWYZMGiWcO.4lGSWYg9eKJ7wcli5IKcPLic66TMKG','ROLE_USER'),
+(300, 'user300','$2a$10$RJJxim1wZ65TzWYZMGiWcO.4lGSWYg9eKJ7wcli5IKcPLic66TMKG','ROLE_USER'),
+(400, 'user400','$2a$10$RJJxim1wZ65TzWYZMGiWcO.4lGSWYg9eKJ7wcli5IKcPLic66TMKG','ROLE_USER'),
+(500, 'user500','$2a$10$RJJxim1wZ65TzWYZMGiWcO.4lGSWYg9eKJ7wcli5IKcPLic66TMKG','ROLE_USER'),
+(600, 'user600','$2a$10$RJJxim1wZ65TzWYZMGiWcO.4lGSWYg9eKJ7wcli5IKcPLic66TMKG','ROLE_USER');
 
 INSERT INTO deck (deck_id, deck_name, creator_id, deck_description)
 VALUES (50, 'Art',100, 'flashcards that relate to art'),
@@ -71,8 +75,6 @@ INSERT INTO flashcard_deck (flashcard_id, deck_id)
 VALUES (1002, 50),
 (1003, 50),
 (1004, 50);
-
-select * from flashcard_deck;
 
 INSERT INTO tag (tag_id, tag_text) 
 VALUES (500, 'modern'), 
@@ -95,5 +97,12 @@ VALUES (1000, 502),
 (1004, 501);
 
 
-select * from users;
-ROLLBACK;
+SELECT * FROM users;
+SELECT * FROM flashcard;
+SELECT * FROM flashcard_search_text;
+SELECT * FROM flashcard_deck;
+SELECT * FROM flashcard_tag;
+SELECT * FROM deck;
+SELECT * FROM tag; 
+
+COMMIT TRANSACTION;
