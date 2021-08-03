@@ -1,12 +1,17 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.DeckDao;
 import com.techelevator.dao.FlashcardDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.model.Deck;
 import com.techelevator.model.Flashcard;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @PreAuthorize("isAuthenticated()")
@@ -14,11 +19,13 @@ public class FlashcardController {
 
     private FlashcardDao flashcardDao;
     private UserDao userDao;
+    private DeckDao deckDao;
 
-    public FlashcardController(FlashcardDao flashcardDao, UserDao userDao)
+    public FlashcardController(FlashcardDao flashcardDao, UserDao userDao, DeckDao deckDao)
     {
         this.flashcardDao = flashcardDao;
         this.userDao = userDao;
+        this.deckDao = deckDao;
     }
 
     /**
@@ -64,6 +71,28 @@ public class FlashcardController {
 
         return soughtFlashcard;
     }
+
+    @RequestMapping(path="deckcards/{deckId}", method = RequestMethod.GET)
+    public List<Flashcard> getDeckCards(@PathVariable Long deckId, Principal principal) throws Exception {
+        List<Flashcard> flashcardList = new ArrayList<>();
+        Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
+
+        Deck foundDeck = deckDao.retrieveDeck(deckId);
+        if (foundDeck.getCreatorId()!=userId) {
+            throw new Exception();
+        }
+
+        try {
+            flashcardList = flashcardDao.getAllFlashcardsInDeck(deckId);
+        } catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+            throw ex;
+        }
+
+        return flashcardList;
+    }
+
 
 
 }

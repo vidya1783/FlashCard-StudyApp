@@ -7,6 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class JdbcFlashcardDao implements FlashcardDao {
     JdbcTemplate jdbcTemplate;
@@ -49,6 +52,7 @@ public class JdbcFlashcardDao implements FlashcardDao {
             while (results.next())
             {
                 returnFlashcard = mapRowToFlashcard(results);
+
             }
 
         }
@@ -58,6 +62,34 @@ public class JdbcFlashcardDao implements FlashcardDao {
 
         return returnFlashcard;
     }
+
+    @Override
+    public List<Flashcard> getAllFlashcardsInDeck(Long deckId) throws Exception
+    {
+        // must be functionally limited to just one authenticated user
+        List<Flashcard> flashcardList = new ArrayList<>();
+        Flashcard addThisFlashcard = new Flashcard();
+        String returnFlashcardSql = "SELECT f.flashcard_id, f.creator_id, f.question_text, " +
+        " f.answer_text FROM flashcard f JOIN flashcard_deck fd " +
+                "ON f.flashcard_id = fd.flashcard_id " +
+                "WHERE fd.deck_id = ?; ";
+
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(returnFlashcardSql, deckId);
+            while (results.next())
+            {
+                addThisFlashcard = mapRowToFlashcard(results);
+                flashcardList.add(addThisFlashcard);
+            }
+
+        }
+        catch (Exception ex) {
+            throw ex;
+        }
+
+        return flashcardList;
+    }
+
 
     private Flashcard mapRowToFlashcard(SqlRowSet rowSet) {
         Flashcard mappedFlashcard = new Flashcard();

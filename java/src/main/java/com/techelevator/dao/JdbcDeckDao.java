@@ -37,7 +37,22 @@ public class JdbcDeckDao implements DeckDao {
     }
 
     @Override
-    @PreAuthorize("isAuthenticated()")
+    public Deck retrieveDeck(Long deckId)
+    {
+        Deck foundDeck = new Deck();
+        String sql = "SELECT deck_id, creator_id, deck_name, deck_description FROM deck " +
+                "WHERE deck_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, deckId);
+        while (results.next())
+        {
+            foundDeck = mapRowToDeck(results);
+        }
+
+        return foundDeck;
+
+    }
+
+    @Override
     public List<Deck> getMyDecks(Principal principal) {
         List<Deck> usersDecks = new ArrayList<>();
         Deck deckToAdd = new Deck();

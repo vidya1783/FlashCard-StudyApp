@@ -10,4 +10,7 @@ public interface DeckDao {
     public Deck createDeck(Long creatorId, String deckName, String deckDescription) throws Exception;
 
     public List<Deck> getMyDecks(Principal principal);
+
+    public Deck retrieveDeck(Long deckId);
+
 }
