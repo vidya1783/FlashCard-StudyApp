@@ -53,6 +53,25 @@ public class JdbcDeckDao implements DeckDao {
     }
 
     @Override
+    public Deck updateDeck(Deck deckToUpdate) throws Exception {
+        String sql = "UPDATE deck SET deck_name = ?, " +
+                "deck_description = ? WHERE deck_id = ?;";
+        int rowsUpdated = -1;
+
+        try {
+            rowsUpdated = jdbcTemplate.update(sql,deckToUpdate.getDeckName(),
+                    deckToUpdate.getDeckDescription(), deckToUpdate.getDeckId());
+            deckToUpdate = retrieveDeck(deckToUpdate.getDeckId());
+
+        } catch (Exception ex) {
+            throw new Exception();
+        }
+
+        if (rowsUpdated==1) {return deckToUpdate;}
+        else {throw new Exception();}
+    }
+
+    @Override
     public List<Deck> getMyDecks(Principal principal) {
         List<Deck> usersDecks = new ArrayList<>();
         Deck deckToAdd = new Deck();

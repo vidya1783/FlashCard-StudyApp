@@ -13,4 +13,6 @@ public interface DeckDao {
 
     public Deck retrieveDeck(Long deckId);
 
+    public Deck updateDeck(Deck deckToUpdate) throws Exception;
+
 }

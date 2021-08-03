@@ -71,4 +71,24 @@ public class DeckController {
         return searchedDeck;
     }
 
+    //
+
+    @RequestMapping(path="deck", method=RequestMethod.PUT)
+    public Deck updateUsersDeck(@RequestBody Deck deck, Principal principal) throws Exception
+    {
+        Deck updatedDeck = new Deck();
+        try {
+            Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
+            Deck retrievedDeck = deckDao.retrieveDeck(deck.getDeckId());
+            if (retrievedDeck.getCreatorId()!=userId) {
+                throw new Exception();
+            }
+            updatedDeck = deckDao.updateDeck(deck);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return updatedDeck;
+    }
+
 }
