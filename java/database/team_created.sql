@@ -37,7 +37,8 @@ CREATE TABLE flashcard_deck (
 
 CREATE TABLE tag (
 	tag_id SERIAL PRIMARY KEY NOT NULL,
-	tag_text varchar(150) NOT NULL UNIQUE
+	tag_text varchar(150) NOT NULL UNIQUE,
+	creator_id int REFERENCES users (user_id)
 );
 
 
