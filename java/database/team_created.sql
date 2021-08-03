@@ -39,6 +39,7 @@ CREATE TABLE tag (
 	tag_id SERIAL PRIMARY KEY NOT NULL,
 	tag_text varchar(150) NOT NULL UNIQUE,
 	creator_id int REFERENCES users (user_id)
+
 );
 
 
@@ -77,11 +78,11 @@ VALUES (1002, 50),
 (1003, 50),
 (1004, 50);
 
-INSERT INTO tag (tag_id, tag_text) 
-VALUES (500, 'modern'), 
-(501, 'ancient'),
-(502, 'starts with p'),
-(503, 'starts with n');   
+INSERT INTO tag (tag_id, tag_text, creator_id) 
+VALUES (500, 'modern', 100), 
+(501, 'ancient', 100),
+(502, 'starts with p', 100),
+(503, 'starts with n', 200);   
 
 INSERT INTO flashcard_search_text (flashcard_id, keywords)
 VALUES (1000, 'brotherly love'),
