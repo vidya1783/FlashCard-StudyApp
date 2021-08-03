@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.DeckDao;
 import com.techelevator.dao.FlashcardDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.Deck;
 import com.techelevator.model.Flashcard;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,17 +19,21 @@ import java.util.List;
 @PreAuthorize("isAuthenticated()")
 public class DeckController {
     private DeckDao deckDao;
+    private UserDao userDao;
 
-    public DeckController(DeckDao deckDao)
+    public DeckController(DeckDao deckDao, UserDao userDao)
     {
         this.deckDao = deckDao;
+        this.userDao = userDao;
     };
 
     @RequestMapping(path="deck", method= RequestMethod.POST)
     public Deck createDeck
-            (@RequestBody Deck deck) throws Exception
+            (@RequestBody Deck deck, Principal principal) throws Exception
     {
         Deck newDeck;
+        Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
+        deck.setCreatorId(userId);
 
         try {
             newDeck = deckDao.createDeck(deck.getCreatorId(),

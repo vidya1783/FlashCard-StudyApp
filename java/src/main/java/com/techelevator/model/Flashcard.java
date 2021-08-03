@@ -3,7 +3,8 @@ package com.techelevator.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Flashcard {
-    private Long id = -1L;
+    @JsonProperty("flashcard_id")
+    private Long flashcardId = -1L;
     @JsonProperty("creator_id")
     private Long creatorId;
     @JsonProperty("question_text")
@@ -11,12 +12,12 @@ public class Flashcard {
     @JsonProperty("answer_text")
     private String answerText;
 
-    public Long getId() {
-        return id;
+    public Long getFlashcardId() {
+        return flashcardId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setFlashcardId(Long id) {
+        this.flashcardId = id;
     }
 
     public Long getCreatorId() {

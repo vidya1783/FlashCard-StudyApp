@@ -1,34 +1,35 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.FlashcardDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.Flashcard;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
+@PreAuthorize("isAuthenticated()")
 public class FlashcardController {
 
     private FlashcardDao flashcardDao;
+    private UserDao userDao;
 
-    public FlashcardController(FlashcardDao flashcardDao)
+    public FlashcardController(FlashcardDao flashcardDao, UserDao userDao)
     {
         this.flashcardDao = flashcardDao;
+        this.userDao = userDao;
     }
 
     /**
      * @return the ID of a newly created card
      * **/
     @RequestMapping(path="flashcard", method= RequestMethod.POST)
-    public Flashcard createFlashcard(@RequestBody Flashcard flashcard) throws Exception
+    public Flashcard createFlashcard(@RequestBody Flashcard flashcard, Principal principal) throws Exception
     {
         Flashcard newFlashcard;
-
-        Long id = flashcard.getCreatorId();
-        String questionText = flashcard.getQuestionText();
-        String answerText = flashcard.getAnswerText();
-
+        Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
+        flashcard.setCreatorId(userId);
 
         try {
             newFlashcard = flashcardDao.createTextFlashcard(flashcard.getCreatorId(),
@@ -40,6 +41,28 @@ public class FlashcardController {
         }
 
         return newFlashcard;
+    }
+
+    @RequestMapping(path="flashcard/{id}", method = RequestMethod.GET)
+    public Flashcard getUsersFlashcard(@PathVariable Long id, Principal principal) throws Exception {
+        Flashcard soughtFlashcard;
+
+        try {
+            soughtFlashcard = flashcardDao.viewFlashcardById(id);
+        } catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+            throw ex;
+        }
+
+        Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
+
+        if (soughtFlashcard.getCreatorId()!=userId)
+        {
+            throw new Exception("Hello, the creator ID does not match");
+        }
+
+        return soughtFlashcard;
     }
 
 
