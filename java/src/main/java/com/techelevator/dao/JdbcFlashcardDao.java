@@ -36,4 +36,20 @@ public class JdbcFlashcardDao implements FlashcardDao {
         return newFlashcard;
 
     }
+
+    @Override
+    public Flashcard viewFlashcardById(Long flashcardId) throws Exception {
+        Flashcard returnFlashcard;
+        String returnFlashcardSql = "SELECT creator_id, question_text, answer_text FROM flashcard " +
+                "WHERE flashcard_id = ?;";
+        try {
+            returnFlashcard = jdbcTemplate.queryForObject(returnFlashcardSql,Flashcard.class,
+                    flashcardId);
+        }
+        catch (Exception ex) {
+            throw new Exception();
+        }
+
+        return returnFlashcard;
+    }
 }

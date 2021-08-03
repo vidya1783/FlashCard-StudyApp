@@ -46,5 +46,11 @@ public class FlashcardController {
         return newFlashcard;
     }
 
+    @RequestMapping(path="flashcard/{id}")
+    public Flashcard getUsersFlashcard(Long id, Principal principal) {
+        // compare against user id for security reasons
+        return null;
+    }
+
 
 }
