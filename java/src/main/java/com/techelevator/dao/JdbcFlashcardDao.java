@@ -1,8 +1,10 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Deck;
 import com.techelevator.model.Flashcard;
 import org.springframework.boot.autoconfigure.quartz.QuartzProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,24 +34,37 @@ public class JdbcFlashcardDao implements FlashcardDao {
             throw new Exception();
         }
 
-        newFlashcard.setId(newFlashcardId);
+        newFlashcard.setFlashcardId(newFlashcardId);
         return newFlashcard;
 
     }
 
     @Override
     public Flashcard viewFlashcardById(Long flashcardId) throws Exception {
-        Flashcard returnFlashcard;
-        String returnFlashcardSql = "SELECT creator_id, question_text, answer_text FROM flashcard " +
+        Flashcard returnFlashcard = new Flashcard();
+        String returnFlashcardSql = "SELECT flashcard_id, creator_id, question_text, answer_text FROM flashcard " +
                 "WHERE flashcard_id = ?;";
         try {
-            returnFlashcard = jdbcTemplate.queryForObject(returnFlashcardSql,Flashcard.class,
-                    flashcardId);
+            SqlRowSet results = jdbcTemplate.queryForRowSet(returnFlashcardSql, flashcardId);
+            while (results.next())
+            {
+                returnFlashcard = mapRowToFlashcard(results);
+            }
+
         }
         catch (Exception ex) {
-            throw new Exception();
+            throw ex;
         }
 
         return returnFlashcard;
+    }
+
+    private Flashcard mapRowToFlashcard(SqlRowSet rowSet) {
+        Flashcard mappedFlashcard = new Flashcard();
+        mappedFlashcard.setCreatorId(rowSet.getLong("creator_id"));
+        mappedFlashcard.setQuestionText(rowSet.getString("question_text"));
+        mappedFlashcard.setAnswerText(rowSet.getString("answer_text"));
+        mappedFlashcard.setFlashcardId(rowSet.getLong("flashcard_id"));
+        return mappedFlashcard;
     }
 }

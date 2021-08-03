@@ -4,10 +4,7 @@ import com.techelevator.dao.FlashcardDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Flashcard;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -46,10 +43,26 @@ public class FlashcardController {
         return newFlashcard;
     }
 
-    @RequestMapping(path="flashcard/{id}")
-    public Flashcard getUsersFlashcard(Long id, Principal principal) {
-        // compare against user id for security reasons
-        return null;
+    @RequestMapping(path="flashcard/{id}", method = RequestMethod.GET)
+    public Flashcard getUsersFlashcard(@PathVariable Long id, Principal principal) throws Exception {
+        Flashcard soughtFlashcard;
+
+        try {
+            soughtFlashcard = flashcardDao.viewFlashcardById(id);
+        } catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+            throw ex;
+        }
+
+        Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
+
+        if (soughtFlashcard.getCreatorId()!=userId)
+        {
+            throw new Exception("Hello, the creator ID does not match");
+        }
+
+        return soughtFlashcard;
     }
 
 
