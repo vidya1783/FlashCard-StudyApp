@@ -4,12 +4,18 @@ import com.techelevator.dao.DeckDao;
 import com.techelevator.dao.FlashcardDao;
 import com.techelevator.model.Deck;
 import com.techelevator.model.Flashcard;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
+@PreAuthorize("isAuthenticated()")
 public class DeckController {
     private DeckDao deckDao;
 
@@ -23,9 +29,6 @@ public class DeckController {
             (@RequestBody Deck deck) throws Exception
     {
         Deck newDeck;
-        Long id = deck.getCreatorId();
-        String deckName = deck.getDeckName();
-        String deckDescription = deck.getDeckDescription();
 
         try {
             newDeck = deckDao.createDeck(deck.getCreatorId(),
@@ -36,6 +39,20 @@ public class DeckController {
             throw new Exception();
         }
         return newDeck;
+    }
+
+
+    public List<Deck> viewUsersDecks(Principal principal) throws Exception
+    {
+        List<Deck> returnDeckList = new ArrayList<>();
+        try {
+            returnDeckList = deckDao.getMyDecks(principal);
+        } catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+            throw new Exception();
+        }
+        return returnDeckList;
     }
 
 }

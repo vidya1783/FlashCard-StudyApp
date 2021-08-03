@@ -22,9 +22,9 @@ CREATE TABLE flashcard_search_text (
 
 
 CREATE TABLE deck (
-	deck_id SERIAL PRIMARY KEY NOT NULL, 
+	deck_id serial PRIMARY KEY NOT NULL,
 	creator_id int REFERENCES users (user_id),
-	deck_name varchar(200) NOT NULL,
+	deck_name varchar(200) NOT NULL UNIQUE,
 	deck_description varchar(200)
 );
 
