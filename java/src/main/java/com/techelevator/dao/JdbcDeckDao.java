@@ -45,7 +45,7 @@ public class JdbcDeckDao implements DeckDao {
         String userName = principal.getName();
         String sql = "SELECT d.creator_id, d.deck_description, " +
                 "d.deck_id, d.deck_name FROM deck d JOIN " +
-                "user u ON d.creator_id = u.user_id WHERE " +
+                "users u ON d.creator_id = u.user_id WHERE " +
                 "u.username = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userName);
         while (results.next())

@@ -42,6 +42,7 @@ public class DeckController {
     }
 
 
+    @RequestMapping(path="decks", method= RequestMethod.GET)
     public List<Deck> viewUsersDecks(Principal principal) throws Exception
     {
         List<Deck> returnDeckList = new ArrayList<>();

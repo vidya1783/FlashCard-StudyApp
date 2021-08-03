@@ -11,3 +11,16 @@ public class Application {
     }
 
 }
+
+/**
+ * TODO
+ * Add authentication to all methods
+ * Add Retrieve flashcard by flashcardId
+ * Retrieve all cards by a given deck Id
+ * Add tag to card
+ * Retrieve tag list
+ * -- later --
+ * Search by tag
+ * put update for flashcard
+ * put update for deck
+  */
