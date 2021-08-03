@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
+
 Vue.use(Vuex)
 
 /*
@@ -19,7 +20,14 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    flashcard:[
+      {
+        creatorID: " ",
+        question: " ",
+        answer: " ",
+      }
+    ]
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
