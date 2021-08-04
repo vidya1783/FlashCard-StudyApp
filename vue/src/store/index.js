@@ -27,7 +27,14 @@ export default new Vuex.Store({
         question: " ",
         answer: " ",
       }
-    ]
+    ],
+
+   
+   decks: {
+      id: 0,
+      name: " ",
+      description: " "
+    }
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -45,6 +52,14 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+
+    SET_DECKS(state,data){
+      state.decks = data;
+    },
+
+    SET_ACTIVE_DECK(state, data){
+      state.activeDeck = data;
     }
   }
 })
