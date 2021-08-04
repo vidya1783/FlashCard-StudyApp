@@ -6,10 +6,7 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.model.Deck;
 import com.techelevator.model.Flashcard;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -59,6 +56,39 @@ public class DeckController {
             throw new Exception();
         }
         return returnDeckList;
+    }
+
+    @RequestMapping(path="deck/{deckId}", method= RequestMethod.GET)
+    public Deck getDeckByDeckId(@PathVariable Long deckId, Principal principal) throws Exception {
+        Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
+
+        Deck searchedDeck = deckDao.retrieveDeck(deckId);
+
+        if (searchedDeck.getCreatorId()!=userId)
+        {
+            throw new Exception("unauthorized");
+        }
+        return searchedDeck;
+    }
+
+    //
+
+    @RequestMapping(path="deck", method=RequestMethod.PUT)
+    public Deck updateUsersDeck(@RequestBody Deck deck, Principal principal) throws Exception
+    {
+        Deck updatedDeck = new Deck();
+        try {
+            Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
+            Deck retrievedDeck = deckDao.retrieveDeck(deck.getDeckId());
+            if (retrievedDeck.getCreatorId()!=userId) {
+                throw new Exception();
+            }
+            updatedDeck = deckDao.updateDeck(deck);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return updatedDeck;
     }
 
 }

@@ -37,7 +37,41 @@ public class JdbcDeckDao implements DeckDao {
     }
 
     @Override
-    @PreAuthorize("isAuthenticated()")
+    public Deck retrieveDeck(Long deckId)
+    {
+        Deck foundDeck = new Deck();
+        String sql = "SELECT deck_id, creator_id, deck_name, deck_description FROM deck " +
+                "WHERE deck_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, deckId);
+        while (results.next())
+        {
+            foundDeck = mapRowToDeck(results);
+        }
+
+        return foundDeck;
+
+    }
+
+    @Override
+    public Deck updateDeck(Deck deckToUpdate) throws Exception {
+        String sql = "UPDATE deck SET deck_name = ?, " +
+                "deck_description = ? WHERE deck_id = ?;";
+        int rowsUpdated = -1;
+
+        try {
+            rowsUpdated = jdbcTemplate.update(sql,deckToUpdate.getDeckName(),
+                    deckToUpdate.getDeckDescription(), deckToUpdate.getDeckId());
+            deckToUpdate = retrieveDeck(deckToUpdate.getDeckId());
+
+        } catch (Exception ex) {
+            throw new Exception();
+        }
+
+        if (rowsUpdated==1) {return deckToUpdate;}
+        else {throw new Exception();}
+    }
+
+    @Override
     public List<Deck> getMyDecks(Principal principal) {
         List<Deck> usersDecks = new ArrayList<>();
         Deck deckToAdd = new Deck();
