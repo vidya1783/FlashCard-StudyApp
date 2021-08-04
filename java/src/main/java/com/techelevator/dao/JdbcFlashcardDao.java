@@ -90,6 +90,30 @@ public class JdbcFlashcardDao implements FlashcardDao {
         return flashcardList;
     }
 
+
+    @Override
+    public List<Flashcard> getALlCardsByCreatorId(Long creatorId) throws Exception {
+        List<Flashcard> flashcardList = new ArrayList<>();
+        Flashcard addThisFlashcard = new Flashcard();
+        String returnFlashcardSql = "SELECT f.flashcard_id, f.creator_id, f.question_text, " +
+                " f.answer_text FROM flashcard f WHERE f.creator_id = ?; ";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(returnFlashcardSql, creatorId);
+            while (results.next())
+            {
+                addThisFlashcard = mapRowToFlashcard(results);
+                flashcardList.add(addThisFlashcard);
+            }
+
+        }
+        catch (Exception ex) {
+            throw ex;
+        }
+
+        return flashcardList;
+    }
+
+
     @Override
     public Flashcard updateCard(Flashcard cardToUpdate) throws Exception {
         String sql = "UPDATE flashcard SET question_text = ?, " +

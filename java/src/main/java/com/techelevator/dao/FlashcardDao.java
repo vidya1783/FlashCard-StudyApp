@@ -12,6 +12,10 @@ public interface FlashcardDao {
 
     public List<Flashcard> getAllFlashcardsInDeck(Long deckId) throws Exception;
 
+    public List<Flashcard> getALlCardsByCreatorId (Long creatorId) throws Exception;
+
     public Flashcard updateCard(Flashcard cardToUpdate) throws Exception;
+
+
 
 }
