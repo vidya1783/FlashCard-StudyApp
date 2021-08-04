@@ -1,9 +1,14 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Deck;
+import com.techelevator.model.Flashcard;
 import com.techelevator.model.FlashcardTag;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class JdbcFlashcardTagDao implements FlashcardTagDao {
@@ -21,7 +26,7 @@ public class JdbcFlashcardTagDao implements FlashcardTagDao {
             String sql = " INSERT INTO flashcard_tag (flashcard_id, tag_id) " +
                     " VALUES (?, ?) ;";
             try {
-                jdbcTemplate.queryForObject(sql, Long.class, flashcardId, tagId );
+                jdbcTemplate.update(sql, flashcardId, tagId );
             } catch (Exception ex){
                 System.err.println(ex.getMessage());
 
@@ -30,6 +35,36 @@ public class JdbcFlashcardTagDao implements FlashcardTagDao {
             return newFlashcardTag;
         }
 
+    @Override
+    public List<FlashcardTag> getFlashcardTagsByFlashcardId(Long flashcardId) {
+        List<FlashcardTag> flashcardTagList = new ArrayList<>();
+        FlashcardTag addThisFlashcardTag = new FlashcardTag();
+
+        String returnFlashcardTagSql = "SELECT * FROM flashcard_tag " +
+                "WHERE flashcard_id = ?; ";
+
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(returnFlashcardTagSql, flashcardId);
+            while (results.next())
+            {
+                addThisFlashcardTag = mapRowToFlashcardTag(results);
+                flashcardTagList.add(addThisFlashcardTag);
+            }
+
+        }
+        catch (Exception ex) {
+            throw ex;
+        }
+
+        return flashcardTagList;
+    }
+
+    private FlashcardTag mapRowToFlashcardTag(SqlRowSet rowSet) {
+        FlashcardTag mappedFlashcardTag = new FlashcardTag();
+        mappedFlashcardTag.setFlashcardId(rowSet.getLong("flashcard_id"));
+        mappedFlashcardTag.setTagId(rowSet.getLong("tag_id"));
+        return mappedFlashcardTag;
+    }
 
 
 }
