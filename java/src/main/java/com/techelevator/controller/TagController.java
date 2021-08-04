@@ -9,12 +9,11 @@ import com.techelevator.model.FlashcardTag;
 import com.techelevator.model.Tag;
 import com.techelevator.model.User;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @PreAuthorize("isAuthenticated()")
@@ -66,6 +65,12 @@ public class TagController {
         }
 
         return newFlashcardTag;
+    }
+
+    @RequestMapping(path="tag/{flashcardId}", method= RequestMethod.GET)
+    public List<FlashcardTag> getFlashcardTagsByFlashcardId(@PathVariable Long flashcardId){
+        List <FlashcardTag> FlashcardTagsList = flashcardTagDao.getFlashcardTagsByFlashcardId(flashcardId);
+        return FlashcardTagsList;
     }
 
 

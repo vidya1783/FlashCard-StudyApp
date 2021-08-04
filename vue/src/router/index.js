@@ -53,7 +53,7 @@ const router = new Router({
       }
     },
     {
-      path: "/flashcard/add-flashcard",
+      path: "/flashcard",
       name: "addFlashcard",
       component: AddFlashcard,
       meta: {

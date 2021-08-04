@@ -1,14 +1,17 @@
 <template>
   <div>
       <h1>Add New Flashcard</h1>
-      <flashcard-form/>
+      <flashcard-form />
+      
   </div>
 </template>
 <script>
-import FlashcardForm from "../components/FlashcardForm";
+import FlashcardForm from  "@/components/FlashcardForm";
 export default {
   
-    components: {FlashcardForm},
+    components: {
+      FlashcardForm
+      }
 
 };
 </script>
