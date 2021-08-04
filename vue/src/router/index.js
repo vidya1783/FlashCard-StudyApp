@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import AddFlashcard from '../views/AddFlashcard.vue'
+import Decks from '../views/Decks.vue'
 import store from '../store/index'
 Vue.use(Router)
 /**
@@ -52,13 +53,22 @@ const router = new Router({
       }
     },
     {
-      path: "/flashcard/add-flashcard",
+      path: "/flashcard",
       name: "addFlashcard",
       component: AddFlashcard,
       meta: {
         requiresAuth: false
       }
-    }
+    },
+
+    {
+      path: '/decks',
+      name: 'decks',
+      component: Decks,
+      meta: {
+        requiresAuth: true
+      } 
+    },
   ]
 })
 

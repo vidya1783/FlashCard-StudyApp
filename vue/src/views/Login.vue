@@ -34,7 +34,7 @@
         v-model="user.password"
         required
       />
-      <button type="submit">Sign in</button>
+      <button @click="login()" type="submit">Sign In</button>
       <router-link :to="{ name: 'register' }" tag="button">Need an account?
       </router-link>
       <div class="container" style="background-color:#f1f1f1">
@@ -88,10 +88,12 @@ border: 3px solid #f1f1f1;
 }
 
 input[type=text], input[type=password]{
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: auto;
   padding: 12px 20px;
   margin: 8px 0;
-  display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
