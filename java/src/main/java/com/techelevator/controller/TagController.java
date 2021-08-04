@@ -73,6 +73,11 @@ public class TagController {
         return FlashcardTagsList;
     }
 
+    @RequestMapping(path="deletetag/{flashcardId}/{tagId}", method= RequestMethod.DELETE)
+    public boolean deleteTagFromFlashcard(@PathVariable Long flashcardId,@PathVariable Long tagId){
+        return flashcardTagDao.deleteTagFromCard(flashcardId, tagId);
+    }
+
 
 
 }

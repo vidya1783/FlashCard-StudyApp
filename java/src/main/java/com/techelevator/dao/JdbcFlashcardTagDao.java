@@ -59,6 +59,12 @@ public class JdbcFlashcardTagDao implements FlashcardTagDao {
         return flashcardTagList;
     }
 
+    @Override
+    public boolean deleteTagFromCard(Long flashcardId, Long tagId) {
+        String sql = "DELETE FROM flashcard_tag WHERE flashcard_id = ? AND tag_id = ?;";
+        return jdbcTemplate.update(sql, flashcardId, tagId) == 1;
+    }
+
     private FlashcardTag mapRowToFlashcardTag(SqlRowSet rowSet) {
         FlashcardTag mappedFlashcardTag = new FlashcardTag();
         mappedFlashcardTag.setFlashcardId(rowSet.getLong("flashcard_id"));
