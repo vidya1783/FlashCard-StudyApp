@@ -72,6 +72,21 @@ public class FlashcardController {
         return soughtFlashcard;
     }
 
+    @RequestMapping(path="flashcards",method=RequestMethod.GET)
+    public List<Flashcard> getAllFlashcardsForUser(Principal principal) throws Exception
+    {
+        Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
+        List<Flashcard> usersFlashcards = new ArrayList<>();
+        try {
+            usersFlashcards = flashcardDao.getALlCardsByCreatorId(userId);
+        } catch (Exception ex)
+        {
+            ex.printStackTrace();
+            throw new Exception();
+        }
+        return usersFlashcards;
+    }
+
     @RequestMapping(path="flashcard", method=RequestMethod.PUT)
     public Flashcard updateUsersFlashcard(@RequestBody Flashcard flashcard, Principal principal) throws Exception
     {
