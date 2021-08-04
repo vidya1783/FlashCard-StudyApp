@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @PreAuthorize("isAuthenticated()")
 public class FlashcardController {
 
@@ -44,7 +45,7 @@ public class FlashcardController {
         } catch (Exception ex)
         {
             System.err.println(ex.getMessage());
-            throw new Exception();
+            throw ex;
         }
 
         return newFlashcard;
@@ -82,7 +83,7 @@ public class FlashcardController {
         } catch (Exception ex)
         {
             ex.printStackTrace();
-            throw new Exception();
+            throw ex;
         }
         return usersFlashcards;
     }
@@ -95,7 +96,7 @@ public class FlashcardController {
             Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
             Flashcard retrievedCard = flashcardDao.viewFlashcardById(flashcard.getFlashcardId());
             if (retrievedCard.getCreatorId()!=userId) {
-                throw new Exception();
+                throw new Exception("User ID's don't match");
             }
             updatedFlashcard = flashcardDao.updateCard(flashcard);
         } catch (Exception ex) {
@@ -112,7 +113,7 @@ public class FlashcardController {
 
         Deck foundDeck = deckDao.retrieveDeck(deckId);
         if (foundDeck.getCreatorId()!=userId) {
-            throw new Exception();
+            throw new Exception("ID's don't match");
         }
 
         try {

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @PreAuthorize("isAuthenticated()")
 public class DeckController {
     private DeckDao deckDao;
@@ -38,7 +39,7 @@ public class DeckController {
         } catch (Exception ex)
         {
             System.err.println(ex.getMessage());
-            throw new Exception();
+            throw ex;
         }
         return newDeck;
     }
@@ -53,7 +54,7 @@ public class DeckController {
         } catch (Exception ex)
         {
             System.err.println(ex.getMessage());
-            throw new Exception();
+            throw ex;
         }
         return returnDeckList;
     }
