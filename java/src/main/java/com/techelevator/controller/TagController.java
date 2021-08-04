@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @PreAuthorize("isAuthenticated()")
 public class TagController {
     private FlashcardDao flashcardDao;
@@ -42,7 +43,7 @@ public class TagController {
         } catch (Exception ex)
         {
             System.err.println(ex.getMessage());
-            throw new Exception();
+            throw ex;
         }
 
         return newTag;
@@ -61,7 +62,7 @@ public class TagController {
         } catch (Exception ex)
         {
             System.err.println(ex.getMessage());
-            throw new Exception();
+            throw ex;
         }
 
         return newFlashcardTag;
