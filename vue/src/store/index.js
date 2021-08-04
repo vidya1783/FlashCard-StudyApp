@@ -2,13 +2,12 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
-
 Vue.use(Vuex)
 
 /*
  * The authorization header is set for axios when you login but what happens when you come back or
  * the page is refreshed. When that happens you need to check for the token in local storage and if it
- * exists you should set the header so that it will be attached to each request
+ * exists you should set the header so that it will be attached to each request 
  */
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
@@ -20,21 +19,7 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {},
-    flashcard:[
-      {
-        creatorID: " ",
-        question: " ",
-        answer: " ",
-      }
-    ],
-
-   
-   decks: {
-      id: 0,
-      name: " ",
-      description: " "
-    }
+    user: currentUser || {}
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -52,14 +37,6 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
-    },
-
-    SET_DECKS(state,data){
-      state.decks = data;
-    },
-
-    SET_ACTIVE_DECK(state, data){
-      state.activeDeck = data;
     }
   }
 })

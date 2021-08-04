@@ -1,9 +1,6 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-        <div class="imgcontainer">
-    <img src="https://i.pinimg.com/originals/25/c4/58/25c458194e476e2eb36cb142787646ac.jpg" alt="Avatar" class="avatar">
-  </div>
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
         class="alert alert-danger"
@@ -34,13 +31,8 @@
         v-model="user.password"
         required
       />
-      <button @click="login()" type="submit">Sign In</button>
-      <router-link :to="{ name: 'register' }" tag="button">Need an account?
-      </router-link>
-      <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    <!-- //will take us to home or welcome page -->
-  </div>
+      <router-link :to="{ name: 'register' }">Need an account?</router-link>
+      <button type="submit">Sign in</button>
     </form>
   </div>
 </template>
@@ -82,54 +74,4 @@ export default {
   }
 };
 </script>
-<style >
-.form-signin{
-border: 3px solid #f1f1f1;
-}
-
-input[type=text], input[type=password]{
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  width: auto;
-  padding: 12px 20px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
-
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-}
-
-img.avatar {
-  width: 10%;
-  border-radius: 50%;
-}
-
-.container {
-  padding: 16px;
-}
-
-</style>
+ 
