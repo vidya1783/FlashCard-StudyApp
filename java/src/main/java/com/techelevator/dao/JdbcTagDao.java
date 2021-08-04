@@ -34,7 +34,16 @@ public class JdbcTagDao implements TagDao {
 
     }
 
+    @Override
+    public boolean updateTag(String tagText, Long tagId) {
 
+        String sql = "UPDATE tag " +
+                "SET tag_text = ? " +
+                "WHERE tag_id = ?;";
+
+        int rows = jdbcTemplate.update(sql,tagText, tagId);
+        return rows == 1;
+    }
 
 
 }

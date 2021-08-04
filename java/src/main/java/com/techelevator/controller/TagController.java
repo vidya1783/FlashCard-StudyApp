@@ -79,6 +79,18 @@ public class TagController {
         return flashcardTagDao.deleteTagFromCard(flashcardId, tagId);
     }
 
+    @RequestMapping(path="updatetag", method= RequestMethod.PUT)
+    public boolean updateTag(@RequestBody Tag tag, Principal principal){
+
+        Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
+        if (userId != tag.getCreatorId()){
+            return false;
+        }
+
+        return tagDao.updateTag(tag.getTagText(), tag.getTagId());
+
+    }
+
 
 
 }
