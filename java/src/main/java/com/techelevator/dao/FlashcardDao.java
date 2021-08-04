@@ -11,4 +11,7 @@ public interface FlashcardDao {
     public Flashcard viewFlashcardById(Long flashcardId) throws Exception;
 
     public List<Flashcard> getAllFlashcardsInDeck(Long deckId) throws Exception;
+
+    public Flashcard updateCard(Flashcard cardToUpdate) throws Exception;
+
 }

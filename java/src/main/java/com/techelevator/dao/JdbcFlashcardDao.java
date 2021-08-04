@@ -90,6 +90,25 @@ public class JdbcFlashcardDao implements FlashcardDao {
         return flashcardList;
     }
 
+    @Override
+    public Flashcard updateCard(Flashcard cardToUpdate) throws Exception {
+        String sql = "UPDATE flashcard SET question_text = ?, " +
+                "answer_text = ? WHERE flashcard_id = ?;";
+        int rowsUpdated = -1;
+
+        try {
+            rowsUpdated = jdbcTemplate.update(sql,cardToUpdate.getQuestionText(),
+                    cardToUpdate.getAnswerText(), cardToUpdate.getFlashcardId());
+            cardToUpdate = viewFlashcardById(cardToUpdate.getFlashcardId());
+
+        } catch (Exception ex) {
+            throw new Exception();
+        }
+
+        if (rowsUpdated==1) {return cardToUpdate;}
+        else {throw new Exception();}
+    }
+
 
     private Flashcard mapRowToFlashcard(SqlRowSet rowSet) {
         Flashcard mappedFlashcard = new Flashcard();
