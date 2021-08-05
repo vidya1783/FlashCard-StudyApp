@@ -2,9 +2,6 @@
   <div class="home">
     <h1>Home</h1>
     <p>This is the home page</p>
-     <v-btn
-  elevation="2"
-></v-btn>
     <decks-list/>
   </div>
 </template>

@@ -1,6 +1,11 @@
 <template>
   <div class="decks-list">
-      <li v-for="deck in decks" v-bind:key="deck.id">{{deck.deck_name}} {{deck.deck_description}}</li>
+      <ul>
+      <li v-for="deck in decks" v-bind:key="deck.id">
+      {{deck.deck_name}} 
+      {{deck.deck_description}}
+      </li>
+      </ul>
   </div>
 </template>
 
