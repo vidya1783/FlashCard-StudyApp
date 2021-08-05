@@ -3,6 +3,7 @@
   This before we call the deck-details element
   {{ deck.deck_name }} {{ deck.deck_description}}
   <deck-details  v-bind:deck="deck" />
+  <deck-details />
   </div> 
 </template>
 
@@ -15,7 +16,8 @@ export default {
    return {
      deck: {
        deck_name: 'Carlos Deck',
-       deck_description: 'the best deck ever'
+       deck_description: 'the best deck ever',
+       deck_id: 1000
      }
    }
  },
