@@ -64,6 +64,7 @@ const router = new Router({
       requiresAuth: true
     }
     },
+    
     {
     path: "/test-deck-details",
     name: "test-deck-details",
