@@ -1,27 +1,40 @@
 <template>
-<div >  <h1>We are now inside the component</h1>
-{{"Deck id: " + deckData.deck_id}}
+<div>
+<v-card max-width="344">
+<v-card-title>
+<v-textarea v-model="deckData.deck_name"  :counter="70" label="Deck Name" required
+v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
+</v-textarea>
+</v-card-title>
+
+<v-card-text>
+<v-textarea v-model="deckData.deck_description" :counter="70" label="Deck Description"
+required v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
+</v-textarea>
+</v-card-text>
+{{deckData.deck_id}}
 <b>{{alertText}}</b>
-   <v-form>
-       <v-container>
-           <v-layout column=true>
-               <v-flex xs12 md4>
-                   <v-text-field v-model="deckData.deck_name"  :counter="70" label="Deck Name" required
-                   v-on:blur="determineCreateOrUpdate">
-                   </v-text-field>
-               </v-flex>
-               <p>Test</p>
-               <v-flex xs12 md4>
-                   <v-text-field v-model="deckData.deck_description" :counter="70" label="Deck Description"
-                    required v-on:blur="determineCreateOrUpdate">
-                   </v-text-field>
-               </v-flex>
-               <v-flex xs12 md4>
-                   <v-text-field ></v-text-field>
-               </v-flex>
-           </v-layout>
-       </v-container>
-   </v-form>
+
+      <!-- THIS CODE IS NOT WORKING <v-snackbar
+        v-model="snackbar"
+      >
+        {{ alertText }}
+  
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="pink"
+            text
+            v-bind="attrs"
+            @click="snackbar = false"
+          >
+            Close
+          </v-btn>
+      </template>
+      </v-snackbar> -->
+
+
+
+</v-card>
 
 </div>
 
@@ -37,6 +50,8 @@ export default {
     return {
       deckData: {deck_id: -1, deck_name: "defaultName", deck_description: "default deck description" },
       alertText: ""
+     // ,
+     // snackbar: false
     }
   },
   created() {
@@ -54,17 +69,29 @@ export default {
     },
     determineCreateOrUpdate()
     {
-      if (this.deckData.deck_id==-1) {this.createCard();}
-      else {this.updateCard();}
+      this.alertMe("function called...");
+      if (this.deckData.deck_id==-1) {this.createDeck();}
+      else {this.updateDeck();}
     },
-    updateCard() {
-      this.alertMe("Update card!");
+    updateDeck() {
+      deckService.updateDeck(this.deckData)
+      .then( response =>
+      {
+        if (deckService.acceptableCodes.includes(response.status)&&response.data.deck_id!=-1)
+        {
+          this.successfulUpdate();
+        }
+      }
+      ).catch(this.failedUpdate());},
+    successfulUpdate()
+    {
+      this.alertMe("Update successful!");
     },
-    // createCard() {},
-    // successfulCreate() {},
-    // failedCreate() {}
-    createCard() {
-      this.alertMe("Create card!");
+    failedUpdate() {
+      this.alertMe("Failed to update!");
+    },
+    createDeck() {
+      this.alertMe("Create deck!");
       deckService.createDeck(this.deckData)
       .then( response =>
       {
@@ -75,17 +102,16 @@ export default {
         }
       }
       ).catch(this.failedCreate());},
-    successfulCreate() {this.alertMe("We created a CARD!!!");},
-    failedCreate() {this.alertMe("Card not created - error.");},
+    successfulCreate() {this.alertMe("We created a Deck!!!");},
+    failedCreate() {this.alertMe("Deck not created - error.");},
     alertMe(text) {
       this.alertText = text;
+      // this.snackbar = true;
     }
 
     }
 
-  }
-
-// }
+}
 </script>
 
 <style>

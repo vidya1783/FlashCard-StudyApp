@@ -82,7 +82,10 @@ public class DeckController {
             Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
             Deck retrievedDeck = deckDao.retrieveDeck(deck.getDeckId());
             if (retrievedDeck.getCreatorId()!=userId) {
-                throw new Exception();
+                System.err.println("Deck ID: " + deck.getDeckId());
+                System.err.println(retrievedDeck.getCreatorId());
+                System.err.println(userId);
+                throw new Exception("User ID's don't match");
             }
             updatedDeck = deckDao.updateDeck(deck);
         } catch (Exception ex) {
