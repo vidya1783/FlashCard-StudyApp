@@ -68,12 +68,19 @@ public class TagController {
         return newFlashcardTag;
     }
 
+    @RequestMapping(path="tags", method=RequestMethod.GET)
+    public List<Tag> getAllTags()
+    {
+        return tagDao.getAllTags();
+    }
+
     @RequestMapping(path="tag/{flashcardId}", method= RequestMethod.GET)
     public List<FlashcardTag> getFlashcardTagsByFlashcardId(@PathVariable Long flashcardId){
         List <FlashcardTag> FlashcardTagsList = flashcardTagDao.getFlashcardTagsByFlashcardId(flashcardId);
         return FlashcardTagsList;
     }
 
+    // needs security
     @RequestMapping(path="deletetag/{flashcardId}/{tagId}", method= RequestMethod.DELETE)
     public boolean deleteTagFromFlashcard(@PathVariable Long flashcardId,@PathVariable Long tagId){
         return flashcardTagDao.deleteTagFromCard(flashcardId, tagId);
