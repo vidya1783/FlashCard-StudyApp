@@ -80,9 +80,12 @@ public class TagController {
         return FlashcardTagsList;
     }
 
-    // needs security
+
     @RequestMapping(path="deletetag/{flashcardId}/{tagId}", method= RequestMethod.DELETE)
-    public boolean deleteTagFromFlashcard(@PathVariable Long flashcardId,@PathVariable Long tagId){
+    public boolean deleteTagFromFlashcard(@PathVariable Long flashcardId,
+                                          @PathVariable Long tagId, Principal principal){
+        Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
+        if(tagDao.getTagByTagId(tagId).getCreatorId()!= userId) return false;
         return flashcardTagDao.deleteTagFromCard(flashcardId, tagId);
     }
 
