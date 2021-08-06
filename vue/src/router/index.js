@@ -9,6 +9,7 @@ import Flashcard from '../views/Flashcard.vue'
 import TestDeckDetails from '../views/TestDeckDetails.vue'
 import TestDeckDetails2 from '../views/TestDeckDetails2.vue'
 import TestFlashcardDetails from '../views/TestFlashcardDetails.vue'
+import TestFlashcardDetails2 from '../views/TestFlashcardDetails2.vue'
 
 Vue.use(Router)
 
@@ -91,7 +92,16 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-      }
+      },
+      {
+        path: "/test-flashcard-details2",
+        name: "test-flashcard-details2",
+        component: TestFlashcardDetails2,
+        meta: {
+          requiresAuth: true
+        }
+        }
+
     
   ]
 })
