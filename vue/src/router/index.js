@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Flashcard from '../views/Flashcard.vue'
 import TestDeckDetails from '../views/TestDeckDetails.vue'
+import TestFlashcardDetails from '../views/TestFlashcardDetails.vue'
 
 Vue.use(Router)
 
@@ -57,18 +58,27 @@ const router = new Router({
     },
 
     {
-    path: "/flashcard",
-    name: "flashcard",
-    component: Flashcard,
-    meta: {
-      requiresAuth: true
-    }
-    },
+      path: "/flashcard",
+      name: "flashcard",
+      component: Flashcard,
+      meta: {
+        requiresAuth: true
+      }
+      },
+   
     
     {
     path: "/test-deck-details",
     name: "test-deck-details",
     component: TestDeckDetails,
+    meta: {
+      requiresAuth: true
+    }
+    },
+   {
+    path: "/test-flashcard-details",
+    name: "test-flashcard-details",
+    component: TestFlashcardDetails,
     meta: {
       requiresAuth: true
     }
