@@ -34,6 +34,7 @@
         v-model="user.password"
         required
       />
+       <button type="submit">Sign in</button>
       </v-flex>
       </v-layout>
       </v-container>
