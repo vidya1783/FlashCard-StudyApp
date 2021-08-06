@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Flashcard;
 
+import java.security.Principal;
 import java.util.List;
 
 public interface FlashcardDao {
@@ -16,6 +17,7 @@ public interface FlashcardDao {
 
     public Flashcard updateCard(Flashcard cardToUpdate) throws Exception;
 
+    public boolean ownsCard(Principal principal, Long cardId);
 
 
 }

@@ -14,4 +14,9 @@ public interface TagDao {
     public List<Tag> tagsOnAsingleCard(Long cardId);
 
     public List<Tag> getAllTags();
+
+    public Boolean tagExistsInDatabase(Long tagId);
+
+    public Boolean cardAlreadyHasAtag(Long cardId, Long tagId);
+
 }
