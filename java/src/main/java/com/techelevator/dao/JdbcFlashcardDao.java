@@ -7,16 +7,19 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class JdbcFlashcardDao implements FlashcardDao {
     JdbcTemplate jdbcTemplate;
+    UserDao userDao;
 
-    public JdbcFlashcardDao(JdbcTemplate jdbcTemplate)
+    public JdbcFlashcardDao(JdbcTemplate jdbcTemplate, UserDao userDao)
     {
         this.jdbcTemplate = jdbcTemplate;
+        this.userDao = userDao;
     }
 
     @Override
@@ -141,5 +144,23 @@ public class JdbcFlashcardDao implements FlashcardDao {
         mappedFlashcard.setAnswerText(rowSet.getString("answer_text"));
         mappedFlashcard.setFlashcardId(rowSet.getLong("flashcard_id"));
         return mappedFlashcard;
+    }
+
+    // new function, not completely tested
+    public boolean ownsCard(Principal principal, Long cardId) {
+        boolean returnValue = false;
+        try {
+            Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
+            Flashcard retrievedCard = viewFlashcardById(cardId);
+            if (userId != retrievedCard.getCreatorId()) {
+                returnValue = false;
+            }
+            else { returnValue = true; }
+        } catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+
+        return returnValue;
     }
 }

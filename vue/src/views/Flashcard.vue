@@ -21,7 +21,7 @@ export default {
     name: 'flashcard',
     components: {
         createFlashcard,
-        CardList,
+        CardList
                
     }
 

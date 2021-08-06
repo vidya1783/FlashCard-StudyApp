@@ -1,5 +1,5 @@
 <template>
-  <div class="card-details">
+  <div class="card-list">
       <ul>
       <li v-for="flashcard in flashcards" v-bind:key="flashcard.id">
       {{flashcard.question_text}} 
@@ -14,7 +14,7 @@
 import flashcardService from '../services/FlashcardService.js';
 
 export default {
-name: 'card-details',
+name: 'card-list',
 data()   {
     return{
     flashcards: []

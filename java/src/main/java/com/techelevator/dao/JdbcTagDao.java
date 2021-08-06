@@ -90,8 +90,40 @@ public class JdbcTagDao implements TagDao {
             addTagToList = mapRowToTag(results);
             listOfTags.add(addTagToList);
         }
+
         return listOfTags;
+
     }
+
+    @Override
+    public Boolean tagExistsInDatabase(Long tagId) {
+        String sql = "SELECT CASE WHEN ? IN " +
+        "(SELECT tag_id FROM tag) THEN true ELSE false END";
+        return trueFalseQuerySql(sql,tagId);
+    }
+
+
+    @Override
+    public Boolean cardAlreadyHasAtag(Long cardId, Long tagId) {
+        String sql = "SELECT CASE WHEN ? IN " +
+                "(SELECT tag_id FROM flashcard_tag " +
+                "WHERE flashcard_id = ?) " +
+                "THEN true ELSE false END";
+        return trueFalseQuerySql(sql,tagId,cardId);
+    }
+
+    public Boolean trueFalseQuerySql(String sql, Long idToTest) {
+        Boolean trueFalse = jdbcTemplate.queryForObject(sql,Boolean.class,idToTest);
+        return trueFalse;
+    }
+
+    public Boolean trueFalseQuerySql(String sql, Long idToTest, Long secondIdtoTest) {
+        Boolean trueFalse = jdbcTemplate.queryForObject(sql,Boolean.class,idToTest,
+                secondIdtoTest);
+        return trueFalse;
+    }
+
+
 
     private List<Tag> runSqlAgainstId(String sql, Long id)
     {
