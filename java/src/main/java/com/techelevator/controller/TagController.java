@@ -110,6 +110,7 @@ public class TagController {
     public List<Tag> updateCardTagList(List<Tag> newCardTagList, Long cardId, Principal principal)
     throws Exception {
         boolean ownsCard = flashcardDao.ownsCard(principal, cardId);
+        List<Tag> existingTags = tagDao.tagsOnAsingleCard(cardId);
         if (!ownsCard) {throw new Exception("Not an owner of the card sought to be updated.");}
         Flashcard retrievedCard = flashcardDao.viewFlashcardById(cardId);
 
