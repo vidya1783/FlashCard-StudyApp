@@ -12,7 +12,12 @@ v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
 required v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
 </v-textarea>
 </v-card-text>
+<!--
 {{deckData.deck_id}}
+Deck name passed: {{deck.deck_name}}
+Deck id passed: {{deck.deck_id}}
+{{testText}} -->
+<!-- deckData.deck_description: {{deckData.deck_description}} -->
 <b>{{alertText}}</b>
 
       <!-- THIS CODE IS NOT WORKING <v-snackbar
@@ -49,20 +54,31 @@ export default {
   data(){
     return {
       deckData: {deck_id: -1, deck_name: "defaultName", deck_description: "default deck description" },
-      alertText: ""
+      alertText: "",
+      testText: ""
      // ,
      // snackbar: false
     }
   },
+
   created() {
+    /*
     if (this.deck)
     {
+    this.testText = "This.deck truthy";
     this.deckData.deck_id = this.deck.deck_id;
     this.deckData.deck_name = this.deck.deck_name;
     this.deckData.deck_description = this.deck.deck_description;
-    }
+    } */
   },
+  mounted() { this.fillInText(); },
+  updated() {  },
   methods: {
+    fillInText() {
+      this.deckData.deck_id = this.deck.deck_id;
+      this.deckData.deck_name = this.deck.deck_name;
+      this.deckData.deck_description = this.deck.deck_description;      
+    },
     testMethod()
     {
       this.alertMe("Jeepers!");
