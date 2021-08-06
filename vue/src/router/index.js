@@ -10,6 +10,7 @@ import TestDeckDetails from '../views/TestDeckDetails.vue'
 import TestDeckDetails2 from '../views/TestDeckDetails2.vue'
 import TestFlashcardDetails from '../views/TestFlashcardDetails.vue'
 import TestFlashcardDetails2 from '../views/TestFlashcardDetails2.vue'
+import Study from '../views/Study.vue'
 
 Vue.use(Router)
 
@@ -100,8 +101,15 @@ const router = new Router({
         meta: {
           requiresAuth: true
         }
+        },
+        {
+        path: "/study",
+        name: "study-session",
+        component: Study,
+        meta: {
+          requiresAuth: true
         }
-
+      }
     
   ]
 })
