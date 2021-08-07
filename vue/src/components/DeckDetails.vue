@@ -1,7 +1,10 @@
 <template>
-<div>
-<v-card max-width="344">
-<v-card-title>
+<div >
+
+<v-container align="center" >
+ 
+<v-card max-width="344" class="d-flex justify-center py-3">
+<v-card-title >
 <v-textarea v-model="deckData.deck_name"  :counter="70" label="Deck Name" required
 v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
 </v-textarea>
@@ -41,7 +44,10 @@ Deck id passed: {{deck.deck_id}}
 
 </v-card>
 
+</v-container>
 </div>
+
+
 
 </template>
 
@@ -60,6 +66,7 @@ export default {
      // snackbar: false
     }
   },
+
 
   created() {
     /*
@@ -131,5 +138,24 @@ export default {
 </script>
 
 <style>
+
+/* .deck{
+	background-color:rosybrown;
+ box-sizing: border-box;
+ display: flex;
+  flex-wrap: wrap;
+ justify-content: space-between;
+ flex-direction: row;
+
+} */
+/* .deck{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: stretch;
+	align-content: flex-end;
+} */
+
 
 </style>
