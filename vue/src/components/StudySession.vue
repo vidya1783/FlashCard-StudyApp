@@ -1,14 +1,31 @@
 <template>
   <div>
+    
+
 
 <!-- Write UI code here, copying from the "debug/demo area below"                             --->
-
-
-
-
-
-
-
+<div class="container text-center">
+<h1>GOOD LUCK</h1>
+</div>
+<div id="slider">
+  <transition-group tag="div" :name="transitionName" class="slides-group">
+    <div v-if="show" :key="current" class="slide" :class="slides[current].className">
+      <v-card c >
+       <v-card-text>
+        {{displayText}}
+        </v-card-text>
+        </v-card>
+    </div>
+  </transition-group>
+  
+  <div class="btn btn-prev" aria-label="Previous slide" @click="slide(-1)">
+    &#10094;
+  </div>
+  <div class="btn btn-next" aria-label="Next slide" @click="slide(1)">
+    &#10095;
+  </div>
+</div>
+     
 
 
 
@@ -41,11 +58,10 @@ to create a UI, copy and paste code and ensure that it works:
     </v-card>
     <v-btn v-on:click.prevent="previousCard">Previous Card</v-btn>
     <v-btn v-on:click.prevent="nextCard">Next Card</v-btn>
-    <v-btn v-on:click.prevent="flipCard">Flip Card</v-btn>
-    <v-btn v-on:click.prevent="toggleCorrect">{{toggleText}}</v-btn>
+    <v-btn v-on:click.prevent="flipCard">Flip Card</v-btn></div>
+   <v-btn v-on:click.prevent="toggleCorrect">{{toggleText}}</v-btn>
     Correct from array: {{correctAnswers[currentPosition] ? true : false}}
     Current score: {{currentScore}}
-    </div>
   </div>
 </template>
 
@@ -175,10 +191,23 @@ export default {
   mounted() {
   },
   updated() {
-  }
+  },
+
+  
 }
 </script>
 
 <style>
+div{
+  color: teal;
+}
+h1{
+  font-size: 60px;
+
+}
+.container text-center{
+  display: flex;
+  flex-direction: column;
+}
 
 </style>

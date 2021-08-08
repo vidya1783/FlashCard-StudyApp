@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../views/Home.vue'
+import Dashboard from '../views/Dashboard'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
@@ -29,8 +29,30 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'Home',
+      component: Dashboard,
+      children:[
+        {
+          path: '',
+          component: () => import('../views/Home')
+        },
+        {
+          path: '/register',
+          component: () => import('../views/Register')
+        },
+        {
+          path: '/test-deck-details2',
+          component: () => import('../views/TestDeckDetails2')
+        },
+        {
+          path: '/test-flashcard-details2',
+          component: () => import('../views/TestFlashcardDetails2')
+        },
+        {
+          path: '/study',
+          component: () => import('../views/Study')
+        }
+      ],
       meta: {
         requiresAuth: true
       }
@@ -128,3 +150,4 @@ router.beforeEach((to, from, next) => {
 });
 
 export default router;
+

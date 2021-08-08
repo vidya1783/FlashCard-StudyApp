@@ -1,25 +1,22 @@
 <template>
 <div>
+  <v-container >
 <v-card max-width="344">
 <v-card-title>
 <v-textarea v-model="flashcardData.question_text"  :counter="70" label="Question Text" required
 v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
 </v-textarea>
 </v-card-title>
-
 <v-card-text>
 <v-textarea v-model="flashcardData.answer_text" :counter="70" label="Answer Text"
 required v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
 </v-textarea>
 </v-card-text>
-{{flashcardData.flashcard_id}}
 <b>{{alertText}}</b>
-
       <!-- THIS CODE IS NOT WORKING <v-snackbar
         v-model="snackbar"
       >
         {{ alertText }}
-  
         <template v-slot:action="{ attrs }">
           <v-btn
             color="pink"
@@ -31,39 +28,42 @@ required v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
           </v-btn>
       </template>
       </v-snackbar> -->
-
-
-
 </v-card>
-
+</v-container>
 </div>
-
 </template>
-
 <script>
 import flashcardService from '@/services/FlashcardService';
-
 export default {
   name: 'card-details',
   props: ['flashcard'],
   data(){
     return {
-      flashcardData:{
-        flashcard_id:'',
-        question_text: '',
-        answer_text: '',
+      flashcardData: {flashcard_id: -1, question_text: "Question", 
+ answer_text: "Answer" },
+      alertText: "",
+      testText: ""
         }
-    }
   },
   created() {
-    if (this.flashcard)
-    {
-    this.flashcardData.flashcard_id = this.flashcard.flashcard_id;
-    this.flashcardData.question_text = this.flashcard.question_text;
-    this.flashcardData.answer_text = this.flashcard.answer_text;
-    }
+    // if (this.flashcard)
+    // {
+    // this.flashcardData.flashcard_id = this.flashcard.flashcard_id;
+    // this.flashcardData.question_text = this.flashcard.question_text;
+    // this.flashcardData.answer_text = this.flashcard.answer_text;
+    // }
   },
+  mounted() { this.fillInText(); },
+  updated() {},
   methods: {
+    fillInText() {
+     this.flashcardData.flashcard_id = this.flashcard.flashcard_id;
+    this.flashcardData.question_text = this.flashcard.question_text;
+     this.flashcardData.answer_text = this.flashcard.answer_text; 
+
+ 
+
+    },
     testMethod()
     {
       this.alertMe("Jeepers!");
@@ -71,11 +71,13 @@ export default {
     determineCreateOrUpdate()
     {
       this.alertMe("function called...");
-      if (this.flashcardData.flashcard_id==-1) {this.createFlashcard();}
+      if (this.flashcardData.flashcard_id==-1) {
+      
+        this.createFlashcard(this.flashcardData);}
       else {this.updateCard();}
     },
     updateCard() {
-      flashcardService.updateCard(this.flashcardData)
+      flashcardService.updateFlashcard(this.flashcardData)
       .then( response =>
       {
         if (flashcardService.acceptableCodes.includes(response.status)&&response.data.flashcard_id!=-1)
@@ -109,12 +111,8 @@ export default {
       this.alertText = text;
       // this.snackbar = true;
     }
-
     }
-
 }
 </script>
-
 <style>
-
 </style>
