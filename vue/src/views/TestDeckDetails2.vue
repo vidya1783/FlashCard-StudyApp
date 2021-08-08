@@ -4,9 +4,12 @@
   <h3>My Decks</h3>
   </div>
   <div class="test-deck-details2">
+
  <deck-details  v-for="deck in decks"
   v-bind:deck="deck" v-bind:key="deck.id" class="deck"/>
+
   <deck-details />
+  
   </div>
   </div>
   
@@ -55,7 +58,6 @@ export default {
     height: 100%;
     width: 100%;
     font-size: 40px;
-    color: rgb(167, 167, 167);
     font-weight: 600;
     text-align: center;
 }

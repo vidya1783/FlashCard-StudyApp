@@ -15,8 +15,7 @@ export default {
     updateDeck(deck) {
         return axios.put('/deck', deck)
     },
-
-
-
-
+    getFlashcardsByDeckId(id){
+        return axios.get(`/deckcards/${id}`)
+    }
 }
