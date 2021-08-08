@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.*;
+import java.util.stream.Collectors.*;
 
 @RestController
 @CrossOrigin
@@ -112,7 +114,15 @@ public class TagController {
         boolean ownsCard = flashcardDao.ownsCard(principal, cardId);
         List<Tag> existingTags = tagDao.tagsOnAsingleCard(cardId);
         if (!ownsCard) {throw new Exception("Not an owner of the card sought to be updated.");}
-        Flashcard retrievedCard = flashcardDao.viewFlashcardById(cardId);
+        List<Tag> tagsToAdd = newCardTagList.stream()
+                .filter(tag -> tagDao.tagExistsInDatabase(tag.getTagId())
+                        && !tagDao.cardAlreadyHasAtag(cardId, tag.getTagId())
+                )
+                .collect(Collectors.toList());
+
+        // existingTags - delete any not in tagsToAdd
+
+
 
         // this function is incomplete
         return null;

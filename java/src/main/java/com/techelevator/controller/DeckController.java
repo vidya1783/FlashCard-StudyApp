@@ -18,11 +18,13 @@ import java.util.List;
 public class DeckController {
     private DeckDao deckDao;
     private UserDao userDao;
+    private FlashcardDao flashcardDao;
 
-    public DeckController(DeckDao deckDao, UserDao userDao)
+    public DeckController(DeckDao deckDao, UserDao userDao, FlashcardDao flashcardDao)
     {
         this.deckDao = deckDao;
         this.userDao = userDao;
+        this.flashcardDao = flashcardDao;
     };
 
     @RequestMapping(path="deck", method= RequestMethod.POST)
@@ -72,7 +74,14 @@ public class DeckController {
         return searchedDeck;
     }
 
-    //
+    @RequestMapping(path="deck/{deckId}/{flashcardId}", method= RequestMethod.POST)
+    public List<Flashcard> addCardToDeck(@PathVariable Long deckId, @PathVariable Long flashcardId,
+                                         Principal principal) throws Exception
+    {
+        if (!flashcardDao.ownsCard(principal,flashcardId)) throw new Exception ("Not authorized to add this card.");
+        List<Flashcard> newDeckCardList = deckDao.addDeckCard(deckId,flashcardId);
+        return newDeckCardList;
+    }
 
     @RequestMapping(path="deck", method=RequestMethod.PUT)
     public Deck updateUsersDeck(@RequestBody Deck deck, Principal principal) throws Exception
