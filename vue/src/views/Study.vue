@@ -1,9 +1,10 @@
 <template>
-  <study-session v-bind:cardList="cardsToTest"/>
+  <study-session v-bind:cardList="flashcards"/>
 </template>
 
 <script>
 import studySession from '../components/StudySession';
+import deckService from '../services/DeckService';
 export default {
   name: 'study',
   components: {
@@ -25,12 +26,15 @@ export default {
         "flashcard_id": 1004,
         "creator_id": 100,
         "question_text": "mnesicles",
-        "answer_text": "static data, you bum"}]
+        "answer_text": "static data, you bum"}],
+        flashcards:[]
     }
   },
   created() {
-
-  }
+    deckService.getFlashcardsByDeckId(this.$route.params.id)
+         .then((response) => { 
+            this.flashcards = response.data;});
+}
 }
 </script>
 

@@ -5,7 +5,7 @@
         <card-details v-for="flashcard in flashcards"
   v-bind:flashcard="flashcard" v-bind:key="flashcard.id" />
   <card-details />
-  <button>Study Session</button>
+  <router-link v-bind:to="{name:'study-session', params: {id:this.$route.params.id}}"> Study Session </router-link>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
         }  
     },
     created(){
-        console.log("greetings from created")
+        
         deckService.getFlashcardsByDeckId(this.$route.params.id)
          .then((response) => { 
             this.flashcards = response.data;

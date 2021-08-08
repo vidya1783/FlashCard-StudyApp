@@ -76,6 +76,7 @@ export default {
   currentPosition: 0,
   data() {
     return {
+      flashcards:[],
       correctAnswers: [false],
       currentPosition: 0,
       useLightningRound: false, // not going to implement, but included for completeness

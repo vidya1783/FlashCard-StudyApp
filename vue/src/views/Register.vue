@@ -3,6 +3,7 @@
     
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -38,8 +39,9 @@
         v-model="user.confirmPassword"
         required
       /></div>
-      <div>
-       <v-btn type="submit" >Create Account</v-btn></div>
+      <div class="button">
+       <v-btn  elevation="19"
+  x-large type="submit" >Create Account</v-btn></div>
       <div><router-link :to="{ name: 'login' }">Have an account?</router-link>
       </div>
     
@@ -123,6 +125,7 @@ div{
 }
 h1{
   padding-bottom: 20px;
+  font-size: 45px;
 }
 input{
   border: 1px solid black;

@@ -120,13 +120,14 @@ const router = new Router({
         }
         },
         {
-        path: "/study",
+        path: `/study/:id`,
         name: "study-session",
         component: Study,
         meta: {
           requiresAuth: true
         }
       },
+      
       {
         path: `/deck-display/:id`,
         name: 'deck-display',
