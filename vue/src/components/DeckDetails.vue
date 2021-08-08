@@ -15,6 +15,9 @@ v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
 required v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
 </v-textarea>
 </v-card-text>
+<router-link v-bind:to="{name:'deck-display', params: {id: deckData.deck_id}}"> Display Cards </router-link>
+<!-- <router-link to="/display-deck/{deck.deck_id}"> Display Cards </router-link> -->
+
 <!--
 {{deckData.deck_id}}
 Deck name passed: {{deck.deck_name}}
@@ -24,7 +27,7 @@ Deck id passed: {{deck.deck_id}}
 <b>{{alertText}}</b>
 
       <!-- THIS CODE IS NOT WORKING <v-snackbar
-        v-model="snackbar"
+        v-model="snackbar"}
       >
         {{ alertText }}
   
