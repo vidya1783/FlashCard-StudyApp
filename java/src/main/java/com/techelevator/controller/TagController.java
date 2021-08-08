@@ -79,10 +79,17 @@ public class TagController {
 
     }
 
-    @RequestMapping(path="tag/{flashcardId}", method= RequestMethod.GET)
-    public List<FlashcardTag> getFlashcardTagsByFlashcardId(@PathVariable Long flashcardId){
-        List <FlashcardTag> FlashcardTagsList = flashcardTagDao.getFlashcardTagsByFlashcardId(flashcardId);
-        return FlashcardTagsList;
+// This was previously tested, but is a less useful endpoint
+//    @RequestMapping(path="tag/{flashcardId}", method= RequestMethod.GET)
+//    public List<FlashcardTag> getFlashcardTagsByFlashcardId(@PathVariable Long flashcardId){
+//        List <FlashcardTag> FlashcardTagsList = flashcardTagDao.getFlashcardTagsByFlashcardId(flashcardId);
+//        return FlashcardTagsList;
+//    }
+
+    @RequestMapping(path="flashcard/{flashcardId}/tags", method=RequestMethod.GET)
+    public List<Tag> getTagsByFlashcardId(@PathVariable Long flashcardId)
+    {
+        return tagDao.tagsOnAsingleCard(flashcardId);
     }
 
 
@@ -109,8 +116,10 @@ public class TagController {
     // requires tags to already be in the database or throws an error
     // takes a list of tags and a card Id, tries to make that tag list match the database
     // by updating appropriate tables
-    public List<Tag> updateCardTagList(List<Tag> newCardTagList, Long cardId, Principal principal)
+    @RequestMapping(path="flashcard/{cardId}/tags", method=RequestMethod.PUT)
+    public List<Tag> updateCardTagList(@RequestBody List<Tag> newCardTagList, @PathVariable Long cardId, Principal principal)
     throws Exception {
+
         boolean ownsCard = flashcardDao.ownsCard(principal, cardId);
         List<Tag> existingTags = tagDao.tagsOnAsingleCard(cardId);
         if (!ownsCard) {throw new Exception("Not an owner of the card sought to be updated.");}
@@ -119,14 +128,26 @@ public class TagController {
                         && !tagDao.cardAlreadyHasAtag(cardId, tag.getTagId())
                 )
                 .collect(Collectors.toList());
+        List<Tag> tagsWeWant = newCardTagList.stream()
+                .filter(tag -> tagDao.tagExistsInDatabase(tag.getTagId()))
+                .collect(Collectors.toList());
 
-        // existingTags - delete any not in tagsToAdd
+        List<Long> existingTagIds = existingTags.stream().map(tag -> tag.getTagId()).collect(Collectors.toList());
+        List<Long> weWantIdList = tagsWeWant.stream().map(tag -> tag.getTagId()).collect(Collectors.toList());
+        List<Long> tagIdsToDelete = existingTagIds.stream().filter(tagId -> !(weWantIdList.contains(tagId))    )
+                .collect(Collectors.toList());
 
+        for (Tag tagToAdd : tagsToAdd)
+        {
+            flashcardTagDao.createFlashcardTag(cardId,tagToAdd.getTagId());
+        }
 
+        for (Long tagIdToDelete : tagIdsToDelete)
+        {
+            flashcardTagDao.deleteTagFromCard(cardId, tagIdToDelete);
+        }
 
-        // this function is incomplete
-        return null;
-        ////////////////////////////////////// needs to be completed
+        return getTagsByFlashcardId(cardId);
     }
 
 

@@ -83,7 +83,7 @@ public class JdbcDeckDao implements DeckDao {
             rowsUpdated = jdbcTemplate.update(sql,deckId, flashcardId);
         } catch (Exception ex)
         {
-            throw ex;
+            System.err.println(ex.getMessage());
         }
         if (rowsUpdated != 1) {throw new Exception("Card not added");}
         return flashcardDao.getAllFlashcardsInDeck(deckId);

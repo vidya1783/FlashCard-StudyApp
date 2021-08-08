@@ -41,4 +41,12 @@ public class Tag {
     public void setCreatorId(Long creatorId) {
         this.creatorId = creatorId;
     }
+
+    public String toString()
+    {
+        String returnText = "TagText: " + getTagText() +
+                System.lineSeparator() + "Tag Id: " + getTagId()
+                + System.lineSeparator() + "Creator Id:" + getCreatorId() + System.lineSeparator();
+        return returnText;
+    }
 }

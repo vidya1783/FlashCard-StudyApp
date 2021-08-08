@@ -53,7 +53,7 @@ public class JdbcFlashcardTagDao implements FlashcardTagDao {
 
         }
         catch (Exception ex) {
-            throw ex;
+            System.err.println(ex.getMessage());
         }
 
         return flashcardTagList;
