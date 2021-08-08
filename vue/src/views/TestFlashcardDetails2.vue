@@ -1,7 +1,11 @@
 
 <template>
-<div > 
-    Create or update Flashcard
+<div class="test-flashcard-details2"> 
+   <div class="flash">
+     <h3>
+       Flash  
+     </h3>
+   </div>
  
   <!--{{ flashcard.question_text }} {{ flashcard.answer_text}}-->
   <card-details v-for="flashcard in flashcards"
@@ -13,6 +17,7 @@
 <script>
 import cardDetails from '../components/CardDetails.vue';
 import flashcardService from '../services/FlashcardService.js'
+
 export default {
     name: 'test-flashcard-details2',
  data(){
@@ -21,7 +26,6 @@ export default {
        flashcard_id: 1,
        question_text: 'What is USA capital?',
        answer_text: 'Washington DC',
-       
      },
      flashcards:[]
    }
@@ -40,5 +44,22 @@ export default {
 </script>
 
 <style>
+.test-flashcard-details2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    height: 70%;
+    width: 100%;
+    font-size: 40px;
+    color: rgb(167, 167, 167);
+    font-weight: 600;
+    text-align: center;
+}
 
+.flash {
+  display: flex;
+
+}
 </style>

@@ -1,47 +1,60 @@
 <template>
+<div id="login" >
+ <v-spacer></v-spacer>
+<div>
+  <v-spacer></v-spacer>
+</div>
+ <div class="box">
+ <v-card elevation="2" shaped >
+  <v-form class="form-signin" @submit.prevent="login">
+     <h1 class="h3 mb-3 font-weight-normal" align="center">Please Sign In</h1>
+    <v-container>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+          class="form-control"
+          id="username"
+            v-model="user.username"
+            label="Username"
+            filled
+            rounded
+            required
+            autofocus
+          ></v-text-field>
+        </v-col>
 
-  <div id="login" class="text-center" align="center">
-    
-    <v-form class="form-signin" @submit.prevent="login" >
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <v-spacer></v-spacer>
-      <div align="center">
-      <v-container fill-height fluid>
-      <v-layout row align-center>
-      <v-flex >
-      <v-text-field 
-        filled
-        rounded
-        dense
-        type="text"
-        id="username"
-        class="form-control"
-        placeholder="Username"
-        v-model="user.username"
-        required
-        autofocus
-      />
-      
-      <v-text-field
-      filled
-      rounded
-        dense
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="user.password"
-        required
-      />
-       <v-btn type="submit">Sign in</v-btn>
-      </v-flex>
-      </v-layout>
-      </v-container>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+            class="form-control"
+            id="password"
+            type="password"
+            v-model="user.password"
+            label="Password"
+            filled
+            rounded
+            required
+            autofocus
+          ></v-text-field>
+          
+        </v-col>
+      </v-row>
+      <div id="buttons">
+        <v-row align="center" justify="space-around">
+      <router-link :to="{ name: 'register' }" tag="v-btn" >Need an account?</router-link>
+      <v-btn type="submit" align="right">Sign in</v-btn>
+      </v-row>
       </div>
-      
-      </v-form>
-      <div
+    </v-container>
+  </v-form>
+  </v-card>
+  </div>
+<div
         class="alert alert-danger"
         role="alert"
         v-if="invalidCredentials"
@@ -52,10 +65,8 @@
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
 
-      
-      
-     
-  </div>
+</div>
+  
 </template>
 
 <script>
@@ -97,9 +108,15 @@ export default {
 </script>
  
 <style>
-div #username{
+.box {
   display: flex;
-  align-items:center;
+  align-items: center;
+  justify-content: center;
+}
+
+.box div {
+  width: auto;
+  height: auto;
 }
 </style>
       

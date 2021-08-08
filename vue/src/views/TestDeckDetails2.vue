@@ -1,14 +1,18 @@
 <template>
-<div > 
+<div class="test-deck-details2">
+  <div class="decks">
+  <h3>Decks</h3>
+  </div>
+ <deck-details  v-for="deck in decks"
+  v-bind:deck="deck" v-bind:key="deck.id" class="deck"/>
+  <deck-details />
+  </div>
+  
   <!--
   This before we call the deck-details element
   {{ deck.deck_name }} {{ deck.deck_description}}
   {{ decks }} -->
 
-  <deck-details  v-for="deck in decks"
-  v-bind:deck="deck" v-bind:key="deck.id" />
-  <deck-details />
-  </div> 
 </template>
 
 <script>
@@ -41,5 +45,17 @@ export default {
 </script>
 
 <style>
+.test-deck-details2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-size: 40px;
+    color: rgb(167, 167, 167);
+    font-weight: 600;
+}
+
 
 </style>
