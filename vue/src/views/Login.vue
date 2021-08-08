@@ -5,10 +5,18 @@
   <v-spacer></v-spacer>
 </div>
  <div class="box">
+   <h1 class="h3 mb-3 font-weight-normal" align="center">In A Flash</h1>
+   
+   
  <v-card elevation="2" shaped >
-  <v-form class="form-signin" @submit.prevent="login">
-     <h1 class="h3 mb-3 font-weight-normal" align="center">Please Sign In</h1>
+    
+  
+   
+  <v-form class="form-signin" @submit.prevent="login" >
+     <h3 class="h3 mb-3 font-weight-normal" align="center">Please Sign In</h3>
+     
     <v-container>
+      
       <v-row>
         <v-col
           cols="12"
@@ -44,12 +52,14 @@
           
         </v-col>
       </v-row>
+      
+      <div id="submit">
+      <v-btn type="submit" >Sign in</v-btn></div>
       <div id="buttons">
-        <v-row align="center" justify="space-around">
-      <router-link :to="{ name: 'register' }" tag="v-btn" >Need an account?</router-link>
-      <v-btn type="submit" align="right">Sign in</v-btn>
-      </v-row>
-      </div>
+       <!-- <v-row align="center" justify="space-around">-->
+      <router-link :to="{ name: 'register' }" tag="v-btn" >Need an account?</router-link></div>
+      
+      
     </v-container>
   </v-form>
   </v-card>
@@ -110,13 +120,33 @@ export default {
 <style>
 .box {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: teal ;
+  padding: 150 px;
+    background-color:rgb(190, 219, 219);
+
+
+
+ 
 }
 
 .box div {
   width: auto;
   height: auto;
+  
+}
+h1{
+  padding-bottom: 60px;
+  font-size: 50px;
+}
+h3{
+  padding-bottom: 40px;
+  font-size: 40px;
+}
+#submit{
+  padding-bottom: 40px;
 }
 </style>
       

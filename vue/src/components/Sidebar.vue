@@ -4,7 +4,7 @@
           In A Flash
       </div>
       <div class="menu-items">
-          <router-link v-bind:to="{name:'Home'}" active-class="active" exact tag="v-btn" class="side-btn">
+          <router-link to="/" active-class="active" exact tag="v-btn" class="side-btn">
           <div class="link-container">
               Home
               </div>
@@ -17,6 +17,10 @@
          <router-link to="/test-deck-details2" active-class="active" exact tag="v-btn" class="side-btn">
           <div class="link-container">
               My Decks
+              </div> </router-link>
+               <router-link to="/study" active-class="active" exact tag="v-btn" class="side-btn">
+          <div class="link-container">
+              Study Session
               </div>
         </router-link>
          <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''" active-class="active" exact tag="v-btn" class="side-btn">
@@ -42,7 +46,7 @@ export default {
 <style scoped>
 .title{
     color: white;
-    font-size: 24px;
+    font-size: 45px;
     margin-top: 10px;
 }
 

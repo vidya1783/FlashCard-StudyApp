@@ -1,43 +1,50 @@
 <template>
   <div id="register" class="text-center">
+    
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <label for="username" class="sr-only">Username</label>
+      <div>
+      <label for="username" class="sr-only">Username : </label>
       <input
         type="text"
         id="username"
         class="form-control"
         placeholder="Username"
         v-model="user.username"
+      
         required
         autofocus
-      />
-      <label for="password" class="sr-only">Password</label>
+      /></div>
+      <div>
+      <label for="password" class="sr-only">Password :  </label>
       <input
-        type="password"
+        type="text"
         id="password"
         class="form-control"
         placeholder="Password"
         v-model="user.password"
         required
-      />
+      /></div>
+      <div>
+        <label for="confirm password" class="sr-only">Confirm Password : </label>
       <input
-        type="password"
+        type="text"
         id="confirmPassword"
         class="form-control"
-        placeholder="Confirm Password"
+        placeholder= "Confirm Password"
         v-model="user.confirmPassword"
         required
-      />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Create Account
-      </button>
+      /></div>
+      <div>
+       <v-btn type="submit" >Create Account</v-btn></div>
+      <div><router-link :to="{ name: 'login' }">Have an account?</router-link>
+      </div>
+    
     </form>
-  </div>
+      </div>
 </template>
 
 <script>
@@ -90,4 +97,36 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+
+
+.form-register{
+  color:teal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+
+}
+
+div{
+  font-size:18px;
+  display:flex;
+ padding-bottom: 10px;
+  justify-content: center;
+    padding: 25px;
+    position: relative;
+    background-color:rgb(190, 219, 219);
+    
+    
+
+}
+h1{
+  padding-bottom: 20px;
+}
+input{
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+</style>

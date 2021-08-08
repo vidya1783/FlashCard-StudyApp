@@ -10,13 +10,14 @@
 <div id="slider">
   <transition-group tag="div" :name="transitionName" class="slides-group">
     <div v-if="show" :key="current" class="slide" :class="slides[current].className">
-       <v-card>
+      <v-card c >
        <v-card-text>
         {{displayText}}
         </v-card-text>
         </v-card>
     </div>
   </transition-group>
+  
   <div class="btn btn-prev" aria-label="Previous slide" @click="slide(-1)">
     &#10094;
   </div>
@@ -57,11 +58,10 @@ to create a UI, copy and paste code and ensure that it works:
     </v-card>
     <v-btn v-on:click.prevent="previousCard">Previous Card</v-btn>
     <v-btn v-on:click.prevent="nextCard">Next Card</v-btn>
-    <v-btn v-on:click.prevent="flipCard">Flip Card</v-btn>
-    <v-btn v-on:click.prevent="toggleCorrect">{{toggleText}}</v-btn>
+    <v-btn v-on:click.prevent="flipCard">Flip Card</v-btn></div>
+   <v-btn v-on:click.prevent="toggleCorrect">{{toggleText}}</v-btn>
     Correct from array: {{correctAnswers[currentPosition] ? true : false}}
     Current score: {{currentScore}}
-    </div>
   </div>
 </template>
 
@@ -198,101 +198,16 @@ export default {
 </script>
 
 <style>
-/* FADE IN */
-.fade-enter-active {
-  transition: opacity 1s;
+div{
+  color: teal;
 }
-.fade-enter {
-  opacity: 0;
-}
+h1{
+  font-size: 60px;
 
-/* GO TO NEXT SLIDE */
-.slide-next-enter-active,
-.slide-next-leave-active {
-  transition: transform 0.5s ease-in-out;
 }
-.slide-next-enter {
-  transform: translate(100%);
-}
-.slide-next-leave-to {
-  transform: translate(-100%);
-}
-
-/* GO TO PREVIOUS SLIDE */
-.slide-prev-enter-active,
-.slide-prev-leave-active {
-  transition: transform 0.5s ease-in-out;
-}
-.slide-prev-enter {
-  transform: translate(-100%);
-}
-.slide-prev-leave-to {
-  transform: translate(100%);
-}
-
-/* SLIDES CLASSES */
-
-.blue {
-  background: #4a69bd;
-}
-
-.red {
-  background: #e55039;
-}
-
-.yellow {
-  background: #f6b93b;
-}
-
-/* SLIDER STYLES */
-body {
-  overflow: hidden;
-  margin: 0;
-  font-size: 50px;
-  font-family: "Crimson Text", sans-serif;
-  color: #fff;
-}
-
-#slider {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-}
-
-.slide {
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
+.container text-center{
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn {
-  z-index: 10;
-  cursor: pointer;
-  border: 3px solid #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70px;
-  height: 70px;
-  position: absolute;
-  top: calc(50% - 35px);
-  left: 1%;
-  transition: transform 0.3s ease-in-out;
-  user-select: none;
-}
-
-.btn-next {
-  left: auto;
-  right: 1%;
-}
-
-.btn:hover {
-  transform: scale(1.1);
+  flex-direction: column;
 }
 
 </style>

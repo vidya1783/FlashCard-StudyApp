@@ -1,11 +1,13 @@
 <template>
-<div class="test-deck-details2">
+<div>
   <div class="decks">
-  <h3>Decks</h3>
+  <h3>My Decks</h3>
   </div>
+  <div class="test-deck-details2">
  <deck-details  v-for="deck in decks"
   v-bind:deck="deck" v-bind:key="deck.id" class="deck"/>
   <deck-details />
+  </div>
   </div>
   
   <!--
@@ -55,6 +57,13 @@ export default {
     font-size: 40px;
     color: rgb(167, 167, 167);
     font-weight: 600;
+    text-align: center;
+}
+.decks {
+  display: flex;
+  justify-content: center;
+  color: teal ;
+
 }
 
 

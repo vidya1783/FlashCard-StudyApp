@@ -1,17 +1,19 @@
 
 <template>
-<div class="test-flashcard-details2"> 
-   <div class="flash">
-     <h3>
-       Flash  
-     </h3>
-   </div>
- 
+<div>
+<div class="flash">
+  <h3> My Flash Cards</h3>
+  </div>
+
+<div class="test-flashcard-details2" > 
+  
+  
   <!--{{ flashcard.question_text }} {{ flashcard.answer_text}}-->
   <card-details v-for="flashcard in flashcards"
   v-bind:flashcard="flashcard" v-bind:key="flashcard.id" />
   <card-details />
   </div> 
+  </div>
 </template>
 
 <script>
@@ -60,6 +62,8 @@ export default {
 
 .flash {
   display: flex;
+  justify-content: center;
+  color: teal ;
 
 }
 </style>

@@ -47,6 +47,10 @@ const router = new Router({
         {
           path: '/test-flashcard-details2',
           component: () => import('../views/TestFlashcardDetails2')
+        },
+        {
+          path: '/study',
+          component: () => import('../views/Study')
         }
       ],
       meta: {
