@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Deck;
+import com.techelevator.model.Flashcard;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -10,14 +11,17 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 public class JdbcDeckDao implements DeckDao {
 
     JdbcTemplate jdbcTemplate;
+    FlashcardDao flashcardDao;
 
-    public JdbcDeckDao(JdbcTemplate jdbcTemplate)
+    public JdbcDeckDao(JdbcTemplate jdbcTemplate, FlashcardDao flashcardDao)
     {
         this.jdbcTemplate = jdbcTemplate;
+        this.flashcardDao = flashcardDao;
     }
 
     @Override
@@ -69,6 +73,21 @@ public class JdbcDeckDao implements DeckDao {
 
         if (rowsUpdated==1) {return deckToUpdate;}
         else {throw new Exception();}
+    }
+
+    @Override
+    public List<Flashcard> addDeckCard(Long deckId, Long flashcardId) throws Exception {
+        String sql = "INSERT INTO flashcard_deck (deck_id, flashcard_id) VALUES (?, ?);";
+        int rowsUpdated = -1;
+        try {
+            rowsUpdated = jdbcTemplate.update(sql,deckId, flashcardId);
+        } catch (Exception ex)
+        {
+            throw ex;
+        }
+        if (rowsUpdated != 1) {throw new Exception("Card not added");}
+        return flashcardDao.getAllFlashcardsInDeck(deckId);
+
     }
 
     @Override
