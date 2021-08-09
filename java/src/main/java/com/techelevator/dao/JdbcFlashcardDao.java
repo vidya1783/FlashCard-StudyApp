@@ -93,6 +93,31 @@ public class JdbcFlashcardDao implements FlashcardDao {
         return flashcardList;
     }
 
+    @Override
+    public List<Flashcard> getAllFlashcardsNotInDeck(Long deckId) throws Exception {
+        List<Flashcard> flashcardList = new ArrayList<>();
+        Flashcard addThisFlashcard = new Flashcard();
+        String returnFlashcardSql = "SELECT f.flashcard_id, f.creator_id, f.question_text, " +
+                " f.answer_text FROM flashcard f LEFT OUTER JOIN flashcard_deck fd " +
+                "ON f.flashcard_id = fd.flashcard_id " +
+                "WHERE fd.deck_id != ?; ";
+
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(returnFlashcardSql, deckId);
+            while (results.next())
+            {
+                addThisFlashcard = mapRowToFlashcard(results);
+                flashcardList.add(addThisFlashcard);
+            }
+
+        }
+        catch (Exception ex) {
+            throw ex;
+        }
+
+        return flashcardList;
+    }
+
 
     @Override
     public List<Flashcard> getALlCardsByCreatorId(Long creatorId) throws Exception {

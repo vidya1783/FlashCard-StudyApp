@@ -17,5 +17,9 @@ export default {
     },
     getFlashcardsByDeckId(id){
         return axios.get(`/deckcards/${id}`)
+    },
+
+    getFlashcardsNotinDeckId(id){
+        return axios.get(`/notindeckcards/${id}`)
     }
 }
