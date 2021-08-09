@@ -6,15 +6,16 @@
 <v-card max-width="344" class="d-flex justify-center py-3">
 <v-card-title >
 <v-textarea v-model="deckData.deck_name"   label="Deck Name" required
-v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
+v-on:blur="determineCreateOrUpdate" solo autogrow:true 
+>
 </v-textarea>
 </v-card-title>
 
-<v-card-text>
+<!--<v-card-text>
 <v-textarea v-model="deckData.deck_description"  label="Deck Description"
 required v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
 </v-textarea>
-</v-card-text>
+</v-card-text>-->
 <div class="cards">
 <router-link v-bind:to="{name:'deck-display', params: {id: deckData.deck_id}}"  tag="v-btn"> Display Cards </router-link></div>
 <!-- <router-link to="/display-deck/{deck.deck_id}"> Display Cards </router-link> -->
