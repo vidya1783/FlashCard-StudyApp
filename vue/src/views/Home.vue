@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import decksList from "../components/DecksList.vue";
+// import decksList from "../components/DecksList.vue";
 
 export default {
   name: "home",
   components: {
-    decksList 
+    // decksList 
   }
 };
 </script>
