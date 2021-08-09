@@ -6,7 +6,7 @@
 
    <!-- <p>This is the home page</p>-->
    <div class="picture">
-   <img src=/>
+   <img src=https://is4-ssl.mzstatic.com/image/thumb/Purple125/v4/18/04/f7/1804f74b-3d69-e896-090d-75587ad0c6de/source/512x512bb.jpg/>
    </div> 
     <decks-list/>
   </div>
