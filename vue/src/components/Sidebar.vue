@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar">
       <div class="title">
-          In A Flash
+          In a Flash
       </div>
       <div class="menu-items">
           <router-link to="/" active-class="active" exact tag="v-btn" class="side-btn">
@@ -46,7 +46,7 @@ export default {
 
 <style scoped>
 .title{
-    color: white;
+    color: black;
     font-size: 45px;
     margin-top: 10px;
 }
@@ -69,7 +69,7 @@ export default {
 .side-btn .active{
 position: relative;
 background-color: white;
-color: rgb(93, 247, 247);
+color: #59b0ca;
 font-weight: 500;
  margin-left: 10px;
 border-radius: 30px 0 0 30px;
@@ -100,7 +100,7 @@ border-radius: 30px 0 0 30px;
     padding: 16px 0px;
     cursor: pointer;
     font-size: 16px;
-    color: white;
+    color: black;
     background-color: transparent;
 }
 

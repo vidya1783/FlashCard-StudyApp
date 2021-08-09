@@ -5,8 +5,10 @@
   <v-spacer></v-spacer>
 </div>
  <div class="box">
+<h1>In a Flash</h1>
   <div class="header">
-  <h1>In a Flash</h1>
+     
+  
   <img src="https://info.goconqr.com/files/2016/05/flashcard-icon.png"/>
 </div>
   
@@ -15,7 +17,7 @@
   
    
   <v-form class="form-signin" @submit.prevent="login" >
-     <h3 class="h3 mb-3 font-weight-normal" align="center">Please Sign In</h3>
+    <h3 class="h3 mb-3 font-weight-normal" align="center">Please Sign In</h3>
      
     <v-container>
       
@@ -127,7 +129,7 @@ export default {
   justify-content: center;
   color: rgb(243, 243, 243) ;
   padding: 90 px;
-    background-color:rgb(221, 252, 252);
+    background-color: #59b0ca;;
     height: 700px;;
 
 
@@ -142,21 +144,21 @@ export default {
 }
 h1{
   
-  font-size: 50px;
-   padding-bottom: 50px;
+  color:black;
+   font-size: 40px;
+   padding-bottom: 5px;
 }
 h3{
   padding-bottom: 40px;
-  font-size: 40px;
+  font-size: 30px;
 }
 #submit{
   padding-bottom: 40px;
 }
 .header {
   text-align: center;
-  background: #55f0e8;
+  background: #1226ddce;
   color:black;
-  font-size: 30px;
   padding-bottom:20px;
   padding-top:5px;
 }
