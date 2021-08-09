@@ -22,11 +22,17 @@ to create a UI, copy and paste code and ensure that it works:
 <div v-if="debug">
       We're in the tag component.
 
-{{cardListRaw}}
-
 {{tagListRaw}}
 
 {{tagList}}
+<div>
+  <p>
+<multiselect v-model="selectedTags" :options="tagList" 
+multiple="true"
+
+></multiselect>
+</P>
+</div>
 <v-btn></v-btn>
 <v-container>
 
@@ -42,9 +48,11 @@ to create a UI, copy and paste code and ensure that it works:
 <script>
 import cardService from '../services/FlashcardService';
 import tagService from '../services/TagService';
+import Multiselect from 'vue-multiselect';
 
 export default {
   name: 'tagComponent',
+  components: {Multiselect},
   props: { },
   watchInt: 0,
   data() {
@@ -60,6 +68,9 @@ export default {
   {
     errorSituation() {
       console.log("oops");
+    },
+    theText(item) {
+      return item.tag_text;
     }
 
    },
@@ -117,5 +128,7 @@ export default {
 </script>
 
 <style>
-
+.nostyleplease {
+  all: initial
+}
 </style>
