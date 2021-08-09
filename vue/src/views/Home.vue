@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
+    <h1>Welcome Back</h1>
     <!--<router-link :to="{ name: 'test-deck-details-2' }">My Decks</router-link>|
     <router-link :to="{ name: 'test-flashcard-details2' }">My Flashcards</router-link>-->
 
