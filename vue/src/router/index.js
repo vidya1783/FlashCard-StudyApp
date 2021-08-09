@@ -135,6 +135,7 @@ const router = new Router({
         name: 'deck-display',
         component: DeckDisplay,
         meta: { requiresAuth: true}},
+        
       { path: '/tags',
       name: 'tag-list',
       component: Tags,

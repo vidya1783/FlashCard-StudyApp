@@ -10,26 +10,29 @@
    <div class="button"><router-link v-bind:to="{name:'study-session', params: {id:this.$route.params.id}}" tag="v-btn"> Study Session </router-link>
    
   </div>
-  </div>
+  
   <div>
           <h2> The following cards do not belong to the deck. Do you want to assign them to this deck? </h2>
-          <div v-for="flashcard in notindeck"
-  v-bind:flashcard="flashcard" v-bind:key="flashcard.id">
-  <p> Question text: {{flashcard.question_text}} </p>
+          <add-card-to-deck1 v-for="flashcard in notindeck"
+  v-bind:flashcard="flashcard" v-bind:deck_id="this.$route.params.id" v-bind:key="flashcard.id">
+    </add-card-to-deck1 >
+ <!-- <p> Question text: {{flashcard.question_text}} </p>
 <p> Answer text: {{flashcard.answer_text}} </p>
 <p> Flashcard Id: {{ id = flashcard.flashcard_id}} </p>
-<p> Creator Id: {{ flashcard.creator_id}}</p>
+<p> Creator Id: {{ flashcard.creator_id}}</p>-->
 
-// button here
+
 
 </div>
+</div>
   </div>
-  </div>
+
 </template>
 
 <script>
 import cardDetails from '../components/CardDetails.vue';
-import deckService from '../services/DeckService.js'
+import deckService from '../services/DeckService.js';
+import AddCardToDeck1 from '../components/AddCardToDeck1.vue';
 
 export default {
     
@@ -54,7 +57,8 @@ export default {
         });
     },
     components: {
-        cardDetails
+        cardDetails,
+        AddCardToDeck1
     },
     methods: {
         attachToThisDeck(){
