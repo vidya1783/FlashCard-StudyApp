@@ -1,7 +1,8 @@
 <template>
   <div>
-     <h1> This will display all flashcards in this deck </h1>
+     <h1> This will display all flashcards in this deck -- </h1>
      <div v-for="flashcard in flashcards" v-bind:key="flashcard.id"></div>
+     
   </div>
 </template>
 
