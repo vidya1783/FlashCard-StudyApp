@@ -103,7 +103,7 @@ export default {
 
 
 .form-register{
-  color:teal;
+  color:black;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -118,7 +118,7 @@ div{
   justify-content: center;
     padding: 25px;
     position: relative;
-    background-color:rgb(190, 219, 219);
+    background-color: #59b0ca;
     
     
 
