@@ -5,7 +5,10 @@
   <v-spacer></v-spacer>
 </div>
  <div class="box">
-   <h1 class="h3 mb-3 font-weight-normal" align="center">In A Flash</h1>
+  <div class="header">
+  <h1>In a Flash</h1>
+  <img src="https://info.goconqr.com/files/2016/05/flashcard-icon.png"/>
+</div>
   
  <v-card elevation="2" shaped >
     
@@ -122,9 +125,10 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: teal ;
-  padding: 150 px;
-    background-color:rgb(190, 219, 219);
+  color: rgb(243, 243, 243) ;
+  padding: 90 px;
+    background-color:rgb(221, 252, 252);
+    height: 700px;;
 
 
 
@@ -148,6 +152,13 @@ h3{
 #submit{
   padding-bottom: 40px;
 }
-
+.header {
+  text-align: center;
+  background: #55f0e8;
+  color:black;
+  font-size: 30px;
+  padding-bottom:20px;
+  padding-top:5px;
+}
 </style>
       

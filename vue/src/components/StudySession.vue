@@ -62,6 +62,7 @@ to create a UI, copy and paste code and ensure that it works:
    <v-btn v-on:click.prevent="toggleCorrect">{{toggleText}}</v-btn>
     Correct from array: {{correctAnswers[currentPosition] ? true : false}}
     Current score: {{currentScore}}
+    <div class="button"><router-link to="/" tag="v-btn"> Home </router-link></div>
   </div>
 </template>
 

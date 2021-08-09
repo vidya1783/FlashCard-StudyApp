@@ -8,6 +8,7 @@
   <card-details />
  </div>
    <div class="button"><router-link v-bind:to="{name:'study-session', params: {id:this.$route.params.id}}" tag="v-btn"> Study Session </router-link>
+    <div class="button"><router-link to="/" tag="v-btn"> Home </router-link></div>
    
   </div>
   
