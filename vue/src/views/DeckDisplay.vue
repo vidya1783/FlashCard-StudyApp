@@ -22,7 +22,10 @@ export default {
     name: 'deck-display',
     data(){
         return {
-             flashcards: []
+             flashcards: [],
+             notindeck: []
+      
+
         }  
     },
     created(){
@@ -31,9 +34,19 @@ export default {
          .then((response) => { 
             this.flashcards = response.data;
         });
+          deckService.getFlashcardsNotinDeckId(this.$route.params.id)
+         .then((response) => { 
+            this.notindeck = response.data;
+        });
     },
     components: {
         cardDetails
+    },
+    methods: {
+        attachToThisDeck(){
+            alert("This is getting called")
+          
+        }
     }
     }
 
