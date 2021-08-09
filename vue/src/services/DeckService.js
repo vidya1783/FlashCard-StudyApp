@@ -21,5 +21,9 @@ export default {
 
     getFlashcardsNotinDeckId(id){
         return axios.get(`/notindeckcards/${id}`)
+    },
+    attachCardToDeck(deckId, flashcardId){
+        return axios.post(`deck/${deckId}/${flashcardId}`)
     }
+
 }
