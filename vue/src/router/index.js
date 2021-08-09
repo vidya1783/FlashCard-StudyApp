@@ -36,10 +36,7 @@ const router = new Router({
           path: '',
           component: () => import('../views/Home')
         },
-        {
-          path: '/register',
-          component: () => import('../views/Register')
-        },
+        
         {
           path: '/test-deck-details2',
           component: () => import('../views/TestDeckDetails2')

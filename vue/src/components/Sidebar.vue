@@ -29,11 +29,11 @@
               Log Out
               </div>
         </router-link>
-        <router-link :to="{ name: 'register' }"  active-class="active" exact tag="v-btn" class="side-btn">
+        <!-- <router-link :to="{ name: 'register' }"  active-class="active" exact tag="v-btn" class="side-btn">
           <div class="link-container">
               Need An Account?
               </div>
-        </router-link>
+        </router-link> -->
       </div>
   </div>
 </template>
