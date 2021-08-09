@@ -62,9 +62,10 @@ h1{
 }
 .cards{
   display: flex;
-  
-justify-content: center;
-  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+justify-content: start;
+  align-items: space-between;
   padding-bottom: 30px;
 }
 .button{
