@@ -12,6 +12,8 @@ import TestFlashcardDetails from '../views/TestFlashcardDetails.vue'
 import TestFlashcardDetails2 from '../views/TestFlashcardDetails2.vue'
 import Study from '../views/Study.vue'
 import DeckDisplay from '../views/DeckDisplay.vue'
+import Tags from '../views/Tags.vue'
+
 Vue.use(Router)
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -132,10 +134,11 @@ const router = new Router({
         path: `/deck-display/:id`,
         name: 'deck-display',
         component: DeckDisplay,
-        meta: {
-          requiresAuth: true
-      }
-}
+        meta: { requiresAuth: true}},
+      { path: '/tags',
+      name: 'tag-list',
+      component: Tags,
+      meta: {requiresAuth: true}}
   ]
 })
 router.beforeEach((to, from, next) => {
