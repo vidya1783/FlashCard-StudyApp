@@ -15,7 +15,8 @@ v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
 required v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
 </v-textarea>
 </v-card-text>
-<router-link v-bind:to="{name:'deck-display', params: {id: deckData.deck_id}}"> Display Cards </router-link>
+<div class="cards">
+<router-link v-bind:to="{name:'deck-display', params: {id: deckData.deck_id}}"  tag="v-btn"> Display Cards </router-link></div>
 <!-- <router-link to="/display-deck/{deck.deck_id}"> Display Cards </router-link> -->
 
 <!--
@@ -159,6 +160,9 @@ export default {
 	align-items: stretch;
 	align-content: flex-end;
 } */
+.cards{
+  font-size: 20px;
+}
 
 
 </style>

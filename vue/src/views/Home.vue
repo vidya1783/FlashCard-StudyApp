@@ -5,7 +5,7 @@
     <router-link :to="{ name: 'test-flashcard-details2' }">My Flashcards</router-link>-->
 
    <!-- <p>This is the home page</p>-->
-   <img src=https://img.favpng.com/18/7/8/educational-flash-cards-nhl-19-video-games-archive-png-favpng-gg68jtcGjiKhEUhCF2NahSfjA.jpg /> />
+   <img src=https://img.favpng.com/18/7/8/educational-flash-cards-nhl-19-video-games-archive-png-favpng-gg68jtcGjiKhEUhCF2NahSfjA.jpg /> 
     <decks-list/>
   </div>
 </template>
