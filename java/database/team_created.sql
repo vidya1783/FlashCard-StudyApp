@@ -66,12 +66,40 @@ VALUES (50, 'Art',100, 'flashcards that relate to art'),
 (54, 'Plants',500, 'flashcards that relate to plants'),
 (55, 'Music',600, 'flashcards that relate to music');
 
+-- INSERT INTO flashcard (flashcard_id, creator_id, question_text, answer_text)
+-- VALUES (1000, 100, 'philadelphia','PA'),
+-- (1001, 100, 'new york','NY'),
+-- (1002, 100, 'picasso','painter'),
+-- (1003, 100, 'rodin','sculptor'),
+-- (1004, 100, 'mnesicles','architect');
 INSERT INTO flashcard (flashcard_id, creator_id, question_text, answer_text)
-VALUES (1000, 100, 'philadelphia','PA'),
-(1001, 100, 'new york','NY'),
-(1002, 100, 'picasso','painter'),
-(1003, 100, 'rodin','sculptor'),
-(1004, 100, 'mnesicles','architect');
+VALUES (1000, 100, 'Who is credited as the designer of the many statues which decorated the Parthenon','Phidias'),
+(1001, 100, 'What artist was struck in the face with a mallet by an envious rival, disfiguring him for life','Michelangelo'),
+(1002, 100, 'Who is picasso?','A Painter'),
+(1003, 100, 'Who is Rodin?','A Sculptor'),
+(1004, 100, 'Who is Mnesicles','An Architect'),
+(1005, 100, 'Which artist is best known for a painting of his mother','James Abbott McNeil Whistler'),
+(1006, 200, 'What art movement was Yoko Ono associated with during the 1960s?','Fluxus'),
+(1007, 200, 'What city was the first capital of the United States','New York City'),
+(1008, 200, 'When was the Declaration of Independence signed','August 2nd, 1776'),
+(1009, 200, 'Where did the pilgrims land in America','Unknown'),
+(1010, 200, 'What did Paul Revere shout on his midnight ride in 1775','The regulars are coming!'),
+(1011, 300, 'What is the only number that has the same number of letters as its meaning?','Four'),
+(1012, 300, 'What number does not have its own Roman numeral','Zero'),
+(1013, 300, 'What is the only even prime number','Two'),
+(1014, 300, 'What is the smallest perfect number','Six'),
+(1015, 400, 'This essential gas is important so that we can breathe','Oxygen'),
+(1016, 400, 'What is the nearest planet to the sun?','Mercury'),
+(1017, 400, 'How many teeth does an adult human have?','32'),
+(1018, 400, 'The earth has three layers of varying temperatures. What are its three layers?','Crust, mantle, core'),
+(1019, 500, 'What are peanuts?','Technically a type of bean.'),
+(1020, 500, '85% of plant life is found where?','In space'),
+(1021, 500, 'Where do plants get their food from?','The sun, the ground and sometimes from animals'),
+(1022, 500, 'Strawberries, peaches, apples and apricots are in the same family of plants as roses. True or false?','True'),
+(1023, 600, 'What singer has had a Billboard No. 1 hit in each of the four decades?','Mariah Carey'),
+(1024, 600, 'What was Freddie Mercurys real name','Farrokh Bulsara'),
+(1025, 600, 'Who was the very first American Idol winner','Kelly Clarkson'),
+(1026, 600, 'Which member of the Avengers had a brief stint as a pop star?','Brie Larson');
 
 INSERT INTO flashcard_deck (flashcard_id, deck_id) 
 VALUES (1002, 50),
