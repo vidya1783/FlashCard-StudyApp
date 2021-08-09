@@ -31,7 +31,7 @@ export default {
 .dashboard{
   display: grid;
   grid-template-columns: 1fr 5fr;
-  background-color: teal;
+  background-color: #13e6db;
   height: 100vh;
   width: 100vw;
 }
