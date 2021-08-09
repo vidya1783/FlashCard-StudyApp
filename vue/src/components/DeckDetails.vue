@@ -5,13 +5,13 @@
  
 <v-card max-width="344" class="d-flex justify-center py-3">
 <v-card-title >
-<v-textarea v-model="deckData.deck_name"  :counter="70" label="Deck Name" required
+<v-textarea v-model="deckData.deck_name"   label="Deck Name" required
 v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
 </v-textarea>
 </v-card-title>
 
 <v-card-text>
-<v-textarea v-model="deckData.deck_description" :counter="70" label="Deck Description"
+<v-textarea v-model="deckData.deck_description"  label="Deck Description"
 required v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
 </v-textarea>
 </v-card-text>

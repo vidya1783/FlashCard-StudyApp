@@ -3,12 +3,12 @@
   <v-container >
 <v-card max-width="344">
 <v-card-title>
-<v-textarea v-model="flashcardData.question_text"  :counter="70" label="Question Text" required
+<v-textarea v-model="flashcardData.question_text"   label="Question Text" required
 v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
 </v-textarea>
 </v-card-title>
 <v-card-text>
-<v-textarea v-model="flashcardData.answer_text" :counter="70" label="Answer Text"
+<v-textarea v-model="flashcardData.answer_text"  label="Answer Text"
 required v-on:blur="determineCreateOrUpdate" solo autogrow:true rows="2">
 </v-textarea>
 </v-card-text>
