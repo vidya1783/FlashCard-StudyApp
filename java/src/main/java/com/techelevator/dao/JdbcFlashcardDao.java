@@ -97,10 +97,10 @@ public class JdbcFlashcardDao implements FlashcardDao {
     public List<Flashcard> getAllFlashcardsNotInDeck(Long deckId) throws Exception {
         List<Flashcard> flashcardList = new ArrayList<>();
         Flashcard addThisFlashcard = new Flashcard();
-        String returnFlashcardSql = "SELECT f.flashcard_id, f.creator_id, f.question_text, " +
-                " f.answer_text FROM flashcard f LEFT OUTER JOIN flashcard_deck fd " +
-                "ON f.flashcard_id = fd.flashcard_id " +
-                "WHERE fd.deck_id != ?; ";
+        String returnFlashcardSql = "SELECT flashcard_id, creator_id, question_text, answer_text "
+                + " FROM flashcard f WHERE flashcard_id NOT IN (SELECT DISTINCT f.flashcard_id " +
+                "FROM flashcard f JOIN flashcard_deck fd ON f.flashcard_id = fd.flashcard_id " +
+                "JOIN deck d ON d.creator_id=f.creator_id WHERE d.deck_id = ?);";
 
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(returnFlashcardSql, deckId);
