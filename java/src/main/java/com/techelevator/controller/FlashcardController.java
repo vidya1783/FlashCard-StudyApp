@@ -127,6 +127,28 @@ public class FlashcardController {
         return flashcardList;
     }
 
+    @RequestMapping(path="notindeckcards/{deckId}", method = RequestMethod.GET)
+    public List<Flashcard> getNotInDeckCards(@PathVariable Long deckId, Principal principal){
+        List<Flashcard> flashcardList = new ArrayList<>();
+        Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
+
+        Deck foundDeck = deckDao.retrieveDeck(deckId);
+        if (foundDeck.getCreatorId()!=userId) {
+            return null;
+        }
+
+        try {
+            flashcardList = flashcardDao.getAllFlashcardsNotInDeck(deckId);
+        } catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+            return null;
+        }
+
+        return flashcardList;
+    }
+
+
 
 
 }

@@ -49,8 +49,8 @@ const router = new Router({
           component: () => import('../views/TestFlashcardDetails2')
         },
         {
-          path: '/study',
-          component: () => import('../views/Study')
+          path: `/deck-display/:id`,
+          component: () => import('../views/DeckDisplay')
         }
       ],
       meta: {

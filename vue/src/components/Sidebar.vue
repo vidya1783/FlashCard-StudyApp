@@ -5,7 +5,7 @@
       </div>
       <div class="menu-items">
           <router-link to="/" active-class="active" exact tag="v-btn" class="side-btn">
-          <div class="link-container">
+            <div class="link-container">
               Home
               </div>
         </router-link>
@@ -17,12 +17,13 @@
          <router-link to="/test-deck-details2" active-class="active" exact tag="v-btn" class="side-btn">
           <div class="link-container">
               My Decks
-              </div> </router-link>
-               <router-link to="/study" active-class="active" exact tag="v-btn" class="side-btn">
+              </div> 
+              </router-link>
+               <!-- <router-link to="/study" active-class="active" exact tag="v-btn" class="side-btn">
           <div class="link-container">
               Study Session
               </div>
-        </router-link>
+        </router-link> -->
          <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''" active-class="active" exact tag="v-btn" class="side-btn">
           <div class="link-container">
               Log Out
@@ -74,7 +75,7 @@ font-weight: 500;
 border-radius: 30px 0 0 30px;
 }
 
-.side-btn.active::before{
+/* .side-btn.active::before{
     position: absolute;
     content: "";
     top: -40;
@@ -92,7 +93,7 @@ border-radius: 30px 0 0 30px;
     height: 30px;
     width: 30px;
     background-color: transparent;
-}
+} */
 
 .side-btn{
     border: none;

@@ -6,8 +6,7 @@
 </div>
  <div class="box">
    <h1 class="h3 mb-3 font-weight-normal" align="center">In A Flash</h1>
-   
-   
+  
  <v-card elevation="2" shaped >
     
   
@@ -138,8 +137,9 @@ export default {
   
 }
 h1{
-  padding-bottom: 60px;
+  
   font-size: 50px;
+   padding-bottom: 50px;
 }
 h3{
   padding-bottom: 40px;
@@ -148,5 +148,6 @@ h3{
 #submit{
   padding-bottom: 40px;
 }
+
 </style>
       

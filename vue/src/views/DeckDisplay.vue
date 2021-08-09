@@ -1,11 +1,29 @@
 <template>
   <div>
-      This is the deck display for deck: {{$route.params.id}}
-
+<div id="main">
+      <h1>This is the deck display for deck: {{$route.params.id}}</h1>
+<div class="cards">
         <card-details v-for="flashcard in flashcards"
   v-bind:flashcard="flashcard" v-bind:key="flashcard.id" />
   <card-details />
-  <router-link v-bind:to="{name:'study-session', params: {id:this.$route.params.id}}"> Study Session </router-link>
+ </div>
+   <div class="button"><router-link v-bind:to="{name:'study-session', params: {id:this.$route.params.id}}" tag="v-btn"> Study Session </router-link>
+   
+  </div>
+  </div>
+  <div>
+          <h2> The following cards do not belong to the deck. Do you want to assign them to this deck? </h2>
+          <div v-for="flashcard in notindeck"
+  v-bind:flashcard="flashcard" v-bind:key="flashcard.id">
+  <p> Question text: {{flashcard.question_text}} </p>
+<p> Answer text: {{flashcard.answer_text}} </p>
+<p> Flashcard Id: {{ id = flashcard.flashcard_id}} </p>
+<p> Creator Id: {{ flashcard.creator_id}}</p>
+
+// button here
+
+</div>
+  </div>
   </div>
 </template>
 
@@ -18,7 +36,10 @@ export default {
     name: 'deck-display',
     data(){
         return {
-             flashcards: []
+             flashcards: [],
+             notindeck: []
+      
+
         }  
     },
     created(){
@@ -27,9 +48,19 @@ export default {
          .then((response) => { 
             this.flashcards = response.data;
         });
+          deckService.getFlashcardsNotinDeckId(this.$route.params.id)
+         .then((response) => { 
+            this.notindeck = response.data;
+        });
     },
     components: {
         cardDetails
+    },
+    methods: {
+        attachToThisDeck(){
+            alert("This is getting called")
+          
+        }
     }
     }
 
@@ -40,5 +71,29 @@ export default {
 
 
 <style>
+h1{
+  font-size:50 px;
+}
+.cards{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+justify-content: center;
+  align-items: space-between;
+  padding-bottom: 30px;
+}
+.button{
+  font-size:40px;
+  
+  
+}
+#main    {
+     background-color:rgb(197, 226, 226);
+     height: 1000px;;
+     width: 1500px;
+     margin: 50px auto;
+     border: 1px solid teal /* width, style, colour */
+     } 
+
 
 </style>
