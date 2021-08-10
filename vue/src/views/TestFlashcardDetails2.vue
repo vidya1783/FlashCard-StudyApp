@@ -45,7 +45,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .test-flashcard-details2{
     display: flex;
     flex-wrap: wrap;
