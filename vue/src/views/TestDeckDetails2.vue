@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="decks">
-  <h3>My Decks</h3>
+  <h1>My Decks</h1>
   </div>
   <div class="test-deck-details2">
 
@@ -55,16 +55,22 @@ export default {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    padding: 20px;
+    height: 70%;
     width: 100%;
     font-size: 40px;
+   background-color:  rgba(117, 167, 214, 0.692);
     font-weight: 600;
     text-align: center;
-}
+    height:700px;
+    align-items:flex-start;}
+
 .decks {
   display: flex;
   justify-content: center;
-  color: teal ;
+   color:black;
+  font-size:25px;
+  background-color:rgb(245, 245, 10);
 
 }
 

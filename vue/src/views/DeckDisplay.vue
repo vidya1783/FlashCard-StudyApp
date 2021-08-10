@@ -5,8 +5,8 @@
     <div class="cards">
         <attached-card-details v-for="flashcard in flashcards"
           v-bind:flashcard="flashcard" v-bind:deck_id="deckId" v-bind:key="flashcard.id" />
-        
-        <h2> The following cards do not belong to the deck. Do you want to assign them to this deck? </h2>
+       <div class="card" >
+        <h2> The following cards do not belong to the deck. Do you want to assign them to this deck? </h2></div>
         <div class="cards">
           <add-card-to-deck1 v-for="element in notindeck"
           v-bind:flashcard="element" v-bind:deck_id="deckId" v-on:click.prevent="testFunction" v-bind:key="element.id" />
@@ -122,7 +122,7 @@ h1{
   flex-direction: row;
 justify-content: center;
   align-items: space-between;
-  padding-bottom: 30px;
+  padding-top: 30px;
 }
 .button{
   font-size:40px;
@@ -130,12 +130,15 @@ justify-content: center;
   
 }
 #main    {
-     background-color:rgb(197, 226, 226);
+     background-color: rgba(117, 167, 214, 0.692);
      height: 1000px;;
      width: 1500px;
-     margin: 50px auto;
+    
      border: 1px solid teal /* width, style, colour */
      } 
+     .card{
+       padding-top:20px;
+     }
 
 
 </style>

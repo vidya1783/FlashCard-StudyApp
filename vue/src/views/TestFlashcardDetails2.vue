@@ -2,7 +2,7 @@
 <template>
 <div>
 <div class="flash">
-  <h3> My Flash Cards</h3>
+  <h1> My Flash Cards</h1>
   </div>
 
 <div class="test-flashcard-details2" > 
@@ -46,6 +46,7 @@ export default {
 </script>
 
 <style scoped>
+
 .test-flashcard-details2{
     display: flex;
     flex-wrap: wrap;
@@ -55,15 +56,19 @@ export default {
     height: 70%;
     width: 100%;
     font-size: 40px;
-    color: rgb(167, 167, 167);
+   background-color:  rgba(117, 167, 214, 0.692);
     font-weight: 600;
     text-align: center;
+    height:700px;
 }
 
 .flash {
   display: flex;
   justify-content: center;
-  color: teal ;
+  color:black;
+  font-size:25px;
+  background-color:rgb(245, 245, 10);
+ 
 
 }
 </style>

@@ -124,7 +124,6 @@ export default {
       correctAnswers: [false],
       currentPosition: 0,
       useLightningRound: false, // not going to implement, but included for completeness
-      shuffleTheCards: false,
       displayQuestionSide: true,
       thisAnswerCorrect: false,
       toggleText: "Mark Correct",
@@ -135,6 +134,13 @@ export default {
   },
   methods:
   {
+    resetDefaults() {
+      this.correctAnswers = [false];
+      this.currentPosition = 0;
+      this.currentScore = 0;
+      this.thisAnswerCorrect = false;
+      this.toggleText = "Mark Correct";
+    },
     setCardList(cardList) {
       this.flashcards = cardList;
     },
@@ -205,6 +211,11 @@ export default {
          let correctFiltered = this.correctAnswers.filter(x => x==true);
          let correctCount = correctFiltered.length;
          this.currentScore = correctCount;
+       }
+     },
+     shuffleCards: {
+       handler() {
+         this.resetDefaults();
        }
      }
 
