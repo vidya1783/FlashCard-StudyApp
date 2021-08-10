@@ -23,6 +23,13 @@
     <div class="one"> </div>
     <div class="two"> 
     <div>
+       <v-btn class="ma-2" text icon color="blue lighten-2">
+          <v-icon>mdi-thumb-up</v-icon>
+        </v-btn>
+  
+        <v-btn class="ma-2" text icon color="red lighten-2">
+          <v-icon>mdi-thumb-down</v-icon>
+        </v-btn>
       <v-btn v-on:click.prevent="markCorrect">Mark Correct</v-btn>
          <v-btn v-on:click.prevent="flipCard">Flip Card</v-btn>
          <v-btn v-on:click.prevent="markIncorrect">Mark Incorrect</v-btn>
@@ -94,7 +101,7 @@ to create a UI, copy and paste code and ensure that it works:
 </template>
 
 <script>
-// import DeckService from '../services/DeckService';
+import deckService from '../services/DeckService';
 
 export default {
   name: 'study-session',
@@ -106,7 +113,7 @@ export default {
   currentPosition: 0,
   data() {
     return {
-      flashcards:[],
+      flashcards: undefined,
       correctAnswers: [false],
       currentPosition: 0,
       useLightningRound: false, // not going to implement, but included for completeness
@@ -121,6 +128,20 @@ export default {
   },
   methods:
   {
+    setCardList(cardList) {
+      this.flashcards = cardList;
+    },
+    initializeCardList() {
+      this.flashcards = this.cardList;
+      if (this.cardList===undefined||this.cardList.length==0) {this.pullDeckFromServer();}
+    },
+    pullDeckFromServer() {
+      let deckId = this.$route.params.id;
+      let instance = this;
+      deckService.getFlashcardsByDeckId(deckId).then( (response) => {
+        instance.setCardList(response.data);
+        }).catch(error => console.log(error));
+    },
     markCorrect() {
       if (this.toggleText=="Mark Correct") { this.toggleCorrect(); }
       else { return; }
@@ -194,15 +215,21 @@ export default {
       return this.answerText;
     },
     answerText() {
+      if (this.currentCard===undefined) {return "loading...";}
       return this.currentCard.answer_text;
     },
     questionText() {
+      if (this.currentCard===undefined) {return "loading...";}
       return this.currentCard.question_text;
     },
     currentCard() {
+     if (this.flashcards===undefined)
+     { return {question_text:"Dummy question", answer_text: "dummy answer"}; }
       return this.testList[this.currentPosition];
     },
     testList() {
+      let sourceCards = this.flashcards;
+
       function getRandomInt(max)
       {
         let random = Math.random();
@@ -210,27 +237,27 @@ export default {
       }
       
       if (!this.shuffleCards) {
-        return this.cardList;
+        return sourceCards;
         }
 
       let allUsed = false;
       let shuffledCards = [];
       let cardListPositions = [];
       while (!allUsed) {
-        let randomPosition = getRandomInt(this.cardList.length);
+        let randomPosition = getRandomInt(sourceCards.length);
         if (cardListPositions.includes(randomPosition)) { continue; }
         else cardListPositions.push(randomPosition);
         shuffledCards.push(this.cardList[randomPosition]);
-        if (cardListPositions.length==this.cardList.length) {allUsed=true;}
+        if (cardListPositions.length==sourceCards.length) {allUsed=true;}
 
       }
       return shuffledCards;
     }
   },
+  created() {
+    this.initializeCardList();
+  },
   mounted() {
-//    if (this.cardList===undefined) {
-
-//    }
   },
   updated() {
   },
