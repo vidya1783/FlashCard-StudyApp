@@ -134,6 +134,13 @@ export default {
   },
   methods:
   {
+    resetDefaults() {
+      this.correctAnswers = [false];
+      this.currentPosition = 0;
+      this.currentScore = 0;
+      this.thisAnswerCorrect = false;
+      this.toggleText = "Mark Correct";
+    },
     setCardList(cardList) {
       this.flashcards = cardList;
     },
@@ -204,6 +211,11 @@ export default {
          let correctFiltered = this.correctAnswers.filter(x => x==true);
          let correctCount = correctFiltered.length;
          this.currentScore = correctCount;
+       }
+     },
+     shuffleCards: {
+       handler() {
+         this.resetDefaults();
        }
      }
 
