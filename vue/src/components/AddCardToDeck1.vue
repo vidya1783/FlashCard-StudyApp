@@ -1,15 +1,15 @@
 <template>
-<div>
-    <div id="attachcard" class="card" v-if="!clicked">
+    <div>
+        <div id="attachcard" class="card" v-if="!clicked">
   
-   <div><span class="questionspan" > Question:</span> {{flashcard.question_text}} </div>
-    <div><span class="answerspan"> Answer:</span> {{flashcard.answer_text}}</div>
-  
-     <button class='attachbutton' v-on:click="addCardToDeck">attach</button>
-    </div>
+            <div><span class="questionspan" > Question:</span> {{flashcard.question_text}} </div>
+            <div><span class="answerspan"> Answer:</span> {{flashcard.answer_text}}</div>
+    
+            <button class='attachbutton' v-on:click="addCardToDeck">attach</button>
+        </div>
     
     </div>
-    </template>
+</template>
 
 <script>
 
@@ -35,7 +35,7 @@ export default {
        addCardToDeck(){
            deckService.attachCardToDeck(this.deck_id, this.flashcard.flashcard_id);    
            this.clicked = true;   
-           this.$router.push({name:'deck-display', params: {id: this.deck_id}})    
+           this.$router.push({name:'deck-display', params: {id: this.deck_id}});    
        }
    } 
 

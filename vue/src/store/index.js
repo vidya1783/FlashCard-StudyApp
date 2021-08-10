@@ -19,7 +19,8 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    activeFlashcards: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     SET_USER(state, user) {
       state.user = user;
       localStorage.setItem('user',JSON.stringify(user));
+    },
+    SET_ACTIVEFLASHCARDS(state, data){
+      state.activeFlashcards = data;
     },
     LOGOUT(state) {
       localStorage.removeItem('token');
