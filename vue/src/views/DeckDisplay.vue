@@ -1,16 +1,17 @@
 <template>
   <div>
-<div id="main">
+    <div id="main">
       <h1>This is the deck display for deck: {{$route.params.id}}</h1>
-<div class="cards">
+    <div class="cards">
         <card-details v-for="flashcard in flashcards"
-  v-bind:flashcard="flashcard" v-bind:key="flashcard.id" />
-  <card-details />
-   <h2> The following cards do not belong to the deck. Do you want to assign them to this deck? </h2>
+          v-bind:flashcard="flashcard" v-bind:key="flashcard.id" />
+        <card-details />
+        <h2> The following cards do not belong to the deck. Do you want to assign them to this deck? </h2>
+        <div class="cards">
           <add-card-to-deck1 v-for="element in notindeck"
-  v-bind:flashcard="element" v-bind:deck_id="deckId" v-bind:key="element.id" />
-    
- </div>
+          v-bind:flashcard="element" v-bind:deck_id="deckId" v-bind:key="element.id" />
+        </div>
+    </div>
    <div class="button"><router-link v-bind:to="{name:'study-session', params: {id:this.$route.params.id}}" tag="v-btn"> Study Session </router-link>
    
     <div class="button"><router-link to="/" tag="v-btn"> Home </router-link></div>
@@ -43,17 +44,24 @@ export default {
     data(){
         return {
             deckId: this.$route.params.id,
-             flashcards: [],
+             //flashcards: [],
              notindeck: []
       
 
         }  
     },
+    computed: {
+      flashcards() {
+        return this.$store.state.activeFlashcards;
+      }
+
+    },
     created(){
         
         deckService.getFlashcardsByDeckId(this.$route.params.id)
          .then((response) => { 
-            this.flashcards = response.data;
+           this.$store.commit('SET_ACTIVEFLASHCARDS', response.data);
+            //this.flashcards = response.data;
         });
           deckService.getFlashcardsNotinDeckId(this.$route.params.id)
          .then((response) => { 
@@ -78,7 +86,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 h1{
   font-size:50 px;
 }

@@ -49,7 +49,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .test-deck-details2{
     display: flex;
     flex-wrap: wrap;

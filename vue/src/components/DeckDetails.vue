@@ -142,7 +142,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 /* .deck{
 	background-color:rosybrown;
