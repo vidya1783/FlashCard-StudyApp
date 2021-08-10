@@ -124,7 +124,6 @@ export default {
       correctAnswers: [false],
       currentPosition: 0,
       useLightningRound: false, // not going to implement, but included for completeness
-      shuffleTheCards: false,
       displayQuestionSide: true,
       thisAnswerCorrect: false,
       toggleText: "Mark Correct",
