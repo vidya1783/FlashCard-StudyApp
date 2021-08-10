@@ -20,7 +20,8 @@
     
     </div>
     <div class="three"> <v-btn v-on:click.prevent="nextCard">Next Card</v-btn> </div>
-    <div class="one"> </div>
+    <div class="one">{{userCardNumber}} of 
+    {{lengthOfTest}}</div>
     <div class="two"> 
     <div>
        <v-btn class="ma-2" text icon color="blue lighten-2">
@@ -30,13 +31,13 @@
         <v-btn class="ma-2" text icon color="red lighten-2">
           <v-icon>mdi-thumb-down</v-icon>
         </v-btn>
-      <v-btn v-on:click.prevent="markCorrect">Mark Correct</v-btn>
+      <v-btn v-on:click.prevent="markCorrect" label="thumbs up"><img src="../components/thumbsup.png"></v-btn>
          <v-btn v-on:click.prevent="flipCard">Flip Card</v-btn>
-         <v-btn v-on:click.prevent="markIncorrect">Mark Incorrect</v-btn>
+         <v-btn v-on:click.prevent="markIncorrect"><img src="../components/thumbsdown.png" label="thumbs down"></v-btn>
     </div>  
     </div>
-    <div class="three"> yes, you </div>
-    <div class="one"></div>
+    <div class="three"> {{correctAnswers[currentPosition] ? "Marked Correct" : "Marked Incorrect"}} </div>
+    <div></div>
     <div class="two button"><router-link to="/" tag="v-btn"> Home </router-link></div>
         <div></div>
 </div>
@@ -123,7 +124,7 @@ export default {
       toggleText: "Mark Correct",
       currentScore: 0,
       correctPresses: 0,
-      debug: true
+      debug: false
     }
   },
   methods:
@@ -284,7 +285,7 @@ h1{
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 1fr 1fr;
   row-gap: 50px;
-  grid-gap:20px;
+  grid-gap:50px;
   justify-items: end center start;
   align-items: center center center;
 }
