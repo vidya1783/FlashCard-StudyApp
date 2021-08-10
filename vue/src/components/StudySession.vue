@@ -29,13 +29,14 @@
       </ul></div>
     <div class="two"> 
     <div>
+      <!--
        <v-btn class="ma-2" text icon color="blue lighten-2">
           <v-icon>mdi-thumb-up</v-icon>
         </v-btn>
   
         <v-btn class="ma-2" text icon color="red lighten-2">
           <v-icon>mdi-thumb-down</v-icon>
-        </v-btn>
+        </v-btn> -->
       <v-btn v-on:click.prevent="markCorrect" label="thumbs up"><img src="../components/thumbsup.png"></v-btn>
          <v-btn v-on:click.prevent="flipCard">Flip Card</v-btn>
          <v-btn v-on:click.prevent="markIncorrect"><img src="../components/thumbsdown.png" label="thumbs down"></v-btn>
