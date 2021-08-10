@@ -83,6 +83,14 @@ public class DeckController {
         return newDeckCardList;
     }
 
+    @RequestMapping(path="deck/{deckId}/{flashcardId}", method= RequestMethod.DELETE)
+    public boolean removeCardFromDeck(@PathVariable Long deckId, @PathVariable Long flashcardId,
+                                         Principal principal) throws Exception {
+        if (!flashcardDao.ownsCard(principal,flashcardId)) return false;
+        return deckDao.removeDeckCard(deckId,flashcardId);
+
+    }
+
     @RequestMapping(path="deck", method=RequestMethod.PUT)
     public Deck updateUsersDeck(@RequestBody Deck deck, Principal principal) throws Exception
     {
