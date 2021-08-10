@@ -7,12 +7,38 @@
 <div class="container text-center">
 <h1>GOOD LUCK</h1>
 </div>
-<div id="slider">
+<div class="cardgrid">
+
+
+    <div class="one"><v-btn v-on:click.prevent="previousCard">Previous Card</v-btn>
+ </div>
+    <div class="two">       <v-card class="mx-auto" max-width=600>
+      <v-card-text>
+        {{displayText}}
+        </v-card-text>
+    </v-card>
+    
+    </div>
+    <div class="three"> <v-btn v-on:click.prevent="nextCard">Next Card</v-btn> </div>
+    <div class="one"> </div>
+    <div class="two"> 
+    <div>
+      <v-btn v-on:click.prevent="markCorrect">Mark Correct</v-btn>
+         <v-btn v-on:click.prevent="flipCard">Flip Card</v-btn>
+         <v-btn v-on:click.prevent="markIncorrect">Mark Incorrect</v-btn>
+    </div>  
+    </div>
+    <div class="three"> yes, you </div>
+    <div class="one"></div>
+    <div class="two button"><router-link to="/" tag="v-btn"> Home </router-link></div>
+        <div></div>
+</div>
+<!-- <div id="slider">
   <transition-group tag="div" :name="transitionName" class="slides-group">
     <div v-if="show" :key="current" class="slide" :class="slides[current].className">
       <v-card c >
        <v-card-text>
-        {{displayText}}
+        {{displayText}} test
         </v-card-text>
         </v-card>
     </div>
@@ -24,7 +50,7 @@
   <div class="btn btn-next" aria-label="Next slide" @click="slide(1)">
     &#10095;
   </div>
-</div>
+</div> -->
      
 
 
@@ -58,15 +84,18 @@ to create a UI, copy and paste code and ensure that it works:
     </v-card>
     <v-btn v-on:click.prevent="previousCard">Previous Card</v-btn>
     <v-btn v-on:click.prevent="nextCard">Next Card</v-btn>
-    <v-btn v-on:click.prevent="flipCard">Flip Card</v-btn></div>
-   <v-btn v-on:click.prevent="toggleCorrect">{{toggleText}}</v-btn>
+    <v-btn v-on:click.prevent="flipCard">Flip Card</v-btn>
+    <v-btn v-on:click.prevent="toggleCorrect">{{toggleText}}</v-btn>
     Correct from array: {{correctAnswers[currentPosition] ? true : false}}
     Current score: {{currentScore}}
     <div class="button"><router-link to="/" tag="v-btn"> Home </router-link></div>
+    </div>
   </div>
 </template>
 
 <script>
+// import DeckService from '../services/DeckService';
+
 export default {
   name: 'study-session',
   props: {
@@ -92,6 +121,14 @@ export default {
   },
   methods:
   {
+    markCorrect() {
+      if (this.toggleText=="Mark Correct") { this.toggleCorrect(); }
+      else { return; }
+    },
+    markIncorrect() {
+      if (this.toggleText=="Mark Incorrect") {this.toggleCorrect();}
+      else { return; }
+    },
     finishTest() {
       // implement
 
@@ -191,6 +228,9 @@ export default {
     }
   },
   mounted() {
+//    if (this.cardList===undefined) {
+
+//    }
   },
   updated() {
   },
@@ -210,6 +250,28 @@ h1{
 .container text-center{
   display: flex;
   flex-direction: column;
+}
+
+.cardgrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 50px;
+  grid-gap:20px;
+  justify-items: end center start;
+  align-items: center center center;
+}
+
+.cardgrid .one {
+  justify-self: end
+}
+
+.cardgrid .two {
+  justify-self: center;
+}
+
+.cardgrid .three {
+  justify-self: start
 }
 
 </style>
