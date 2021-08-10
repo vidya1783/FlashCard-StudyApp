@@ -9,7 +9,7 @@
         <h2> The following cards do not belong to the deck. Do you want to assign them to this deck? </h2>
         <div class="cards">
           <add-card-to-deck1 v-for="element in notindeck"
-          v-bind:flashcard="element" v-bind:deck_id="deckId" v-bind:key="element.id" />
+          v-bind:flashcard="element" v-bind:deck_id="deckId" v-on:click.prevent="testFunction" v-bind:key="element.id" />
         </div>
     </div>
    <div class="button"><router-link v-bind:to="{name:'study-session', params: {id:this.$route.params.id}}" tag="v-btn"> Study Session </router-link>
@@ -45,7 +45,7 @@ export default {
         return {
             deckId: this.$route.params.id,
              //flashcards: [],
-             notindeck: []
+             //notindeck: []
       
 
         }  
@@ -53,29 +53,55 @@ export default {
     computed: {
       flashcards() {
         return this.$store.state.activeFlashcards;
+      },
+      notindeck(){
+        return this.$store.state.availableFlashcards;
       }
 
     },
     created(){
+      this.updateCards();
         
-        deckService.getFlashcardsByDeckId(this.$route.params.id)
-         .then((response) => { 
-           this.$store.commit('SET_ACTIVEFLASHCARDS', response.data);
-            //this.flashcards = response.data;
-        });
-          deckService.getFlashcardsNotinDeckId(this.$route.params.id)
-         .then((response) => { 
-            this.notindeck = response.data;
-        });
+        // deckService.getFlashcardsByDeckId(this.$route.params.id)
+        //  .then((response) => { 
+        //    this.$store.commit('SET_ACTIVEFLASHCARDS', response.data);
+        //     //this.flashcards = response.data;
+        // });
+        //   deckService.getFlashcardsNotinDeckId(this.$route.params.id)
+        //  .then((response) => { 
+        //     this.notindeck = response.data;
+        // });
+    },
+    updated(){
+ //     this.testFunction();
+   //    this.updateCards();
+
+    },
+    deactivated(){
+  //    this.testFunction();
     },
     components: {
         AttachedCardDetails,
         AddCardToDeck1
     },
     methods: {
-        attachToThisDeck(){
-            alert("This is getting called")
-          
+   
+       testFunction(){
+          console.log("hello");
+        },
+        updateCards(){
+
+              deckService.getFlashcardsByDeckId(this.$route.params.id)
+         .then((response) => { 
+           this.$store.commit('SET_ACTIVEFLASHCARDS', response.data);
+            //this.flashcards = response.data;
+        });
+          deckService.getFlashcardsNotinDeckId(this.$route.params.id)
+         .then((response) => { 
+                this.$store.commit('SET_AVAILABLEFLASHCARDS', response.data);
+            // this.notindeck = response.data;
+        });
+
         }
     }
     }
