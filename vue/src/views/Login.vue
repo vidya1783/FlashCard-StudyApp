@@ -5,17 +5,18 @@
   <v-spacer></v-spacer>
 </div>
  <div class="box">
-<h1>In a Flash</h1>
+
   <div class="header">
      
   
-  <img src="https://info.goconqr.com/files/2016/05/flashcard-icon.png"/>
+  <img src="./logo.png"/>
 </div>
+
   
  <v-card elevation="2" shaped >
     
   
-   
+
   <v-form class="form-signin" @submit.prevent="login" >
     <h3 class="h3 mb-3 font-weight-normal" align="center">Please Sign In</h3>
      
@@ -67,6 +68,7 @@
     </v-container>
   </v-form>
   </v-card>
+  
   </div>
 <div
         class="alert alert-danger"
@@ -129,7 +131,7 @@ export default {
   justify-content: center;
   color: rgb(243, 243, 243) ;
   padding: 90 px;
-    background-color: #59b0ca;;
+    background-color: #263472;
     height: 700px;;
 
 
@@ -157,10 +159,14 @@ h3{
 }
 .header {
   text-align: center;
-  background: #1226ddce;
+ 
   color:black;
   padding-bottom:20px;
-  padding-top:5px;
+  padding-top:0px;
 }
+.form-signin{
+  color:black
+}
+
 </style>
       

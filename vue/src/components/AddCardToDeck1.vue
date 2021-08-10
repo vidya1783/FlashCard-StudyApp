@@ -52,7 +52,7 @@ export default {
      height: 200px;
      border: 2px;
      border-style: solid;
-     padding: 2px;
+     padding-right: 10px;
  }
  .attachbutton{
      background-color: blue;

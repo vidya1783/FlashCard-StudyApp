@@ -1,7 +1,8 @@
 <template>
 <div>
   <div id="cardindeck" class="card" v-if="!clicked" >
-            <div><span class="questionspan" > Question:</span> {{flashcard.question_text}} </div>
+    
+            <div><span class="questionspan" > Question:</span> {{flashcard.question_text}}</div>
             <div><span class="answerspan"> Answer:</span> {{flashcard.answer_text}}</div>
     
             <button class='deletebutton' v-on:click="deleteCardFromDeck">remove</button>
