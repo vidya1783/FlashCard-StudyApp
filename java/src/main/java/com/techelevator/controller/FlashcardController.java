@@ -12,6 +12,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
@@ -128,14 +129,29 @@ public class FlashcardController {
     }
 
     @RequestMapping(path="notindeckcards/{deckId}", method = RequestMethod.GET)
-    public List<Flashcard> getNotInDeckCards(@PathVariable Long deckId, Principal principal){
+    public List<Flashcard> getUsersNotInDeckCards(@PathVariable Long deckId, Principal principal){
         List<Flashcard> flashcardList = new ArrayList<>();
         Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
 
-        Deck foundDeck = deckDao.retrieveDeck(deckId);
-        if (foundDeck.getCreatorId()!=userId) {
+        try {
+            flashcardList = flashcardDao.getAllFlashcardsNotInDeck(deckId);
+        } catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
             return null;
         }
+
+        // and now, we filter for ONLY those cards that belong to the user
+        List<Flashcard> usersOwnCardsNotInDeck =
+                flashcardList.stream().filter(card -> card.getCreatorId()==userId).collect(Collectors.toList());
+
+        return usersOwnCardsNotInDeck;
+    }
+
+    @RequestMapping(path="allcardsnotindeck/{deckId}", method = RequestMethod.GET)
+    public List<Flashcard> getEveryonesNonDeckCards(@PathVariable Long deckId, Principal principal){
+        List<Flashcard> flashcardList = new ArrayList<>();
+        Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
 
         try {
             flashcardList = flashcardDao.getAllFlashcardsNotInDeck(deckId);
