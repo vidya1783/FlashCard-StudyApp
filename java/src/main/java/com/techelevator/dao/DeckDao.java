@@ -18,4 +18,6 @@ public interface DeckDao {
 
     public List<Flashcard> addDeckCard(Long deckId, Long flashcardId) throws Exception;
 
+    public boolean removeDeckCard(Long deckId, Long flashcardId) throws Exception;
+
 }

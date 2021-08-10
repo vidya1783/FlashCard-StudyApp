@@ -1,52 +1,41 @@
 <template>
-    <div>
-        <div id="attachcard" class="card" v-if="!clicked">
-  
+<div>
+  <div id="cardindeck" class="card" v-if="!clicked" >
             <div><span class="questionspan" > Question:</span> {{flashcard.question_text}} </div>
             <div><span class="answerspan"> Answer:</span> {{flashcard.answer_text}}</div>
     
-            <button class='attachbutton' v-on:click="addCardToDeck">attach</button>
-        </div>
-    
-    </div>
+            <button class='deletebutton' v-on:click="deleteCardFromDeck">remove</button>
+</div>
+</div>
 </template>
-
 <script>
-
-import deckService from '../services/DeckService.js';
-
-
+ import deckService from '@/services/DeckService';
 export default {
-    name:"add-card-to-deck1",
-    props:["flashcard", 
-            "deck_id"],
-    displayFlashcard: {
-
-    },
-    data(){
-        return {
-        clicked: false
+  name: 'attached-card-details',
+  props: ['flashcard', 'deck_id'],
+  data(){
+    return {
+   clicked: false
         }
-    },
-    
-
-   methods:{
-    
-       addCardToDeck(){
-           deckService.attachCardToDeck(this.deck_id, this.flashcard.flashcard_id);    
-           this.clicked = true;   
-           this.$router.push({name:'deck-display', params: {id: this.deck_id}});    
+  },
+  created() {
+   
+     },
+  methods: {
+        deleteCardFromDeck(){ 
+           deckService.detachCardFromDeck(this.deck_id, this.flashcard.flashcard_id);
+            this.clicked = true;   
+           
+          
+        
        }
-   } 
-
-
-
+ 
+    }
 }
 </script>
-
 <style scoped>
 
- #attachcard{
+#cardindeck{
      background-color:white;
      width: 200px;
      height: 200px;
@@ -54,8 +43,8 @@ export default {
      border-style: solid;
      padding: 2px;
  }
- .attachbutton{
-     background-color: blue;
+ .deletebutton{
+     background-color: red;
      width: 40%;
      text-align: center;
      color: white;

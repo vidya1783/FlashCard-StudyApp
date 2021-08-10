@@ -91,6 +91,22 @@ public class JdbcDeckDao implements DeckDao {
     }
 
     @Override
+    public boolean removeDeckCard(Long deckId, Long flashcardId) throws Exception {
+        String sql = "DELETE FROM flashcard_deck " +
+                "WHERE deck_id = ? AND flashcard_id = ?;";
+        int rows = 0;
+        try {
+            rows = jdbcTemplate.update(sql,deckId, flashcardId);
+        } catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        if (rows != 1) {throw new Exception("Card not deleted");}
+        if (rows == 1){ return true;};
+        return false;
+    }
+
+    @Override
     public List<Deck> getMyDecks(Principal principal) {
         List<Deck> usersDecks = new ArrayList<>();
         Deck deckToAdd = new Deck();
