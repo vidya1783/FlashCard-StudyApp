@@ -20,8 +20,13 @@
     
     </div>
     <div class="three"> <v-btn v-on:click.prevent="nextCard">Next Card</v-btn> </div>
-    <div class="one">{{userCardNumber}} of 
-    {{lengthOfTest}}</div>
+    <div class="one">
+      <ul style="list-style-type:none;">
+        <li> {{userCardNumber}} of 
+    {{lengthOfTest}}. </li>
+    <li>.           .      . </li>
+    <li> Current score: {{currentScore}}. </li>
+      </ul></div>
     <div class="two"> 
     <div>
        <v-btn class="ma-2" text icon color="blue lighten-2">
@@ -36,7 +41,7 @@
          <v-btn v-on:click.prevent="markIncorrect"><img src="../components/thumbsdown.png" label="thumbs down"></v-btn>
     </div>  
     </div>
-    <div class="three"> {{correctAnswers[currentPosition] ? "Marked Correct" : "Marked Incorrect"}} </div>
+    <div class="three"> {{correctAnswers[currentPosition] ? "Marked Correct" : "Marked Incorrect"}}. </div>
     <div></div>
     <div class="two button"><router-link to="/" tag="v-btn"> Home </router-link></div>
         <div></div>
