@@ -24,6 +24,9 @@ export default {
     },
     attachCardToDeck(deckId, flashcardId){
         return axios.post(`deck/${deckId}/${flashcardId}`)
+    },
+    detachCardFromDeck(deckId, flashcardId){
+        return axios.delete(`deck/${deckId}/${flashcardId}`)
     }
 
 }

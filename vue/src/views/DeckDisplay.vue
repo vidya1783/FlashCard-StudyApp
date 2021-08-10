@@ -3,9 +3,9 @@
     <div id="main">
       <h1>This is the deck display for deck: {{$route.params.id}}</h1>
     <div class="cards">
-        <card-details v-for="flashcard in flashcards"
-          v-bind:flashcard="flashcard" v-bind:key="flashcard.id" />
-        <card-details />
+        <attached-card-details v-for="flashcard in flashcards"
+          v-bind:flashcard="flashcard" v-bind:deck_id="deckId" v-bind:key="flashcard.id" />
+        
         <h2> The following cards do not belong to the deck. Do you want to assign them to this deck? </h2>
         <div class="cards">
           <add-card-to-deck1 v-for="element in notindeck"
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import cardDetails from '../components/CardDetails.vue';
+import AttachedCardDetails from '../components/AttachedCardDetails.vue';
 import deckService from '../services/DeckService.js';
 import AddCardToDeck1 from '../components/AddCardToDeck1.vue';
 
@@ -69,7 +69,7 @@ export default {
         });
     },
     components: {
-        cardDetails,
+        AttachedCardDetails,
         AddCardToDeck1
     },
     methods: {
