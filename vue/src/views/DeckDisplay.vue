@@ -7,9 +7,10 @@
   v-bind:flashcard="flashcard" v-bind:key="flashcard.id" />
   <card-details />
    <h2> The following cards do not belong to the deck. Do you want to assign them to this deck? </h2>
+ <div class="cards">
           <add-card-to-deck1 v-for="element in notindeck"
   v-bind:flashcard="element" v-bind:deck_id="deckId" v-bind:key="element.id" />
-    
+    </div>
  </div>
    <div class="button"><router-link v-bind:to="{name:'study-session', params: {id:this.$route.params.id}}" tag="v-btn"> Study Session </router-link>
    
