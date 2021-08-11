@@ -52,6 +52,16 @@ public class FlashcardController {
         return newFlashcard;
     }
 
+    @RequestMapping(path="flashcards/{id}", method = RequestMethod.GET)
+    public Flashcard getUsersFlashcardREST(@PathVariable Long id, Principal principal) throws Exception {
+        try {
+            return getUsersFlashcard(id, principal);
+        } catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     @RequestMapping(path="flashcard/{id}", method = RequestMethod.GET)
     public Flashcard getUsersFlashcard(@PathVariable Long id, Principal principal) throws Exception {
         Flashcard soughtFlashcard;
@@ -107,6 +117,15 @@ public class FlashcardController {
         return updatedFlashcard;
     }
 
+    @RequestMapping(path="deck/{deckId}/cards", method = RequestMethod.GET)
+    public List<Flashcard> getDeckCardsREST(@PathVariable Long deckId, Principal principal) throws Exception {
+        try {
+            return getDeckCards(deckId, principal);
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+
     @RequestMapping(path="deckcards/{deckId}", method = RequestMethod.GET)
     public List<Flashcard> getDeckCards(@PathVariable Long deckId, Principal principal) throws Exception {
         List<Flashcard> flashcardList = new ArrayList<>();
@@ -128,6 +147,15 @@ public class FlashcardController {
         return flashcardList;
     }
 
+    @RequestMapping(path="deck/{deckId}/cards/available", method=RequestMethod.GET)
+    public List<Flashcard> getUsersNotInDeckCardsREST(@PathVariable Long deckId, Principal principal) {
+        try {
+            return getUsersNotInDeckCards(deckId, principal);
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+
     @RequestMapping(path="notindeckcards/{deckId}", method = RequestMethod.GET)
     public List<Flashcard> getUsersNotInDeckCards(@PathVariable Long deckId, Principal principal){
         List<Flashcard> flashcardList = new ArrayList<>();
@@ -146,6 +174,15 @@ public class FlashcardController {
                 flashcardList.stream().filter(card -> card.getCreatorId()==userId).collect(Collectors.toList());
 
         return usersOwnCardsNotInDeck;
+    }
+
+    @RequestMapping(path="deck/{deckId}/cards/publicavailable", method = RequestMethod.GET)
+    public List<Flashcard> getEveryonesNonDeckCardsREST(@PathVariable Long deckId, Principal principal) {
+        try {
+            return getEveryonesNonDeckCards(deckId, principal);
+        } catch (Exception ex) {
+            throw ex;
+        }
     }
 
     @RequestMapping(path="allcardsnotindeck/{deckId}", method = RequestMethod.GET)

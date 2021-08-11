@@ -6,6 +6,7 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.model.Deck;
 import com.techelevator.model.Flashcard;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -26,6 +27,7 @@ public class DeckController {
         this.userDao = userDao;
         this.flashcardDao = flashcardDao;
     };
+
 
     @RequestMapping(path="deck", method= RequestMethod.POST)
     public Deck createDeck
@@ -61,6 +63,16 @@ public class DeckController {
         return returnDeckList;
     }
 
+    @RequestMapping(path="decks/{deckId}", method= RequestMethod.GET)
+    public Deck getDeckByDeckIdREST(@PathVariable Long deckId, Principal principal) throws Exception {
+        try {
+        return getDeckByDeckId(deckId, principal);}
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     @RequestMapping(path="deck/{deckId}", method= RequestMethod.GET)
     public Deck getDeckByDeckId(@PathVariable Long deckId, Principal principal) throws Exception {
         Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
@@ -74,6 +86,17 @@ public class DeckController {
         return searchedDeck;
     }
 
+    @RequestMapping(path="decks/{deckId}/flashcards/{flashcardId}", method= RequestMethod.POST)
+    public List<Flashcard> addCardToDeckREST(@PathVariable Long deckId, @PathVariable Long flashcardId,
+                                         Principal principal) throws Exception
+    {
+        try {
+            return addCardToDeck(deckId, flashcardId, principal);
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+
     @RequestMapping(path="deck/{deckId}/{flashcardId}", method= RequestMethod.POST)
     public List<Flashcard> addCardToDeck(@PathVariable Long deckId, @PathVariable Long flashcardId,
                                          Principal principal) throws Exception
@@ -81,6 +104,16 @@ public class DeckController {
         if (!flashcardDao.ownsCard(principal,flashcardId)) throw new Exception ("Not authorized to add this card.");
         List<Flashcard> newDeckCardList = deckDao.addDeckCard(deckId,flashcardId);
         return newDeckCardList;
+    }
+
+    @RequestMapping(path="decks/{deckId}/flashcards/{flashcardId}", method= RequestMethod.DELETE)
+    public boolean removeCardFromDeckREST(@PathVariable Long deckId, @PathVariable Long flashcardId,
+                                      Principal principal) throws Exception {
+        try {
+            return removeCardFromDeck(deckId, flashcardId, principal);
+        } catch (Exception ex) {
+            throw ex;
+        }
     }
 
     @RequestMapping(path="deck/{deckId}/{flashcardId}", method= RequestMethod.DELETE)
