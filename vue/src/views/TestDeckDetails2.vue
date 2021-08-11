@@ -68,9 +68,9 @@ export default {
 .decks {
   display: flex;
   justify-content: center;
-   color:black;
+   color:white;
   font-size:25px;
-  background-color:rgb(245, 245, 10);
+   background-color:#263472;
 
 }
 
