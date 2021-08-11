@@ -37,7 +37,7 @@ export default {
 }
 
 .content{
-  background-color: white;
+  
   border-radius: 20px;
   margin: 6px 6px 6px 0px;
 }

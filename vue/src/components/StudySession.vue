@@ -55,7 +55,7 @@
       </v-btn>
  </div>
     <div class="two">       
-      <v-card class="mx-auto" max-width=600>
+      <v-card class="mx-auto" width=400>
       <v-card-text>
         {{displayText}}
         </v-card-text>
@@ -97,7 +97,8 @@
       </v-btn>
     </div>  
     </div>
-    <div class="three"> {{correctAnswers[currentPosition] ? "Marked Correct" : "Marked Incorrect"}}. </div>
+  <div class="three"> <v-card>  {{correctAnswers[currentPosition] ? "Marked Correct" : "Marked Incorrect"}}. </v-card></div>
+  
     <div></div>
     <div class="two button">
       <router-link to="/" tag="v-btn"> 
@@ -366,6 +367,10 @@ h1{
 
 #correct {
   background-color: green;
+}
+h1{
+  font-size:50px;
+  padding-bottom:40px;
 }
 
 

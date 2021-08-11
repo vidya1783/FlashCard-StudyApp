@@ -4,7 +4,7 @@
             <div><span class="questionspan" > Question:</span> {{flashcard.question_text}} </div>
             <div><span class="answerspan"> Answer:</span> {{flashcard.answer_text}}</div>
     
-            <button class='deletebutton' v-on:click="deleteCardFromDeck">remove</button>
+            <button class='deletebutton' v-on:click="deleteCardFromDeck">Remove</button>
 </div>
 </div>
 </template>
@@ -36,6 +36,9 @@ export default {
 <style scoped>
 
 #cardindeck{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-evenly;
      background-color:white;
      width: 200px;
      height: 200px;
@@ -52,6 +55,10 @@ export default {
       border: 2px;
      border-style: solid;
      border-color: lightblue;
+     padding-left:0px;
+    text-align:center;
+    margin: 60px; 
+
 
  }
  .questionspan {

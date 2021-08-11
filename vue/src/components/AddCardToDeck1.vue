@@ -1,13 +1,14 @@
 <template>
     <div>
+        <div class="boxes">
         <div id="attachcard" class="card" v-if="!clicked">
-  
-            <div><span class="questionspan" > Question:</span> {{flashcard.question_text}} </div>
+        
+           <div><span class="questionspan" > Question:</span> {{flashcard.question_text}} </div>
             <div><span class="answerspan"> Answer:</span> {{flashcard.answer_text}}</div>
     
-            <button class='attachbutton' v-on:click="addCardToDeck">attach</button>
+            <button class='attachbutton' v-on:click="addCardToDeck">Add</button>
         </div>
-    
+    </div>
     </div>
 </template>
 
@@ -43,12 +44,17 @@ export default {
 <style scoped>
 
  #attachcard{
+     display:flex;
+    flex-direction: column;
+    justify-content:space-evenly;
      background-color:white;
      width: 200px;
      height: 200px;
      border: 2px;
      border-style: solid;
-     padding-right: 10px;
+     background-color:white;
+     text-align:center;
+     
  }
  .attachbutton{
      background-color: blue;
@@ -59,16 +65,23 @@ export default {
       border: 2px;
      border-style: solid;
      border-color: lightblue;
+       text-align:center;
+    margin: 30px; 
+    
 
  }
  .questionspan {
      color: rgb(173, 27, 51);
      font-weight: bold;
+     
  }
  .answerspan {
      color: rgb(173, 27, 51);
      font-weight: bold;
  }
-
+.boxes{
+    display:flex;
+    justify-content: space-evenly;
+}
 
 </style>

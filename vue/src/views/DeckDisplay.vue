@@ -1,22 +1,28 @@
 <template>
   <div>
-    <div id="main">
+     <div id="main">
+    <div class="buttons"><div class="button"><router-link v-bind:to="{name:'study-session', params: {id:this.$route.params.id}}" tag="v-btn"> Study Session </router-link>
+   </div>
+    <div class="two button">
+      <router-link to="/" tag="v-btn"> 
+      <i class="material-icons">home</i>
+      </router-link>
+      </div>
+   </div>
+  
+    
       <h1>This is the deck display for deck: {{$route.params.id}}</h1>
     <div class="cards">
         <attached-card-details v-for="flashcard in flashcards"
           v-bind:flashcard="flashcard" v-bind:deck_id="deckId" @send="updateNotinDeckCards" v-bind:key="flashcard.id" />
-       <div class="card" >
-        <h2> The following cards do not belong to the deck. Do you want to assign them to this deck? </h2></div>
-        <div class="cards">
+       </div>
+        <h2> The following cards do not belong to the deck. Do you want to assign them to this deck? </h2>
+        <div class="add-cards">
           <add-card-to-deck1 v-for="element in notindeck"
           v-bind:flashcard="element" v-bind:deck_id="deckId"  @send="updateInDeckCards"  v-bind:key="element.id" />
         </div>
-    </div>
-   <div class="button"><router-link v-bind:to="{name:'study-session', params: {id:this.$route.params.id}}" tag="v-btn"> Study Session </router-link>
+    
    
-    <div class="button"><router-link to="/" tag="v-btn"> Home </router-link></div>
-   
-  </div>
   
   <div>
         
@@ -95,17 +101,19 @@ h1{
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-justify-content: center;
-  align-items: space-between;
-  padding-top: 30px;
+justify-content: space-evenly;
+padding-top:20px;
+
+  
 }
 .button{
   font-size:40px;
+  padding-right:10px;
   
   
 }
 #main    {
-     background-color: rgba(117, 167, 214, 0.692);
+    background:linear-gradient(to right, #E9F8FF, #90B2D8, #C1E3FF);
      height: 1000px;;
      width: 1500px;
     
@@ -114,6 +122,18 @@ justify-content: center;
      .card{
        padding-top:20px;
      }
-
+.add-cards{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+justify-content: space-evenly;
+padding-top:20px;
+  
+}
+.buttons{
+  display:flex;
+  justify-content: center;
+  margin:10px;
+}
 
 </style>

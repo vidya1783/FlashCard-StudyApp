@@ -69,7 +69,8 @@
   </v-form>
   </v-card>
   
-  </div>
+  
+  
 <div
         class="alert alert-danger"
         role="alert"
@@ -79,7 +80,7 @@
         class="alert alert-success"
         role="alert"
         v-if="this.$route.query.registration"
-      >Thank you for registering, please sign in.</div>
+      >Thank you for registering, please sign in.</div></div>
 
 </div>
   
@@ -130,7 +131,7 @@ export default {
   align-items: center;
   justify-content: center;
   color: rgb(243, 243, 243) ;
-  padding: 90 px;
+  padding: 50 px;
     background-color: #263472;
     height: 700px;;
 
@@ -155,17 +156,18 @@ h3{
   font-size: 30px;
 }
 #submit{
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 .header {
   text-align: center;
  
   color:black;
-  padding-bottom:50px;
+  padding-bottom:70px;
   padding-top:0px;
 }
 .form-signin{
-  color:black
+  color:black;
+  
 }
 
 </style>

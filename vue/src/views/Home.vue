@@ -41,7 +41,7 @@ export default {
 }
 .welcome{
   font-size:25px;
-  background-color:#263472;
+  background-color: #263472;
   color:white;
 }
 #cf {
