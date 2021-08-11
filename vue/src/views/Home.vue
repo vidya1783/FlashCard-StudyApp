@@ -6,6 +6,10 @@
     <router-link :to="{ name: 'test-flashcard-details2' }">My Flashcards</router-link>-->
 
    <!-- <p>This is the home page</p>-->
+   <div class="picture">
+   <img src=https://www.nbcot.org/-/media/NBCOT/Aspire/aspire_flashcards_icon.ashx/>
+   </div> 
+    <!-- <decks-list/> -->
   </div>
  
    <div class="home" >
@@ -18,12 +22,12 @@
 </template>
 
 <script>
-//import decksList from "../components/DecksList.vue";
+// import decksList from "../components/DecksList.vue";
 
 export default {
   name: "home",
   components: {
-    //decksList 
+    // decksList 
   }
 };
 </script>

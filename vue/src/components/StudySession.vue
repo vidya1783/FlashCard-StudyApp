@@ -1,45 +1,23 @@
 <template>
   <div id="body">
-    <div id="popup">
-    <!-- <v-dialog
-      v-model="dialog"
-      width="500"
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="red lighten-2"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-          FINISH
-        </v-btn>
-      </template>
-
-      <v-card>
-        <v-card-title class="text-h5 grey lighten-2">
-          Privacy Policy
-        </v-card-title>
-
-        <v-card-text>
-         <P>Great attempt! Keep practicing!</P>
-        </v-card-text>
-
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="primary"
-            text
-            @click="dialog = false"
-          >
-            I accept
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog> -->
+   <div class="modal-vue">
+    <button @click="showModal = true">COMPLETE</button>
+  
+  <!-- overlay -->
+  <div class="overlay" v-if="showModal" @click="showModal = false"></div>
+  
+  <!-- modal -->
+  <div class="modal" v-if="showModal">
+    <div id="close-box">
+      <h3>FINISH STUDY SESSION?</h3>
+    <button class="close" @click="showModal = false">x</button>
   </div>
+    <p>Keep practicing! Return to My Decks to study another deck!</p>
+      <router-link to='/test-deck-details2' tag="v-btn">My Decks
+      </router-link>
+  </div>
+  
+   </div>
 
 
 <!-- Write UI code here, copying from the "debug/demo area below"                             --->
@@ -57,7 +35,7 @@
     <div class="two">       
       <v-card class="mx-auto" width=400>
       <v-card-text>
-        {{displayText}}
+        <h3>{{displayText}}</h3>
         </v-card-text>
       </v-card>
     
@@ -67,13 +45,17 @@
        <span>&#8680;</span>
       </v-btn> 
     </div>
+    
     <div class="one">
+      
       <ul style="list-style-type:none;">
         <li> {{userCardNumber}} of 
     {{lengthOfTest}}. </li>
     <li>.           .      . </li>
     <li> Current score: {{currentScore}}. </li>
-      </ul></div>
+      </ul>
+      
+    </div>
     <div class="two"> 
     <div>
       <!--
@@ -157,8 +139,6 @@ export default {
     shuffleCards: Boolean
   },
   currentPosition: 0,
-//  dialog: false,
- 
 
   data() {
     return {
@@ -172,7 +152,8 @@ export default {
       toggleText: "Mark Correct",
       currentScore: 0,
       correctPresses: 0,
-      debug: false
+      debug: false,
+      showModal: false 
     }
   },
   methods:
@@ -207,7 +188,11 @@ export default {
       else { return; }
     },
     finishTest() {
-      // implement
+//       $ = function(id) {
+//   return document.getElementById(id);
+// }
+
+
 
     },
     flipCard() {
@@ -331,8 +316,12 @@ export default {
 
 h1{
   font-size: 60px;
-
+  color: #222;
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 15px;
 }
+
 .container text-center{
   display: flex;
   flex-direction: column;
@@ -350,7 +339,8 @@ h1{
 }
 
 .cardgrid .one {
-  justify-self: end
+  justify-self: end;
+  
 }
 
 .cardgrid .two {
@@ -362,16 +352,61 @@ h1{
 }
 
 #incorrect {
-  background-color: red;
+  /* background-color: red; */
 }
 
 #correct {
-  background-color: green;
+  /* background-color: green; */
+} 
+
+ /* This is the styling for the pop up */
+.modal-vue .overlay {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
 }
 h1{
   font-size:50px;
   padding-bottom:40px;
 }
 
+.modal-vue .modal {
+  position: relative;
+  width: 300px;
+  z-index: 9999;
+  margin: 0 auto;
+  padding: 20px 30px;
+  background-color: #fff;
+}
 
+.modal-vue .close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+button {
+    margin-top: 50px;
+    background-color: rgba(255,255,255,0.3);
+    border: 3px solid #3265f1;
+    color: #1328a1;
+    font-size: 25px;
+    padding: 10px 20px;
+    
+}
+
+button:hover {
+    background-color: #08325a;
+    color: #FFF;
+    border: 3px solid #494cf0;
+    transition: all 0.3s ease 0s;
+}
+
+#close-box{
+ margin: 25px;
+}
 </style>
