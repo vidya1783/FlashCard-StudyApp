@@ -28,19 +28,15 @@ export default {
         clicked: false
         }
     },
-    
-
    methods:{
-    
        addCardToDeck(){
-           deckService.attachCardToDeck(this.deck_id, this.flashcard.flashcard_id);    
-           this.clicked = true;   
-           this.$router.push({name:'deck-display', params: {id: this.deck_id}});    
-       }
+           deckService.attachCardToDeck(this.deck_id, this.flashcard.flashcard_id).then( ()=> {
+               this.clicked = true;
+              this.$emit('send');
+              }
+           )  
    } 
-
-
-
+}
 }
 </script>
 
