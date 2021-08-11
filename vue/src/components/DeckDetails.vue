@@ -67,8 +67,6 @@ export default {
       deckData: {deck_id: -1, deck_name: "defaultName", deck_description: "default deck description" },
       alertText: "",
       testText: ""
-     // ,
-     // snackbar: false
     }
   },
 
@@ -87,9 +85,11 @@ export default {
   updated() {  },
   methods: {
     fillInText() {
-      this.deckData.deck_id = this.deck.deck_id;
-      this.deckData.deck_name = this.deck.deck_name;
-      this.deckData.deck_description = this.deck.deck_description;      
+      if (this.deck){
+        this.deckData.deck_id = this.deck.deck_id;
+        this.deckData.deck_name = this.deck.deck_name;
+        this.deckData.deck_description = this.deck.deck_description; 
+      }     
     },
     testMethod()
     {

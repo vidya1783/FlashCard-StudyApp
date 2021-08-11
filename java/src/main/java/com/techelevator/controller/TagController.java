@@ -54,7 +54,7 @@ public class TagController {
         return newTag;
     }
 
-    @RequestMapping(path="flashcard/tag", method=RequestMethod.POST)
+/*    @RequestMapping(path="flashcard/tag", method=RequestMethod.POST)
     public FlashcardTag createFlashcardTagAlmostREST(@RequestBody FlashcardTag flashcardTag, Principal principal) throws Exception {
         try {
             return createFlashcardTag(flashcardTag, principal);
@@ -62,7 +62,7 @@ public class TagController {
         {
             throw ex;
         }
-    }
+    }*/
 
     @RequestMapping(path="tag/flashcard", method= RequestMethod.POST)
     public FlashcardTag createFlashcardTag(@RequestBody FlashcardTag flashcardTag, Principal principal) throws Exception
@@ -103,17 +103,17 @@ public class TagController {
         return tagDao.tagsOnAsingleCard(flashcardId);
     }
 
-    @RequestMapping(path="flashcards/{flashcardId}/tags", method=RequestMethod.GET)
+ /*   @RequestMapping(path="flashcards/{flashcardId}/tags", method=RequestMethod.GET)
     public List<Tag> getTagsByFlashcardIdREST(@PathVariable Long flashcardId)
     {
         return getTagsByFlashcardId(flashcardId);
-    }
+    }*/
 
-    @RequestMapping(path="flashcards/{flashcardId}/tags/{tagId}", method=RequestMethod.DELETE)
+/*    @RequestMapping(path="flashcards/{flashcardId}/tags/{tagId}", method=RequestMethod.DELETE)
     public boolean deleteTagFromFlashcardREST(@PathVariable Long flashcardId,
                                           @PathVariable Long tagId, Principal principal) {
         return deleteTagFromFlashcard(flashcardId,tagId,principal);
-    }
+    }*/
 
     @RequestMapping(path="deletetag/{flashcardId}/{tagId}", method= RequestMethod.DELETE)
     public boolean deleteTagFromFlashcard(@PathVariable Long flashcardId,
@@ -123,10 +123,10 @@ public class TagController {
         return flashcardTagDao.deleteTagFromCard(flashcardId, tagId);
     }
 
-    @RequestMapping(path="tag", method=RequestMethod.PUT)
+/*    @RequestMapping(path="tag", method=RequestMethod.PUT)
     public boolean updateTagREST(@RequestBody Tag tag, Principal principal) {
         return updateTag(tag,principal);
-    }
+    }*/
 
     @RequestMapping(path="updatetag", method= RequestMethod.PUT)
     public boolean updateTag(@RequestBody Tag tag, Principal principal){

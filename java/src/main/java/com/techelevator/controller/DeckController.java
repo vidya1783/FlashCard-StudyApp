@@ -63,7 +63,7 @@ public class DeckController {
         return returnDeckList;
     }
 
-    @RequestMapping(path="decks/{deckId}", method= RequestMethod.GET)
+/*    @RequestMapping(path="decks/{deckId}", method= RequestMethod.GET)
     public Deck getDeckByDeckIdREST(@PathVariable Long deckId, Principal principal) throws Exception {
         try {
         return getDeckByDeckId(deckId, principal);}
@@ -71,7 +71,7 @@ public class DeckController {
         {
             throw ex;
         }
-    }
+    }*/
 
     @RequestMapping(path="deck/{deckId}", method= RequestMethod.GET)
     public Deck getDeckByDeckId(@PathVariable Long deckId, Principal principal) throws Exception {
@@ -86,7 +86,7 @@ public class DeckController {
         return searchedDeck;
     }
 
-    @RequestMapping(path="decks/{deckId}/flashcards/{flashcardId}", method= RequestMethod.POST)
+ /*   @RequestMapping(path="decks/{deckId}/flashcards/{flashcardId}", method= RequestMethod.POST)
     public List<Flashcard> addCardToDeckREST(@PathVariable Long deckId, @PathVariable Long flashcardId,
                                          Principal principal) throws Exception
     {
@@ -95,7 +95,7 @@ public class DeckController {
         } catch (Exception ex) {
             throw ex;
         }
-    }
+    }*/
 
     @RequestMapping(path="deck/{deckId}/{flashcardId}", method= RequestMethod.POST)
     public List<Flashcard> addCardToDeck(@PathVariable Long deckId, @PathVariable Long flashcardId,
@@ -106,7 +106,7 @@ public class DeckController {
         return newDeckCardList;
     }
 
-    @RequestMapping(path="decks/{deckId}/flashcards/{flashcardId}", method= RequestMethod.DELETE)
+/*    @RequestMapping(path="decks/{deckId}/flashcards/{flashcardId}", method= RequestMethod.DELETE)
     public boolean removeCardFromDeckREST(@PathVariable Long deckId, @PathVariable Long flashcardId,
                                       Principal principal) throws Exception {
         try {
@@ -114,7 +114,7 @@ public class DeckController {
         } catch (Exception ex) {
             throw ex;
         }
-    }
+    }*/
 
     @RequestMapping(path="deck/{deckId}/{flashcardId}", method= RequestMethod.DELETE)
     public boolean removeCardFromDeck(@PathVariable Long deckId, @PathVariable Long flashcardId,

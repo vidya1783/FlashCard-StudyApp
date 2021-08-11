@@ -36,6 +36,12 @@ export default new Vuex.Store({
     SET_ACTIVEFLASHCARDS(state, data){
       state.activeFlashcards = data;
     },
+    ADD_CARD_TO_ACTIVEFLASHCARDS(state, data){
+      state.activeFlashcards.push(data);
+    },
+    ADD_CARD_TO_AVAILABLEFLASHCARDS(state, data){
+      state.availableFlashcards.push(data);
+    },
     SET_AVAILABLEFLASHCARDS(state, data){
       state.availableFlashcards = data;
     },

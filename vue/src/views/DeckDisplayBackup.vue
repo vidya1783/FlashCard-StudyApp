@@ -14,26 +14,15 @@
       <h1>This is the deck display for deck: {{$route.params.id}}</h1>
     <div class="cards">
         <attached-card-details v-for="flashcard in flashcards"
-          v-bind:flashcard="flashcard" v-bind:deck_id="deckId" v-bind:key="flashcard.id" />
+          v-bind:flashcard="flashcard" v-bind:deck_id="deckId" @send="updateNotinDeckCards" v-bind:key="flashcard.id" />
        </div>
         <h2> The following cards do not belong to the deck. Do you want to assign them to this deck? </h2>
         <div class="add-cards">
           <add-card-to-deck1 v-for="element in notindeck"
-          v-bind:flashcard="element" v-bind:deck_id="deckId"  v-bind:key="element.id" />
+          v-bind:flashcard="element" v-bind:deck_id="deckId"  @send="updateInDeckCards"  v-bind:key="element.id" />
         </div>
-        
-        <!-- DATA BINDING ARRAY MEMEBERS AND USING COMPUTEDS WITH THEM -->
-        
-          <!-- 
-            <h4>{{this.junkPOS2}}</h4>
-            <div>
-              <p v-for="obj in junkArray" :key="obj.id">{{obj}}</p>
-            </div>
-            <button type="button" v-on:click="addJunk">Add Another Piece of Junk</button>
-            <br/>
-            <button type="button" v-on:click="popJunk2">Pop Index 2</button> 
-          -->
-        <!---------------------- END ------------------------------------->
+    
+   
   
   <div>
         
@@ -57,7 +46,6 @@ export default {
     data(){
         return {
             deckId: this.$route.params.id,
-            junk: ["one", "two", "three","four","five"],
              //flashcards: [],
              //notindeck: []
         } 
@@ -70,14 +58,6 @@ export default {
         return this.$store.state.availableFlashcards;
       },
 
-      junkArray(){
-        return this.junk;
-      },
-
-      junkPOS2(){
-        return this.junk[2];
-      }
-
     },
     created(){
       this. updateInDeckCards();
@@ -89,14 +69,6 @@ export default {
     },
     methods: {
   
-        addJunk(){
-          this.junk.push("trash");
-        },
-
-        popJunk2(){
-          this.junk.splice(2,1);
-        },
-
         updateCards(){
           this.updateInDeckCards();
           this.updateNotinDeckCards();

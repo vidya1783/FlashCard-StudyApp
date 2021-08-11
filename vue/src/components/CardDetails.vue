@@ -57,10 +57,12 @@ export default {
   updated() {},
   methods: {
     fillInText() {
-     this.flashcardData.flashcard_id = this.flashcard.flashcard_id;
-    this.flashcardData.question_text = this.flashcard.question_text;
-     this.flashcardData.answer_text = this.flashcard.answer_text; 
-
+      if (this.flashcard)
+      {
+        this.flashcardData.flashcard_id = this.flashcard.flashcard_id;
+        this.flashcardData.question_text = this.flashcard.question_text;
+        this.flashcardData.answer_text = this.flashcard.answer_text; 
+      }
  
 
     },

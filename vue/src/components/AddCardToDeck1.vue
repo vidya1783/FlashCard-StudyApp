@@ -1,45 +1,53 @@
 <template>
     <div>
         <div class="boxes">
-        <div id="attachcard" class="card" v-if="!clicked">
+            <div id="attachcard" class="card" v-if="!clicked">
         
-           <div><span class="questionspan" > Question:</span> {{flashcard.question_text}} </div>
-            <div><span class="answerspan"> Answer:</span> {{flashcard.answer_text}}</div>
+                <div><span class="questionspan" > Question:</span> {{flashcard.question_text}} </div>
+                <div><span class="answerspan"> Answer:</span> {{flashcard.answer_text}}</div>
     
-            <button class='attachbutton' v-on:click="addCardToDeck">Add</button>
+                <button class='attachbutton' v-on:click="addCardToDeck">Add</button>
+            </div>
         </div>
-    </div>
     </div>
 </template>
 
-<script>
+ <script>
+ 
+    import deckService from '../services/DeckService.js';
+ 
+ 
+    export default {
+        name:"add-card-to-deck1",
+        props:["flashcard", 
+                "deck_id"],
+        displayFlashcard: {
 
-import deckService from '../services/DeckService.js';
+        },
+        data(){
+            return {
+            clicked: false
+            }
+        },
+     
+        methods:{
 
+            addCardToDeck(){
+                deckService.attachCardToDeck(this.deck_id, this.flashcard.flashcard_id)
+                    .then(response => {
+                        if(response)
+                        {
+                            this.$store.commit("ADD_CARD_TO_ACTIVEFLASHCARDS", this.flashcard);
+                        }
+                    }
+                );
+                this.clicked = true;   
+            }
+        }  
+ 
+ }
+ </script>
 
-export default {
-    name:"add-card-to-deck1",
-    props:["flashcard", 
-            "deck_id"],
-    displayFlashcard: {
-
-    },
-    data(){
-        return {
-        clicked: false
-        }
-    },
-   methods:{
-       addCardToDeck(){
-           deckService.attachCardToDeck(this.deck_id, this.flashcard.flashcard_id).then( ()=> {
-               this.clicked = true;
-              this.$emit('send');
-              }
-           )  
-   } 
-}
-}
-</script>
 
 <style scoped>
 

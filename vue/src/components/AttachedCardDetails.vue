@@ -23,10 +23,10 @@ export default {
      },
   methods: {
         deleteCardFromDeck(){ 
-           deckService.detachCardFromDeck(this.deck_id, this.flashcard.flashcard_id).then(()=>{
-                this.$emit('send');
-            this.clicked = true; 
-           })
+            deckService.detachCardFromDeck(this.deck_id, this.flashcard.flashcard_id).then(()=>{
+                this.$store.commit("ADD_CARD_TO_AVAILABLEFLASHCARDS", this.flashcard)
+                this.clicked = true; 
+            })
               
        }
  
