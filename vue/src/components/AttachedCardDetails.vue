@@ -44,21 +44,20 @@ export default {
      height: 200px;
      border: 2px;
      border-style: solid;
-     padding: 2px;
+     background-color:white;
+     text-align:center;
  }
  .deletebutton{
      background-color: red;
-     width: 40%;
+       width: 40%;
      text-align: center;
      color: white;
      font-weight: bold;
       border: 2px;
      border-style: solid;
      border-color: lightblue;
-     padding-left:0px;
-    text-align:center;
-    margin: 60px; 
-
+       text-align:center;
+    margin: 30px; 
 
  }
  .questionspan {
