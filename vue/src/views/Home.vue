@@ -9,9 +9,10 @@
   </div>
  
    <div class="home" >
-   <div class="picture">
-   <img src="https://lh3.googleusercontent.com/proxy/mJKygWYwIxjBq-ZYh4gIqHSM8JCm1rf7CgDcSmrVXgsN-NUzpXyVIRkas1CBvjIagA1soALKA5GSLKPYxl0uIUqkDw"/>
-   </div> </div>
+  <div id="cf">
+  <img class="bottom" src="./image1.jpg"/>
+  <img class="top" src="./image2.jpg"/>
+</div></div>
     <!--<decks-list/>-->
 </div>
 </template>
@@ -29,7 +30,8 @@ export default {
 
 <style scoped >
 .home{
-  background-color: rgba(117, 167, 214, 0.692);
+  background:linear-gradient(to right, #E9F8FF, #90B2D8, #C1E3FF);
+  height: 700px;
   height:800px;
   font-size: 40px;
   display:flex;
@@ -39,7 +41,28 @@ export default {
 }
 .welcome{
   font-size:25px;
-  background-color:rgb(245, 245, 10);
+  background-color: #263472;
+  color:white;
+}
+#cf {
+  position:relative;
+  height:181px;
+  width:350px;
+  
+}
+
+#cf img {
+  position:absolute;
+  left:10;
+  -webkit-transition: opacity 2s ease-in-out;
+  -moz-transition: opacity 2s ease-in-out;
+  -o-transition: opacity 2s ease-in-out;
+  transition: opacity 2s ease-in-out;
+  padding-left: 70px;
+}
+
+#cf img.top:hover {
+  opacity:0;
 }
 
 </style>

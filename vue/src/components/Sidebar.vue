@@ -3,6 +3,9 @@
       <div class="title">
           In a Flash
       </div>
+      <div class="image">
+          <img src="./image3.png"/>
+      </div>
       <div class="menu-items">
           <router-link to="/" active-class="active" exact tag="v-btn" class="side-btn">
             <div class="link-container">
@@ -11,12 +14,12 @@
         </router-link>
          <router-link to="/test-flashcard-details2" active-class="active" exact tag="v-btn" class="side-btn">
           <div class="link-container">
-              My Cards
+              My Decks
               </div>
         </router-link>
          <router-link to="/test-deck-details2" active-class="active" exact tag="v-btn" class="side-btn">
           <div class="link-container">
-              My Decks
+              My Cards
               </div> 
               </router-link>
                <!-- <router-link to="/study" active-class="active" exact tag="v-btn" class="side-btn">
@@ -49,12 +52,14 @@ export default {
     color:white;
     font-size: 45px;
     margin-top: 10px;
+    padding-bottom:0px;
 }
 
 .menu-items{
     display:flex;
     flex-direction: column;
-    margin-top: 40px;
+    margin-top: 25px;
+    
    
 }
 
@@ -65,10 +70,15 @@ export default {
 .side-btn:focus{
     outline: none;
 }
+.link-container:hover{
+background-color:rgb(0, 199, 199)
+
+}
+
 
 .side-btn .active{
 position: relative;
-background-color: white;
+background-color: rgb(85, 167, 167);
 color: #1b308d;
 font-weight: 500;
  margin-left: 10px;
@@ -101,7 +111,7 @@ border-radius: 30px 0 0 30px;
     cursor: pointer;
     font-size: 16px;
     color:black;
-    background-color: transparent;
+    background-color:transparent;
 }
 
 .side-btn.active .link-container::before{
@@ -126,4 +136,9 @@ border-radius: 30px 0 0 30px;
     background-color: transparent;
     z-index: 99;
 }
+.image{
+    padding-top:10px;
+    margin-bottom:5px;
+}
+
 </style>

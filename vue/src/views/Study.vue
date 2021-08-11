@@ -1,5 +1,16 @@
 <template>
-  <study-session v-bind:cardList="flashcards"/>
+<div id="body">
+  <!-- This is a test -->
+  <input type="checkbox" id="randomize-checkbox" v-model="randomize">
+    <label for="randomize">
+      Randomize 
+    </label>
+    <div id="randomize">
+      {{randomize}}
+    </div>
+  <study-session v-bind:cardList="flashcards" v-bind:shuffleCards="randomize"/>
+</div>
+  
 </template>
 
 <script>
@@ -27,7 +38,8 @@ export default {
         "creator_id": 100,
         "question_text": "mnesicles",
         "answer_text": "static data, you bum"}],
-        flashcards:[]
+        flashcards:[],
+        randomize: false
     }
   },
   created() {
@@ -39,5 +51,12 @@ export default {
 </script>
 
 <style>
+#body {
+  background: linear-gradient(to right, #E9F8FF, #90B2D8, #C1E3FF);
+  height: 700px;
+}
 
+#randomize {
+  display: none;
+}
 </style>

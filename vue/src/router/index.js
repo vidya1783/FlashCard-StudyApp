@@ -29,11 +29,12 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      // name: 'Home',
       component: Dashboard,
       children:[
         {
           path: '',
+          name: 'home',
           component: () => import('../views/Home')
         },
         

@@ -1,6 +1,45 @@
 <template>
-  <div>
-    
+  <div id="body">
+    <div id="popup">
+    <!-- <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="red lighten-2"
+          dark
+          v-bind="attrs"
+          v-on="on"
+        >
+          FINISH
+        </v-btn>
+      </template>
+
+      <v-card>
+        <v-card-title class="text-h5 grey lighten-2">
+          Privacy Policy
+        </v-card-title>
+
+        <v-card-text>
+         <P>Great attempt! Keep practicing!</P>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="dialog = false"
+          >
+            I accept
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog> -->
+  </div>
 
 
 <!-- Write UI code here, copying from the "debug/demo area below"                             --->
@@ -10,16 +49,24 @@
 <div class="cardgrid">
 
 
-    <div class="one"><v-btn v-on:click.prevent="previousCard">Previous Card</v-btn>
+    <div class="one">
+      <v-btn v-on:click.prevent="previousCard">
+        <span>&#8678;</span>
+      </v-btn>
  </div>
-    <div class="two">       <v-card class="mx-auto" max-width=600>
+    <div class="two">       
+      <v-card class="mx-auto" width=400>
       <v-card-text>
         {{displayText}}
         </v-card-text>
-    </v-card>
+      </v-card>
     
+  </div>
+    <div class="three"> 
+      <v-btn v-on:click.prevent="nextCard">
+       <span>&#8680;</span>
+      </v-btn> 
     </div>
-    <div class="three"> <v-btn v-on:click.prevent="nextCard">Next Card</v-btn> </div>
     <div class="one">
       <ul style="list-style-type:none;">
         <li> {{userCardNumber}} of 
@@ -37,40 +84,31 @@
         <v-btn class="ma-2" text icon color="red lighten-2">
           <v-icon>mdi-thumb-down</v-icon>
         </v-btn> -->
-      <v-btn v-on:click.prevent="markCorrect" label="thumbs up"><img src="../components/thumbsup.png"></v-btn>
-         <v-btn v-on:click.prevent="flipCard">Flip Card</v-btn>
-         <v-btn v-on:click.prevent="markIncorrect"><img src="../components/thumbsdown.png" label="thumbs down"></v-btn>
+      <v-btn id="correct" v-on:click.prevent="markCorrect" label="thumbs up">
+        <span>&#10003;</span>
+        <!-- <img src="../components/thumbsup.png"> -->
+      </v-btn>
+      <v-btn v-on:click.prevent="flipCard">
+        <span>&#8634;</span>
+      </v-btn>
+      <v-btn id="incorrect" v-on:click.prevent="markIncorrect">
+        <span >&#10008;</span>
+          <!-- <img src="../components/thumbsdown.png" label="thumbs down"> -->
+      </v-btn>
     </div>  
     </div>
-    <div class="three"> {{correctAnswers[currentPosition] ? "Marked Correct" : "Marked Incorrect"}}. </div>
-    <div></div>
-    <div class="two button"><router-link to="/" tag="v-btn"> Home </router-link></div>
-        <div></div>
-</div>
-<!-- <div id="slider">
-  <transition-group tag="div" :name="transitionName" class="slides-group">
-    <div v-if="show" :key="current" class="slide" :class="slides[current].className">
-      <v-card c >
-       <v-card-text>
-        {{displayText}} test
-        </v-card-text>
-        </v-card>
-    </div>
-  </transition-group>
+  <div class="three"> <v-card>  {{correctAnswers[currentPosition] ? "Marked Correct" : "Marked Incorrect"}}. </v-card></div>
   
-  <div class="btn btn-prev" aria-label="Previous slide" @click="slide(-1)">
-    &#10094;
-  </div>
-  <div class="btn btn-next" aria-label="Next slide" @click="slide(1)">
-    &#10095;
-  </div>
-</div> -->
-     
-
-
-
-
-
+    <div></div>
+    <div class="two button">
+      <router-link to="/" tag="v-btn"> 
+      <i class="material-icons">home</i>
+      </router-link>
+      </div>
+        <div>
+         
+        </div>
+</div>
 
 <!-- Debug/Demo Area
   
@@ -110,6 +148,7 @@ to create a UI, copy and paste code and ensure that it works:
 <script>
 import deckService from '../services/DeckService';
 
+
 export default {
   name: 'study-session',
   props: {
@@ -118,8 +157,12 @@ export default {
     shuffleCards: Boolean
   },
   currentPosition: 0,
+//  dialog: false,
+ 
+
   data() {
     return {
+     
       flashcards: undefined,
       correctAnswers: [false],
       currentPosition: 0,
@@ -285,9 +328,7 @@ export default {
 </script>
 
 <style scoped>
-div{
-  color: teal;
-}
+
 h1{
   font-size: 60px;
 
@@ -305,6 +346,7 @@ h1{
   grid-gap:50px;
   justify-items: end center start;
   align-items: center center center;
+  
 }
 
 .cardgrid .one {
@@ -318,5 +360,18 @@ h1{
 .cardgrid .three {
   justify-self: start
 }
+
+#incorrect {
+  background-color: red;
+}
+
+#correct {
+  background-color: green;
+}
+h1{
+  font-size:50px;
+  padding-bottom:40px;
+}
+
 
 </style>

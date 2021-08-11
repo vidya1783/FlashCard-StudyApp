@@ -59,7 +59,7 @@ export default {
     height: 70%;
     width: 100%;
     font-size: 40px;
-   background-color:  rgba(117, 167, 214, 0.692);
+   background:linear-gradient(to right, #E9F8FF, #90B2D8, #C1E3FF);
     font-weight: 600;
     text-align: center;
     height:700px;
@@ -68,10 +68,10 @@ export default {
 .decks {
   display: flex;
   justify-content: center;
-   color:black;
+   color: white;
   font-size:25px;
-  background-color:rgb(245, 245, 10);
-
+  background-color:  #263472;
+   
 }
 
 

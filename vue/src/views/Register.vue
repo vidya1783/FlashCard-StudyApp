@@ -1,8 +1,10 @@
 <template>
-  <div id="register" class="text-center">
-    
+<div>
+ 
+         
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+     
+   <h1 class="h3 mb-3 font-weight-normal"><img src="./image3.png"/> Create Account </h1>
       
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
@@ -107,7 +109,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+  height:670px;
 
 }
 
@@ -118,7 +120,8 @@ div{
   justify-content: center;
     padding: 25px;
     position: relative;
-    background-color: #59b0ca;
+   background:linear-gradient(to right, #E9F8FF, #90B2D8, #C1E3FF);
+
     
     
 
@@ -126,6 +129,7 @@ div{
 h1{
   padding-bottom: 20px;
   font-size: 45px;
+  padding-top:5px;
 }
 input{
   border: 1px solid black;
