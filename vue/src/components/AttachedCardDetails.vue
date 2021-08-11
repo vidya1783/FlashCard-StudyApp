@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div id="cardindeck" class="card" v-if="!clicked" >
+  <div id="cardindeck" class="card" v-if="!this.clicked" >
             <div><span class="questionspan" > Question:</span> {{flashcard.question_text}} </div>
             <div><span class="answerspan"> Answer:</span> {{flashcard.answer_text}}</div>
     
@@ -15,19 +15,19 @@ export default {
   props: ['flashcard', 'deck_id'],
   data(){
     return {
-   clicked: false
+     clicked: false
         }
   },
   created() {
-   
+  
      },
   methods: {
         deleteCardFromDeck(){ 
-           deckService.detachCardFromDeck(this.deck_id, this.flashcard.flashcard_id);
-            this.clicked = true;   
-           
-          
-        
+           deckService.detachCardFromDeck(this.deck_id, this.flashcard.flashcard_id).then(()=>{
+                this.$emit('send');
+            this.clicked = true; 
+           })
+              
        }
  
     }

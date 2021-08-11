@@ -8,6 +8,7 @@ import com.techelevator.model.Flashcard;
 import com.techelevator.model.FlashcardTag;
 import com.techelevator.model.Tag;
 import com.techelevator.model.User;
+import org.apache.coyote.Request;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +54,16 @@ public class TagController {
         return newTag;
     }
 
+    @RequestMapping(path="flashcard/tag", method=RequestMethod.POST)
+    public FlashcardTag createFlashcardTagAlmostREST(@RequestBody FlashcardTag flashcardTag, Principal principal) throws Exception {
+        try {
+            return createFlashcardTag(flashcardTag, principal);
+        } catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     @RequestMapping(path="tag/flashcard", method= RequestMethod.POST)
     public FlashcardTag createFlashcardTag(@RequestBody FlashcardTag flashcardTag, Principal principal) throws Exception
     {
@@ -92,6 +103,17 @@ public class TagController {
         return tagDao.tagsOnAsingleCard(flashcardId);
     }
 
+    @RequestMapping(path="flashcards/{flashcardId}/tags", method=RequestMethod.GET)
+    public List<Tag> getTagsByFlashcardIdREST(@PathVariable Long flashcardId)
+    {
+        return getTagsByFlashcardId(flashcardId);
+    }
+
+    @RequestMapping(path="flashcards/{flashcardId}/tags/{tagId}", method=RequestMethod.DELETE)
+    public boolean deleteTagFromFlashcardREST(@PathVariable Long flashcardId,
+                                          @PathVariable Long tagId, Principal principal) {
+        return deleteTagFromFlashcard(flashcardId,tagId,principal);
+    }
 
     @RequestMapping(path="deletetag/{flashcardId}/{tagId}", method= RequestMethod.DELETE)
     public boolean deleteTagFromFlashcard(@PathVariable Long flashcardId,
@@ -99,6 +121,11 @@ public class TagController {
         Long userId = Long.valueOf(userDao.findIdByUsername(principal.getName()));
         if(tagDao.getTagByTagId(tagId).getCreatorId()!= userId) return false;
         return flashcardTagDao.deleteTagFromCard(flashcardId, tagId);
+    }
+
+    @RequestMapping(path="tag", method=RequestMethod.PUT)
+    public boolean updateTagREST(@RequestBody Tag tag, Principal principal) {
+        return updateTag(tag,principal);
     }
 
     @RequestMapping(path="updatetag", method= RequestMethod.PUT)
@@ -116,7 +143,7 @@ public class TagController {
     // requires tags to already be in the database or throws an error
     // takes a list of tags and a card Id, tries to make that tag list match the database
     // by updating appropriate tables
-    @RequestMapping(path="flashcard/{cardId}/tags", method=RequestMethod.PUT)
+    @RequestMapping(path="flashcards/{cardId}/tags", method=RequestMethod.PUT)
     public List<Tag> updateCardTagList(@RequestBody List<Tag> newCardTagList, @PathVariable Long cardId, Principal principal)
     throws Exception {
 

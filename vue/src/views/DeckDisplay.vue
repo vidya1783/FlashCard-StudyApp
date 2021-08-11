@@ -4,12 +4,12 @@
       <h1>This is the deck display for deck: {{$route.params.id}}</h1>
     <div class="cards">
         <attached-card-details v-for="flashcard in flashcards"
-          v-bind:flashcard="flashcard" v-bind:deck_id="deckId" v-bind:key="flashcard.id" />
-        
-        <h2> The following cards do not belong to the deck. Do you want to assign them to this deck? </h2>
+          v-bind:flashcard="flashcard" v-bind:deck_id="deckId" @send="updateNotinDeckCards" v-bind:key="flashcard.id" />
+       <div class="card" >
+        <h2> The following cards do not belong to the deck. Do you want to assign them to this deck? </h2></div>
         <div class="cards">
           <add-card-to-deck1 v-for="element in notindeck"
-          v-bind:flashcard="element" v-bind:deck_id="deckId" v-bind:key="element.id" />
+          v-bind:flashcard="element" v-bind:deck_id="deckId"  @send="updateInDeckCards"  v-bind:key="element.id" />
         </div>
     </div>
    <div class="button"><router-link v-bind:to="{name:'study-session', params: {id:this.$route.params.id}}" tag="v-btn"> Study Session </router-link>
@@ -20,10 +20,6 @@
   
   <div>
         
- <!-- <p> Question text: {{flashcard.question_text}} </p>
-<p> Answer text: {{flashcard.answer_text}} </p>
-<p> Flashcard Id: {{ id = flashcard.flashcard_id}} </p>
-<p> Creator Id: {{ flashcard.creator_id}}</p>-->
 
 
 
@@ -45,40 +41,45 @@ export default {
         return {
             deckId: this.$route.params.id,
              //flashcards: [],
-             notindeck: []
-      
-
-        }  
+             //notindeck: []
+        } 
     },
     computed: {
       flashcards() {
         return this.$store.state.activeFlashcards;
-      }
+      },
+      notindeck(){
+        return this.$store.state.availableFlashcards;
+      },
 
     },
     created(){
-        
-        deckService.getFlashcardsByDeckId(this.$route.params.id)
-         .then((response) => { 
-           this.$store.commit('SET_ACTIVEFLASHCARDS', response.data);
-            //this.flashcards = response.data;
-        });
-          deckService.getFlashcardsNotinDeckId(this.$route.params.id)
-         .then((response) => { 
-            this.notindeck = response.data;
-        });
+      this. updateInDeckCards();
+      this.updateNotinDeckCards();
     },
     components: {
         AttachedCardDetails,
         AddCardToDeck1
     },
     methods: {
-        attachToThisDeck(){
-            alert("This is getting called")
-          
+  
+        updateCards(){
+          this.updateInDeckCards();
+          this.updateNotinDeckCards();
+        },
+        updateInDeckCards(){
+          deckService.getFlashcardsByDeckId(this.$route.params.id)
+         .then((response) => { 
+           this.$store.commit('SET_ACTIVEFLASHCARDS', response.data)
+        })},
+        updateNotinDeckCards(){
+          deckService.getFlashcardsNotinDeckId(this.$route.params.id)
+         .then((response) => { 
+                this.$store.commit('SET_AVAILABLEFLASHCARDS', response.data)
+        })},
         }
     }
-    }
+    
 
 
 
@@ -96,7 +97,7 @@ h1{
   flex-direction: row;
 justify-content: center;
   align-items: space-between;
-  padding-bottom: 30px;
+  padding-top: 30px;
 }
 .button{
   font-size:40px;
@@ -104,12 +105,15 @@ justify-content: center;
   
 }
 #main    {
-     background-color:rgb(197, 226, 226);
+     background-color: rgba(117, 167, 214, 0.692);
      height: 1000px;;
      width: 1500px;
-     margin: 50px auto;
+    
      border: 1px solid teal /* width, style, colour */
      } 
+     .card{
+       padding-top:20px;
+     }
 
 
 </style>

@@ -46,7 +46,7 @@ export default {
 
 <style scoped>
 .title{
-    color: black;
+    color:white;
     font-size: 45px;
     margin-top: 10px;
 }
@@ -69,7 +69,7 @@ export default {
 .side-btn .active{
 position: relative;
 background-color: white;
-color: #59b0ca;
+color: #1b308d;
 font-weight: 500;
  margin-left: 10px;
 border-radius: 30px 0 0 30px;
@@ -100,7 +100,7 @@ border-radius: 30px 0 0 30px;
     padding: 16px 0px;
     cursor: pointer;
     font-size: 16px;
-    color: black;
+    color:black;
     background-color: transparent;
 }
 
