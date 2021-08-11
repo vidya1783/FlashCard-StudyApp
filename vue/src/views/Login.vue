@@ -130,10 +130,12 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  justify-content:start;
   color: rgb(243, 243, 243) ;
   padding: 50 px;
     background-color: #263472;
-    height: 700px;;
+    height: 700px;
+    padding-top:15px;
 
 
 
