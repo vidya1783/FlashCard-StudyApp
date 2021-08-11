@@ -141,7 +141,7 @@ padding-top:20px;
   
 }
 #main    {
-    background:linear-gradient(to right, #E9F8FF, #90B2D8, #C1E3FF);
+     background:linear-gradient(to right, rgb(236, 233, 233), #f2f5f8, white);
      height: 1000px;;
      width: 1500px;
     

@@ -39,8 +39,8 @@ export default {
   props: ['flashcard'],
   data(){
     return {
-      flashcardData: {flashcard_id: -1, question_text: "Question", 
- answer_text: "Answer" },
+      flashcardData: {flashcard_id: -1, question_text: "Create Question Here!", 
+ answer_text: "Create Answer Here!" },
       alertText: "",
       testText: ""
         }

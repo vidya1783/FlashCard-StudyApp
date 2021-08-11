@@ -14,12 +14,12 @@
         </router-link>
          <router-link to="/test-flashcard-details2" active-class="active" exact tag="v-btn" class="side-btn">
           <div class="link-container">
-              My Decks
+              My Cards
               </div>
         </router-link>
          <router-link to="/test-deck-details2" active-class="active" exact tag="v-btn" class="side-btn">
           <div class="link-container">
-              My Cards
+              My Decks
               </div> 
               </router-link>
                <!-- <router-link to="/study" active-class="active" exact tag="v-btn" class="side-btn">
@@ -71,7 +71,8 @@ export default {
     outline: none;
 }
 .link-container:hover{
-background-color:rgb(0, 199, 199)
+background-color:lightgray;
+ 
 
 }
 

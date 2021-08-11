@@ -133,7 +133,7 @@ export default {
   justify-content:start;
   color: rgb(243, 243, 243) ;
   padding: 50 px;
-    background-color: #263472;
+   background:linear-gradient(45deg,black, white);
     height: 700px;
     padding-top:15px;
 

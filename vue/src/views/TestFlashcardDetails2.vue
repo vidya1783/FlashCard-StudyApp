@@ -11,7 +11,7 @@
   <!--{{ flashcard.question_text }} {{ flashcard.answer_text}}-->
   <card-details v-for="flashcard in flashcards"
   v-bind:flashcard="flashcard" v-bind:key="flashcard.id" />
-  <card-details />
+  <div class="createcard"><card-details /></div>
   </div> 
   </div>
 </template>
@@ -56,7 +56,7 @@ export default {
     height: 70%;
     width: 100%;
     font-size: 40px;
-  background:linear-gradient(to right, #E9F8FF, #90B2D8, #C1E3FF);
+    background:linear-gradient(to right, rgb(236, 233, 233), #f2f5f8, white);
     font-weight: 600;
     text-align: center;
     height:700px;
@@ -67,8 +67,14 @@ export default {
   justify-content: center;
   color:white;
   font-size:25px;
-   background-color:#263472;
+  background:linear-gradient(45deg,black, white);
  
+
+}
+
+.createcard {
+  
+  background-color: red;
 
 }
 </style>

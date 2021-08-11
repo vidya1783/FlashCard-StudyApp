@@ -64,7 +64,7 @@ export default {
   props: ['deck'],
   data(){
     return {
-      deckData: {deck_id: -1, deck_name: "defaultName", deck_description: "default deck description" },
+      deckData: {deck_id: -1, deck_name: "Create a Deck Here!", deck_description: "default deck description" },
       alertText: "",
       testText: ""
     }

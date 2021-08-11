@@ -6,9 +6,6 @@
     <router-link :to="{ name: 'test-flashcard-details2' }">My Flashcards</router-link>-->
 
    <!-- <p>This is the home page</p>-->
-   <div class="picture">
-   <img src=https://www.nbcot.org/-/media/NBCOT/Aspire/aspire_flashcards_icon.ashx/>
-   </div> 
     <!-- <decks-list/> -->
   </div>
  
@@ -34,7 +31,7 @@ export default {
 
 <style scoped >
 .home{
-  background:linear-gradient(to right, #E9F8FF, #90B2D8, #C1E3FF);
+  background:linear-gradient(to right, rgb(236, 233, 233), #f2f5f8, white);
   height: 700px;
   height:800px;
   font-size: 40px;
@@ -45,7 +42,7 @@ export default {
 }
 .welcome{
   font-size:25px;
-  background-color: #263472;
+   background:linear-gradient(45deg,black, white);
   color:white;
 }
 #cf {
