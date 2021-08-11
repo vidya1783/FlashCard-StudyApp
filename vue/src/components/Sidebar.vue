@@ -11,7 +11,7 @@
         </router-link>
          <router-link to="/test-flashcard-details2" active-class="active" exact tag="v-btn" class="side-btn">
           <div class="link-container">
-              My Flash
+              My Cards
               </div>
         </router-link>
          <router-link to="/test-deck-details2" active-class="active" exact tag="v-btn" class="side-btn">

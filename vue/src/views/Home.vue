@@ -8,7 +8,7 @@
    <div class="picture">
    <img src=https://www.nbcot.org/-/media/NBCOT/Aspire/aspire_flashcards_icon.ashx/>
    </div> 
-    <decks-list/>
+    <!-- <decks-list/> -->
   </div>
 </template>
 
