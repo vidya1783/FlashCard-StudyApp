@@ -22,22 +22,28 @@ to create a UI, copy and paste code and ensure that it works:
 <div v-if="debug">
       We're in the tag component.
 
-{{tagListRaw}}
+<!-- {{tagListRaw}}
 
-{{tagList}}
+{{tagList}} -->
 <div>
   <p>
-<multiselect v-model="selectedTags" :options="tagList" 
-multiple="true"
-
-></multiselect>
+ <!--  <v-select :options="tagList" v-model="selectedTags" multiple></v-select>
+     {{selectedTags}} -->
+     test
 </P>
+</div>
+
+<div>
+
+
 </div>
 <v-btn></v-btn>
 <v-container>
 
 <!-- <v-select :value.sync="selectedTags" :text="selectedTags"
 :options="selectedTags"></v-select> -->
+
+
 </v-container>
 </div>    
 
@@ -48,11 +54,13 @@ multiple="true"
 <script>
 import cardService from '../services/FlashcardService';
 import tagService from '../services/TagService';
-import Multiselect from 'vue-multiselect';
+// import vSelect from 'vue-select';
+// import 'vue-select/dist/vue-select.css';
 
 export default {
   name: 'tagComponent',
-  components: {Multiselect},
+//  components: {vSelect},
+components: {},
   props: { },
   watchInt: 0,
   data() {
@@ -129,6 +137,6 @@ export default {
 
 <style scoped>
 .nostyleplease {
-  all: initial
+  display:text;
 }
 </style>
