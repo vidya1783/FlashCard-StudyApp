@@ -25,6 +25,7 @@ export default {
   methods: {
         deleteCardFromDeck(){ 
            deckService.detachCardFromDeck(this.deck_id, this.flashcard.flashcard_id);
+           this.$emit('cardChange');
             this.clicked = true;   
            
           

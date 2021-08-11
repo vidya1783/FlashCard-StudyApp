@@ -34,8 +34,9 @@ export default {
     
        addCardToDeck(){
            deckService.attachCardToDeck(this.deck_id, this.flashcard.flashcard_id);    
-           this.clicked = true;   
-           this.$router.push({name:'deck-display', params: {id: this.deck_id}});    
+           this.clicked = true;
+           this.$emit('cardChange');
+           // this.$router.push({name:'deck-display', params: {id: this.deck_id}});    
        }
    } 
 
