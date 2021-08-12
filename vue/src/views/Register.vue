@@ -44,7 +44,7 @@
       <div class="button">
        <v-btn  elevation="19"
   x-large type="submit" >Create Account</v-btn></div>
-      <div><router-link :to="{ name: 'login' }">Have an account?</router-link>
+      <div><router-link :to="{ name: 'login' }" tag="v-btn">Have an account?</router-link>
       </div>
     
     </form>
@@ -120,10 +120,7 @@ div{
   justify-content: center;
     padding: 25px;
     position: relative;
-    background:linear-gradient(to right, rgb(236, 233, 233), #f2f5f8, white);
-
-    
-    
+    background:linear-gradient(to right, rgb(202, 199, 199), #f2f5f8, white);
 
 }
 h1{

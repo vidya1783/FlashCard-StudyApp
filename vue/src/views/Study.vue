@@ -1,10 +1,15 @@
 <template>
 <div id="body">
   <!-- This is a test -->
-  <input type="checkbox" id="randomize-checkbox" v-model="randomize">
-    <label for="randomize">
-      Randomize 
+  <div class="check">
+    <div class="box">
+  <input type="checkbox" class="randomize-checkbox" v-model="randomize">
+    </div>
+  <label for="randomize" class="label">
+      <strong><p>Randomize</p></strong> 
     </label>
+  </div>
+    
     <div id="randomize">
       {{randomize}}
     </div>
@@ -52,11 +57,33 @@ export default {
 
 <style>
 #body {
-  background:linear-gradient(to right, rgb(236, 233, 233), #f2f5f8, white);
+  background:linear-gradient(to right, rgb(202, 199, 199), #f2f5f8, white);
   height: 700px;
 }
 
 #randomize {
   display: none;
+}
+
+.label {
+  font-size: 30px;
+}
+
+input.randomize-checkbox{
+ width: 30px;
+ height: 30px;
+ padding-top: 50px;
+}
+
+div.check{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding-top: 20px;
+}
+
+div.box{
+  padding-top: 8px;
+  padding-right: 5px;
 }
 </style>

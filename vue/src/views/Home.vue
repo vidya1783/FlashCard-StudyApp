@@ -11,8 +11,8 @@
  
    <div class="home" >
   <div id="cf">
-  <img class="bottom" src="./image1.jpg"/>
-  <img class="top" src="./image2.jpg"/>
+  <img class="bottom" src="./image4.png"/>
+  <img class="top" src="./image5.png"/>
 </div></div>
     <!--<decks-list/>-->
 </div>

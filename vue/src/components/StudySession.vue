@@ -1,7 +1,7 @@
 <template>
   <div id="body">
    <div class="modal-vue">
-    <button @click="showModal = true">COMPLETE</button>
+    <button class="popup" @click="showModal = true">COMPLETE</button>
   
   <!-- overlay -->
   <div class="overlay" v-if="showModal" @click="showModal = false"></div>
@@ -29,7 +29,7 @@
 
     <div class="one">
       <v-btn v-on:click.prevent="previousCard">
-        <span>&#8678;</span>
+        <span><strong>&#8678;</strong></span>
       </v-btn>
  </div>
     <div class="two">       
@@ -42,17 +42,17 @@
   </div>
     <div class="three"> 
       <v-btn v-on:click.prevent="nextCard">
-       <span>&#8680;</span>
+       <span><strong>&#8680;</strong></span>
       </v-btn> 
     </div>
     
-    <div class="one">
+    <div class="info">
       
       <ul style="list-style-type:none;">
-        <li> {{userCardNumber}} of 
+        <strong><li> {{userCardNumber}} of 
     {{lengthOfTest}}. </li>
     <li>.           .      . </li>
-    <li> Current score: {{currentScore}}. </li>
+    <li> Current score: {{currentScore}}. </li></strong>
       </ul>
       
     </div>
@@ -67,11 +67,11 @@
           <v-icon>mdi-thumb-down</v-icon>
         </v-btn> -->
       <v-btn id="correct" v-on:click.prevent="markCorrect" label="thumbs up">
-        <span>&#10003;</span>
+        <span><strong>&#10003;</strong></span>
         <!-- <img src="../components/thumbsup.png"> -->
       </v-btn>
       <v-btn v-on:click.prevent="flipCard">
-        <span>&#8634;</span>
+        <span><strong>&#8634;</strong></span>
       </v-btn>
       <v-btn id="incorrect" v-on:click.prevent="markIncorrect">
         <span >&#10008;</span>
@@ -79,11 +79,11 @@
       </v-btn>
     </div>  
     </div>
-  <div class="three"> <v-card>  {{correctAnswers[currentPosition] ? "Marked Correct" : "Marked Incorrect"}}. </v-card></div>
+  <strong><div class="correct-incorrect">  {{correctAnswers[currentPosition] ? "Marked Correct" : "Marked Incorrect"}}. </div></strong>
   
     <div></div>
-    <div class="two button">
-      <router-link to="/" tag="v-btn"> 
+    <div class="two-button">
+      <router-link to="/" tag="v-btn" class="move"> 
       <i class="material-icons">home</i>
       </router-link>
       </div>
@@ -335,7 +335,7 @@ h1{
   grid-gap:50px;
   justify-items: end center start;
   align-items: center center center;
-  
+  padding-top: 0px;
 }
 
 .cardgrid .one {
@@ -408,5 +408,28 @@ button:hover {
 
 #close-box{
  margin: 25px;
+}
+
+button.popup{
+  border-radius: 10px 100px / 120px;
+}
+
+.two-button{
+  margin-top: auto;
+}
+
+.correct-incorrect{
+   border: 15px solid #494cf0;
+  border-radius: 25% 10%;
+  margin-right: auto;
+  height: 100px;
+  width: 150px;
+}
+
+.info {
+  /* width: 200px; */
+  border: 15px solid #494cf0;
+  border-radius: 25% 10%;
+  margin-left: auto;
 }
 </style>
