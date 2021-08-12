@@ -9,7 +9,7 @@
     <!-- <decks-list/> -->
   </div>
  
-   <div class="home" >
+   <div class="home">
   <div id="cf">
   <img class="bottom" src="./image4.png"/>
   <img class="top" src="./image5.png"/>
